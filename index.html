@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle for Middle-Earth Cards</title>
+    <link rel="stylesheet" type="text/css" href="./normalize.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Rubik:wght@300&display=swap" rel="stylesheet"/>
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
     <header>
@@ -22,9 +27,158 @@
     </header>
     <main>
         <section id="login">
-            
+            <section id="loginPlatform">
+                <h1>Welcome to Battle for Middle-Earth CARDS!</h1>
+                <p>In order to play you must register first:</p>
+                <button id="register" class="button">Register</button>
+                <p>If you already have an account then log in:</p>
+                <button id="log_in" class="button blue">Log In</button>
+                <section id="registerBox" class="hide boxContainer">
+                    <form id="formRegister" class="form1">
+                        <section class="formContainer">
+                            <h3>Register:</h3>
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" minlength="2" maxlength="30" placeholder="Write your alias" required>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" placeholder="Write your email" required>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" minlength="2" maxlength="30" placeholder="Write your password" required>
+                        </section>
+                        <button class="back button blue">Back</button>
+                        <button type="submit" class="blue button">Register</button>
+                    </form>
+                </section>
+                <section id="loginBox" class="hide boxContainer">
+                    <form id="formlogin" class="form1">
+                        <section class="formContainer">
+                            <h3>Log in:</h3>
+                            <label for="email2">Email:</label>
+                            <input type="email" id="email2" placeholder="Write your email" required autocomplete="email">
+                            <label for="password2">Password:</label>
+                            <input type="password" id="password2" minlength="2" maxlength="30" placeholder="Write your password" required autocomplete="current-password">
+                        </section>
+                        <button class="back button blue">Back</button>
+                        <button type="submit" class="blue button">Log in</button>
+                    </form>
+                </section>
+            </section>
+        </section>
+        <section id="menu" class="hide">
+            <section id="menuBar">
+                <h2 id="home">Home</h2>
+                <section id="barRight">
+                    <h2 id="battle">Battle</h2>
+                    <h2 id="shop">Shop</h2>
+                    <h2 id="myCards">My Cards</h2>
+                    <img src="./assets/mute.png" alt="mute" id="muteButton">
+                    <img src="./assets/login.png" alt="logout" id="logout"> 
+                </section>
+            </section>
+            <section id="homeContent">
+                <section id="homeContainer">
+                    <section id="statistics">
+                        
+                    </section>
+                    <section id="personalInfo">
+                        <figure id="avatar">
+                            <img src="">
+                            <p>Avatar</p>
+                        </figure>
+                        <img src="./assets/avatar.png" id="selector">
+                        <h3 id="username1"></h3>
+                        <h3>Level: <span id="totalLevel"></span></h3>
+                        <h3>Cards owned: <span id="cardsOwned"></span></h3>
+                        <section id="selectAvatar" class="hide">
+                            <form id="chooseAvatar">
+                                <select name="avatarSelector" id="avatarSelector">
+                                    
+                                </select>
+                                <button type="submit">Change Avatar</button>
+                            </form>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section id="battleContent" class="hide">
+
+            </section>
+            <section id="shopContent" class="hide">
+                <section id="detalleShopContainer" class="hide">
+                    <section class="detalleShop">
+                        <img src="./assets/X.png" alt="X" id="xShop">
+                        <section id="imgDetalle">
+
+                        </section>
+                        <section id="infoShop">
+                            <section id="generalShop">
+                                
+                            </section>
+                            <section id="statisticsShop" class="hide">
+
+                            </section>
+                            <section class="buttonsDetalle">
+                                <button id="gInfo" class="blue button" disabled>General Info</button>
+                                <button type="submit" id="statisticsButton" class="blue button">Statistics</button>
+                            </section>
+                            <button id="buy" class="buttonGold button">Buy</button>
+                        </section>
+                    </section>
+                </section>
+                <section id="shopContainer">
+                    <section id="filterShop">
+                        <form id="filterSelectorShop">
+                            <h2>Filter:</h2>
+                            <section class="vertical">
+                                <article>
+                                    <input type="checkbox" id="gold" name="gold"/>
+                                    <label for="gold">Gold</label>
+                                </article>
+                                <article>
+                                    <input type="checkbox" id="silver" name="silver"/>
+                                    <label for="silver">Silver</label>
+                                </article>
+                                <article>
+                                    <input type="checkbox" id="bronze" name="bronze"/>
+                                    <label for="bronze">Bronze</label>
+                                </article>
+                            </section>
+                            <article class="vertical">
+                                <label for="race">Race:</label>
+                                <select name="race" id="race">
+                                    <option value="All">All</option>
+                                    <option value="Human">Human</option>
+                                    <option value="Elf">Elf</option>
+                                    <option value="Dwarf">Dwarf</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </article>
+                            <article class="vertical">
+                                <label for="starts">Starts with:</label>
+                                <input type="text" id="searchstarts" maxlength="1">
+                            </article>
+                            <button type="submit" class="search">Search</button>
+                        </form>
+                    </section>
+                    <section id="cardsShop">
+                        
+                    </section>
+                </section>
+                <section class="coins">
+                    <span id="amountShop"></span>
+                    <img src="./assets/monedas.png" alt="coins" class="coinsImg">
+                </section>
+            </section>
+            <section id="myCardsContent" class="hide">
+                
+            </section>
         </section>
     </main>
+    <audio src="./assets/music/home.mp3" id="audio" class="hide" loop></audio>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
