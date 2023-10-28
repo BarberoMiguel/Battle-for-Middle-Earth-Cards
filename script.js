@@ -752,17 +752,21 @@ function cargardetalleShopContainer(carta) {
               xp: 0
             };
             datosUsuarioActual.charactersOwned.push(newCharacter);
+            personajesObtenidos.push(carta);
             const documentRef = db.collection("users").doc(datosUsuarioActual.id);
             documentRef.update({
               coins: datosUsuarioActual.coins,
               charactersOwned: datosUsuarioActual.charactersOwned
             });
-            personajesObtenidos.push(carta);
             for (let i = 0; i < personajesNoObtenidos.length; i++) {
-              if (element.name == carta.name) {
+              if (personajesNoObtenidos[i].name == carta.name) {
                 personajesNoObtenidos.splice(i, 1);
+                break;
               }
             }
+            document.getElementById("detalleShopContainer").classList.add("hide");
+            document.getElementById("shopContainer").classList.remove("hide");
+            cargarShop();
           } else {
             Swal.fire({
               icon: 'error',
@@ -785,17 +789,21 @@ function cargardetalleShopContainer(carta) {
               xp: 0
             };
             datosUsuarioActual.charactersOwned.push(newCharacter);
+            personajesObtenidos.push(carta);
             const documentRef = db.collection("users").doc(datosUsuarioActual.id);
             documentRef.update({
               coins: datosUsuarioActual.coins,
               charactersOwned: datosUsuarioActual.charactersOwned
             });
-            personajesObtenidos.push(carta);
             for (let i = 0; i < personajesNoObtenidos.length; i++) {
-              if (element.name == carta.name) {
+              if (personajesNoObtenidos[i].name == carta.name) {
                 personajesNoObtenidos.splice(i, 1);
+                break;
               }
             }
+            document.getElementById("detalleShopContainer").classList.add("hide");
+            document.getElementById("shopContainer").classList.remove("hide");
+            cargarShop();
           } else {
             Swal.fire({
               icon: 'error',
@@ -818,17 +826,21 @@ function cargardetalleShopContainer(carta) {
               xp: 0
             };
             datosUsuarioActual.charactersOwned.push(newCharacter);
+            personajesObtenidos.push(carta);
             const documentRef = db.collection("users").doc(datosUsuarioActual.id);
             documentRef.update({
               coins: datosUsuarioActual.coins,
               charactersOwned: datosUsuarioActual.charactersOwned
             });
-            personajesObtenidos.push(carta);
             for (let i = 0; i < personajesNoObtenidos.length; i++) {
-              if (element.name == carta.name) {
+              if (personajesNoObtenidos[i].name == carta.name) {
                 personajesNoObtenidos.splice(i, 1);
+                break;
               }
             }
+            document.getElementById("detalleShopContainer").classList.add("hide");
+            document.getElementById("shopContainer").classList.remove("hide");
+            cargarShop();
           } else {
             Swal.fire({
               icon: 'error',
@@ -862,7 +874,173 @@ function cargarShop() {
   document.getElementById("amountShop").innerHTML = datosUsuarioActual.coins;
 }
 
+async function recargarDetalleMyCards(carta) {
+  await actualizarCartas(carta, carta.xp);
+  cargardetalleMyCardsContainer(carta);
+}
 
+function cargardetalleMyCardsContainer(carta) {
+  document.getElementById("upgrade").remove();
+  document.getElementById("infoMyCards").innerHTML += `<button id="upgrade" class="buttonGold button">Upgrade</button>`;
+  document.getElementById("imgDetalleMyCards").innerHTML = carta.image;
+  document.getElementById("generalMyCards").innerHTML = `<h3>${carta.name}</h3>
+                                                    <p><b>Race: </b>${carta.race}</p>
+                                                    <p><b>Gender: </b>${carta.gender}</p>
+                                                    <p><b>Realm: </b>${carta.realm}</p>
+                                                    <p><b>Height: </b>${carta.height}</p>`;
+  document.getElementById("statisticsMyCards").innerHTML = `<h3>${carta.name}</h3>
+                                                    <p><b>Attack: </b>${carta.attack}</p>
+                                                    <p><b>Health: </b>${carta.maxHealth}</p>
+                                                    <p><b>Attack recharge: </b>${carta.attackRecharge}</p>
+                                                    <p><b>Special move recharge: </b>${carta.specialMoveRecharge}</p>
+                                                    <p><b>Attack: </b>${carta.attackDescription}</p>
+                                                    <p><b>Special move: </b>${carta.specialMoveDescription}</p>`;
+  if (carta.level == 10) {
+    document.getElementById("upgrade").disabled = true;
+  } else {
+    document.getElementById("upgrade").disabled = false;
+  }
+  document.getElementById("upgrade").addEventListener("click", function() {
+    if (carta.card == "gold") {
+      Swal.fire({
+        title: 'Do you want to upgrade for 600 coins?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+          if (datosUsuarioActual.coins >= 600) {
+            datosUsuarioActual.coins -= 600;
+            carta.xp += 750;
+            for (let i = 0; i < datosUsuarioActual.charactersOwned.length; i++) {
+              if (datosUsuarioActual.charactersOwned[i].name == carta.name) {
+                datosUsuarioActual.charactersOwned[i].xp = carta.xp;
+                break;
+              }
+            }
+            const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+            documentRef.update({
+              coins: datosUsuarioActual.coins,
+              charactersOwned: datosUsuarioActual.charactersOwned
+            });
+            document.getElementById("amountMyCards").innerHTML = datosUsuarioActual.coins;
+            recargarDetalleMyCards(carta);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You dont have 600 coins',
+            })
+          }
+      }});
+    } else if (carta.card == "silver") {
+      Swal.fire({
+        title: 'Do you want to upgrade for 300 coins?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+          if (datosUsuarioActual.coins >= 300) {
+            datosUsuarioActual.coins -= 300;
+            carta.xp += 500;
+            for (let i = 0; i < datosUsuarioActual.charactersOwned.length; i++) {
+              if (datosUsuarioActual.charactersOwned[i].name == carta.name) {
+                datosUsuarioActual.charactersOwned[i].xp = carta.xp;
+                break;
+              }
+            }
+            const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+            documentRef.update({
+              coins: datosUsuarioActual.coins,
+              charactersOwned: datosUsuarioActual.charactersOwned
+            });
+            document.getElementById("amountMyCards").innerHTML = datosUsuarioActual.coins;
+            recargarDetalleMyCards(carta);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You dont have 500 coins',
+            })
+          }
+      }});
+    } else {
+      Swal.fire({
+        title: 'Do you want to upgrade for 150 coins?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+          if (datosUsuarioActual.coins >= 150) {
+            datosUsuarioActual.coins -= 150;
+            carta.xp += 250;
+            for (let i = 0; i < datosUsuarioActual.charactersOwned.length; i++) {
+              if (datosUsuarioActual.charactersOwned[i].name == carta.name) {
+                datosUsuarioActual.charactersOwned[i].xp = carta.xp;
+                break;
+              }
+            } 
+            const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+            documentRef.update({
+              coins: datosUsuarioActual.coins,
+              charactersOwned: datosUsuarioActual.charactersOwned
+            });
+            document.getElementById("amountMyCards").innerHTML = datosUsuarioActual.coins;
+            recargarDetalleMyCards(carta);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You dont have 150 coins',
+            })
+          }
+      }});
+    }
+  });
+}
+
+function cargarMyCards() {
+  let cardsMyCards = document.getElementById("cardsMyCards");
+  if (personajesObtenidos.length === 0) {
+    cardsMyCards.innerHTML = `<h2 style="text-align: center;">You dont have cards yet!</h2>`;
+  } else {
+    cardsMyCards.innerHTML = "";
+    personajesObtenidos.forEach(element => {
+      cardsMyCards.innerHTML += `<section id="myCards${element.name}" class="myCard"></section>`;
+      document.getElementById(`myCards${element.name}`).innerHTML = element.image;
+    });
+    personajesObtenidos.forEach(element => {
+      document.getElementById(`myCards${element.name}`).addEventListener("click", function() {
+        document.getElementById("myCardsContainer").classList.add("hide");
+        document.getElementById("detalleMyCardsContainer").classList.remove("hide");
+        cargardetalleMyCardsContainer(element);
+      });
+    });
+  }
+  document.getElementById("amountMyCards").innerHTML = datosUsuarioActual.coins;
+  document.getElementById("characters").innerHTML = "";
+  personajesObtenidos.forEach(element => {
+    document.getElementById("characters").innerHTML += `
+      <option value="${element.name}"></option>`;
+  });
+}
+
+function cargarBattle() {
+  document.getElementById("battleHomeContainer").classList.remove("hide");
+  const map = L.map('map', {
+    maxZoom: 4, 
+    minZoom: 1, 
+  });
+  
+  L.imageOverlay('./assets/map.jpg', [
+    [0, 0], 
+    [768, 1024] 
+  ]).addTo(map);
+  
+  map.fitBounds([
+    [0, 0], 
+    [768, 1024] 
+  ]);
+}
 
 //Inicio de la página -------------
 //Inicio de tarjetas de personajes
@@ -1114,7 +1292,7 @@ document.getElementById("myCards").addEventListener("click", function() {
           document.getElementById("shop").classList.remove("outlined");
           document.getElementById("myCards").classList.add("outlined");
           audio.src = "./assets/music/home.mp3";
-          //cargarMyCards();
+          cargarMyCards();
         }, 1000);
     } 
     })
@@ -1127,7 +1305,7 @@ document.getElementById("myCards").addEventListener("click", function() {
     document.getElementById("battle").classList.remove("outlined");
     document.getElementById("shop").classList.remove("outlined");
     document.getElementById("myCards").classList.add("outlined");
-    //cargarMyCards();
+    cargarMyCards();
   }
 })
 
@@ -1208,8 +1386,8 @@ document.getElementById("xShop").addEventListener("click", function() {
   cargarShop();
 });
 
- 
-document.getElementById("gInfo").addEventListener("click", function() {
+let gInfo = document.getElementById("gInfo");
+gInfo.addEventListener("click", function() {
   console.log("info");
   document.getElementById("generalShop").classList.remove("hide");
   document.getElementById("statisticsShop").classList.add("hide");
@@ -1217,13 +1395,81 @@ document.getElementById("gInfo").addEventListener("click", function() {
   document.getElementById("statisticsButton").disabled = false;
 });
 
-document.getElementById("statisticsButton").addEventListener("click", function() {
+let statisticsButton = document.getElementById("statisticsButton");
+statisticsButton.addEventListener("click", function() {
   console.log("statistics");
   document.getElementById("generalShop").classList.add("hide");
   document.getElementById("statisticsShop").classList.remove("hide");
   document.getElementById("gInfo").disabled = false;
   document.getElementById("statisticsButton").disabled = true;
 });
+
+document.getElementById("xMyCards").addEventListener("click", function() {
+  document.getElementById("myCardsContainer").classList.remove("hide");
+  document.getElementById("detalleMyCardsContainer").classList.add("hide");
+  cargarMyCards();
+});
+
+let infoDetalle = document.getElementById("infoDetalle");
+infoDetalle.addEventListener("click", function() {
+  console.log("funciona1");
+  document.getElementById("generalMyCards").classList.remove("hide");
+  document.getElementById("statisticsMyCards").classList.add("hide");
+  document.getElementById("infoDetalle").disabled = true;
+  document.getElementById("statsDetalle").disabled = false;
+});
+
+let statsDetalle = document.getElementById("statsDetalle");
+statsDetalle.addEventListener("click", function() {
+  console.log("funciona2");
+  document.getElementById("generalMyCards").classList.add("hide");
+  document.getElementById("statisticsMyCards").classList.remove("hide");
+  document.getElementById("infoDetalle").disabled = false;
+  document.getElementById("statsDetalle").disabled = true;
+});
+
+document.getElementById("filterSelectorMyCards").addEventListener("submit", function(event) {
+  event.preventDefault();
+  let respuesta = event.target.character.value.toLowerCase();
+  cardsMyCards = document.getElementById("cardsMyCards");
+  if (respuesta == "") {
+    if (personajesObtenidos.length === 0) {
+      cardsMyCards.innerHTML = "";
+      cardsMyCards.innerHTML = `<h2 style="text-align: center;">You dont have cards yet!</h2>`;
+    } else {
+      cardsMyCards.innerHTML = "";
+      personajesObtenidos.forEach(element => {
+        cardsMyCards.innerHTML += `<section id="myCards${element.name}" class="myCard"></section>`;
+        document.getElementById(`myCards${element.name}`).innerHTML = element.image;
+      });
+      personajesObtenidos.forEach(element => {
+        document.getElementById(`myCards${element.name}`).addEventListener("click", function() {
+          document.getElementById("myCardsContainer").classList.add("hide");
+          document.getElementById("detalleMyCardsContainer").classList.remove("hide");
+          cargardetalleMyCardsContainer(element);
+        });
+      });
+    }
+  } else {
+    dato = personajesObtenidos.filter(el => el.name.toLowerCase().startsWith(respuesta));
+    cardsMyCards.innerHTML = "";
+    if (dato.length === 0) {
+      cardsMyCards.innerHTML = `<h2 style="text-align: center;">You dont have any card with that name</h2>`;
+    } 
+    dato.forEach(element => {
+      cardsMyCards.innerHTML += `<section id="myCards${element.name}" class="myCard"></section>`;
+      document.getElementById(`myCards${element.name}`).innerHTML = element.image;
+    });
+    dato.forEach(element => {
+      document.getElementById(`myCards${element.name}`).addEventListener("click", function() {
+        document.getElementById("myCardsContainer").classList.add("hide");
+        document.getElementById("detalleMyCardsContainer").classList.remove("hide");
+        cargardetalleMyCardsContainer(element);
+      });
+    });
+  }
+  document.getElementById("filterSelectorMyCards").reset();
+})
 
 let mute = document.getElementById("muteButton");
 let audio = document.getElementById("audio");

@@ -369,7 +369,7 @@ main {
     text-align: center;
 }
 
-#shopContainer{
+#shopContainer, #myCardsContainer{
     position: relative;
     top: 15vh;
     width: 80vw;
@@ -380,7 +380,7 @@ main {
     overflow: hidden;
 }
 
-#filterShop {
+#filterShop, #filterMyCards {
     background-color: #3a3a3a;
     border-radius: 10px;
     width: 100%;
@@ -392,13 +392,18 @@ main {
     justify-content: flex-start;
 }
 
-#filterSelectorShop {
+#filterSelectorShop, #filterSelectorMyCards {
     width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
+}
+
+#filterSelectorMyCards {
+    justify-content: flex-start;
+    margin-left: 10px;
 }
 
 .vertical article {
@@ -428,7 +433,7 @@ main {
     border-radius: 10px;
 }
 
-#cardsShop {
+#cardsShop, #cardsMyCards {
     width: 100%;
     padding: 20px 0;
     height: fit-content;
@@ -466,7 +471,7 @@ main {
     margin: 1vh 10px;
 }
 
-.shopCard {
+.shopCard, .myCard {
     height: 400px;
     width: 285px;
     cursor: pointer;
@@ -517,12 +522,12 @@ main {
     color: var(--bronze);
 }
 
-.detalleShop {
+.detalleShop, .detalleMyCards, .homeBattle {
     position: relative;
     top: 4vh;
     width: 100vw;
     height: fit-content;
-    min-height: 100vh;
+    min-height: 85vh;
     background-color: var(--back);
     display: flex;
     flex-direction: column;
@@ -530,7 +535,7 @@ main {
     align-items: center;
 }
 
-#xShop {
+#xShop, #xMyCards {
     position: absolute;
     cursor: pointer;
     top: 8vh;
@@ -538,7 +543,7 @@ main {
     width: 3vw;
 }
 
-#imgDetalle {
+#imgDetalle, #imgDetalleMyCardsMyCards {
     width: 70vw;
     height: 98vw;
     border: 1px solid black;
@@ -548,7 +553,7 @@ main {
     overflow: hidden;
 }
 
-#infoShop {
+#infoShop, #infoMyCards {
     width: 70vw;
     height: fit-content;
     border: 1px solid black;
@@ -560,10 +565,11 @@ main {
     align-items: center;
 }
 
-#buttonsDetalle {
+.detalleButtons {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: center;
     width: 100%;
 }
 
@@ -577,31 +583,41 @@ main {
     background-color: var(--gold);
 }
 
-#generalShop {
+#generalShop, #generalMyCards {
     width: 80%;
     margin: 10% 0;
 }
 
-#generalShop h3, #statisticsShop h3 {
+#generalShop h3, #statisticsShop h3, #generalMyCards h3, #statisticsMyCards h3 {
     text-align: center;
     margin: 5px 0;
 }
 
-#generalShop p, #statisticsShop p {
+#generalShop p, #statisticsShop p, #generalMyCards p, #statisticsMyCards p {
     text-align: left;
 }
 
-#statisticsShop {
+#statisticsShop, #statisticsMyCards {
     width: 80%;
     margin: 5% 0;
 }
 
-#gInfo {
+#gInfo, #gInfo1 {
     z-index: 10;
 }
 
-#statisticsButton {
+#statisticsButton, #statisticsButton1 {
     z-index: 10;
+}
+
+#character {
+    width: 20vw;
+    margin: 0 10px;
+}
+
+#map {
+    width: 70vw;
+    height: 50vh;
 }
 
 
@@ -649,21 +665,14 @@ main {
     #searchstarts {
         width: 70px;
     } 
-    #detalleShop {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-    #imgDetalle {
+    #imgDetalle, #imgDetalleMyCards {
         position: absolute;
         width: 30vw;
         height: 42vw;
         margin: 0;
         left: 10vw;
     }
-    #infoShop {
+    #infoShop, #infoMyCards {
         position: absolute;
         width: 40vw;
         height: fit-content;
@@ -716,21 +725,14 @@ main {
     #searchstarts {
         width: 90px;
     }
-    #detalleShop {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-    #imgDetalle {
+    #imgDetalle, #imgDetalleMyCards {
         position: absolute;
         width: 30vw;
         height: 42vw;
         margin: 0;
         left: 10vw;
     }
-    #infoShop {
+    #infoShop, #infoMyCards {
         position: absolute;
         width: 40vw;
         height: fit-content;
@@ -783,21 +785,14 @@ main {
     #searchstarts {
         width: 110px;
     }
-    #detalleShop {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-    #imgDetalle {
+    #imgDetalle, #imgDetalleMyCards {
         position: absolute;
         width: 30vw;
         height: 42vw;
         margin: 0;
         left: 10vw;
     }
-    #infoShop {
+    #infoShop, #infoMyCards {
         position: absolute;
         width: 40vw;
         height: fit-content;
@@ -850,21 +845,14 @@ main {
     #searchstarts {
         width: 140px;
     }
-    #detalleShop {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-    #imgDetalle {
+    #imgDetalle, #imgDetalleMyCards {
         position: absolute;
         width: 30vw;
         height: 42vw;
         margin: 0;
         left: 10vw;
     }
-    #infoShop {
+    #infoShop, #infoMyCards {
         position: absolute;
         width: 40vw;
         height: fit-content;

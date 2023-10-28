@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
 </head>
 <body>
     <header>
@@ -100,7 +101,13 @@
                 </section>
             </section>
             <section id="battleContent" class="hide">
-
+                <section id="battleHomeContainer">
+                    <section class="homeBattle">
+                        <h2>Choose the scenary:</h2>
+                        <div id="map">
+                        </div>
+                    </section>
+                </section>
             </section>
             <section id="shopContent" class="hide">
                 <section id="detalleShopContainer" class="hide">
@@ -169,7 +176,45 @@
                 </section>
             </section>
             <section id="myCardsContent" class="hide">
-                
+                <section id="detalleMyCardsContainer" class="hide">
+                    <section class="detalleMyCards">
+                        <img src="./assets/X.png" alt="X" id="xMyCards">
+                        <section id="imgDetalleMyCards">
+
+                        </section>
+                        <section id="infoMyCards">
+                            <section id="generalMyCards">
+                                
+                            </section>
+                            <section id="statisticsMyCards" class="hide">
+
+                            </section>
+                            <section class="detalleButtons">
+                                <button id="infoDetalle" class="blue button" disabled>General Info</button>
+                                <button id="statsDetalle" class="blue button">Statistics</button>
+                            </section>
+                            <button id="upgrade" class="buttonGold button">Upgrade</button>
+                        </section>
+                    </section>
+                </section>
+                <section id="myCardsContainer">
+                    <section id="filterMyCards">
+                        <form id="filterSelectorMyCards">
+                            <h2>Filter:</h2>
+                            <input list="characters" id="character" name="character">
+                            <datalist id="characters">
+                            </datalist>
+                            <button type="submit" class="search">Search</button>
+                        </form>
+                    </section>
+                    <section id="cardsMyCards">
+                        
+                    </section>
+                </section>
+                <section class="coins">
+                    <span id="amountMyCards"></span>
+                    <img src="./assets/monedas.png" alt="coins" class="coinsImg">
+                </section>
             </section>
         </section>
     </main>
@@ -179,6 +224,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
