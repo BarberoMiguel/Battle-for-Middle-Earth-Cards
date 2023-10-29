@@ -617,7 +617,39 @@ main {
 
 #map {
     width: 70vw;
+    height: 52.5vh;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapMoria {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background-color: var(--back);
+}
+
+#mapaMoria {
+    width: 70vw;
     height: 50vh;
+    left: 15vw;
+    top: 15vh;
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+.middle {
+    text-align: center;
+    position: relative;
+    top: 10vh; 
+}
+
+.backMap {
+    position: absolute;
+    bottom: 5vh;
+    right: 10vw;
 }
 
 

@@ -160,7 +160,7 @@ function iniciarPersonajes() {
   for (let i = 0; i < personajes.length; i++) {
     let personaje = {name: personajes[i], specialMoveActualAmount: "",
       id: personajes[i], gender: "", height: "", race: "", attack: "", level: 0,
-      realm: "", card: cardRank[i], baseAttack: "", maxHealth: "", buy: "",
+      realm: "", card: cardRank[i], baseAttack: "", maxHealth: "", buy: "", sMoveButton: `<p id="sMove${personajes[i]}" class="sMove">${personajes[i]}</p>`,
       actualHealth: "", attackRecharge: 2, specialMoveRecharge: 3, specialMoveRounds: 1,
       actualARecharge: 0, actualSRecharge: 0, xp: 0, attackButton: `<p id="attack${personajes[i]}" class="attack">${personajes[i]}</p>`,
       attackDescription: "", specialMoveDescription: "", 
@@ -1024,22 +1024,401 @@ function cargarMyCards() {
   });
 }
 
-function cargarBattle() {
-  document.getElementById("battleHomeContainer").classList.remove("hide");
-  const map = L.map('map', {
-    maxZoom: 4, 
-    minZoom: 1, 
+function cargarMoria() {
+  const map = L.map('mapaMoria', {
+    maxZoom: 3, 
+    minZoom: 1,
+    maxBounds: [
+      [0, 0], 
+      [-400, 300]  
+    ],
+    maxBoundsViscosity: 1.0 
   });
   
-  L.imageOverlay('./assets/map.jpg', [
+  L.imageOverlay('./assets/scenaries/moriaMap.jpg', [
     [0, 0], 
-    [768, 1024] 
+    [-400, 300] 
   ]).addTo(map);
   
   map.fitBounds([
     [0, 0], 
-    [768, 1024] 
+    [-400, 300] 
   ]);
+
+  map.setView([-60, 25], 2.5);
+
+  const moria1Icon = L.icon({
+    iconUrl: './assets/scenaries/moria.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const moria1Marker = L.marker([-60, 25], { icon: moria1Icon }).bindPopup("1: The Gate", { offset: [0, -10] }).addTo(map);
+  moria1Marker.on('click', function() {
+    Swal.fire({
+      title: 'Do you want to play this battle?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+    if (result.isConfirmed) {
+      battleMoria1();
+    }});
+  });
+  moria1Marker.on('mouseover', function () {
+    moria1Marker.openPopup();
+  });
+
+  const balinsTombIcon = L.icon({
+    iconUrl: './assets/scenaries/balinsTomb.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const balinsTombMarker = L.marker([-66, 92], { icon: balinsTombIcon }).bindPopup("2: Balin's Tomb", { offset: [0, -10] }).addTo(map);
+  balinsTombMarker.on('click', function() {
+    if (datosUsuarioActual.level.moria < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        battleMoria2();
+      }});
+    }
+  });
+  balinsTombMarker.on('mouseover', function () {
+    balinsTombMarker.openPopup();
+  });
+
+  const caveTrollMarker = L.marker([-68, 88], { icon: balinsTombIcon }).bindPopup("3: The cave Troll", { offset: [0, -10] }).addTo(map);
+  caveTrollMarker.on('click', function() {
+    if (datosUsuarioActual.level.moria < 2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        battleMoria3();
+      }});
+    }
+  });
+  caveTrollMarker.on('mouseover', function () {
+    caveTrollMarker.openPopup();
+  });
+
+  const hallIcon = L.icon({
+    iconUrl: './assets/scenaries/hallMoria.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const hallMarker = L.marker([-62, 120], { icon: hallIcon }).bindPopup("4: The great Hall", { offset: [0, -10] }).addTo(map);
+  hallMarker.on('click', function() {
+    if (datosUsuarioActual.level.moria < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        battleMoria4();
+      }});
+    }
+  });
+  hallMarker.on('mouseover', function () {
+    hallMarker.openPopup();
+  });
+
+  const stairsIcon = L.icon({
+    iconUrl: './assets/scenaries/stairs.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const stairsMarker = L.marker([-70, 180], { icon: stairsIcon }).bindPopup("5: The Stairs", { offset: [0, -10] }).addTo(map);
+  stairsMarker.on('click', function() {
+    if (datosUsuarioActual.level.moria < 4) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        battleMoria5();
+      }});
+    }
+  });
+  stairsMarker.on('mouseover', function () {
+    stairsMarker.openPopup();
+  });
+
+  const bridgeIcon = L.icon({
+    iconUrl: './assets/scenaries/bridge.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const bridgeMarker = L.marker([-71, 262], { icon: bridgeIcon }).bindPopup("6: The Bridge of Khazad Dum", { offset: [0, -10] }).addTo(map);
+  bridgeMarker.on('click', function() {
+    if (datosUsuarioActual.level.moria < 5) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        battleMoria6();
+      }});
+    }
+  });
+  bridgeMarker.on('mouseover', function () {
+    bridgeMarker.openPopup();
+  });
+
+  map.on('zoomend', function () {
+    const currentZoom = map.getZoom();
+    const newSize = [64, 64].map(size => size / Math.pow(2, (3 - currentZoom) * 0.5));
+    const newAnchor = [newSize[0]/2, newSize[1]/2];
+    moria1Icon.options.iconSize = newSize;
+    moria1Icon.options.iconAnchor = newAnchor;
+    balinsTombIcon.options.iconSize = newSize;
+    balinsTombIcon.options.iconAnchor = newAnchor;
+    hallIcon.options.iconSize = newSize;
+    hallIcon.options.iconAnchor = newAnchor;
+    stairsIcon.options.iconSize = newSize;
+    stairsIcon.options.iconAnchor = newAnchor;
+    bridgeIcon.options.iconSize = newSize;
+    bridgeIcon.options.iconAnchor = newAnchor;
+
+    moria1Marker.setIcon(moria1Icon);
+    balinsTombMarker.setIcon(balinsTombIcon);
+    caveTrollMarker.setIcon(balinsTombIcon);
+    hallMarker.setIcon(hallIcon);
+    stairsMarker.setIcon(stairsIcon);
+    bridgeMarker.setIcon(bridgeIcon);
+  });
+}
+
+function cargarBattle() {
+  document.getElementById("battleHomeContainer").classList.remove("hide");
+  const map = L.map('map', {
+    maxZoom: 4, 
+    minZoom: 1,
+    maxBounds: [
+      [0, 0], 
+      [-300, 400]  
+    ],
+    maxBoundsViscosity: 1.0 
+  });
+  
+  L.imageOverlay('./assets/map.jpg', [
+    [0, 0], 
+    [-300, 400] 
+  ]).addTo(map);
+  
+  map.fitBounds([
+    [0, 0], 
+    [-300, 400] 
+  ]);
+
+  map.setView([-60, 200], 3);
+
+  const moriaIcon = L.icon({
+    iconUrl: './assets/scenaries/moria.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const moriaMarker = L.marker([-55, 190], { icon: moriaIcon }).bindPopup("Moria", { offset: [0, -10] }).addTo(map);
+  moriaMarker.on('click', function() {
+    document.getElementById("battleHomeContainer").classList.add("hide");
+    document.getElementById("moria").classList.remove("hide");
+    document.getElementById("mapMoria").classList.remove("hide");
+    cargarMoria();
+  });
+  moriaMarker.on('mouseover', function () {
+    moriaMarker.openPopup();
+  });
+
+  const amonHenIcon = L.icon({
+    iconUrl: './assets/scenaries/amonHen.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const amonHenMarker = L.marker([-72, 232], { icon: amonHenIcon }).bindPopup("Amon Hen", { offset: [0, -10] }).addTo(map);
+  amonHenMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  amonHenMarker.on('mouseover', function () {
+    amonHenMarker.openPopup();
+  });
+
+  const wargsIcon = L.icon({
+    iconUrl: './assets/scenaries/wargs.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const wargsMarker = L.marker([-74, 200], { icon: wargsIcon }).bindPopup("Wargs", { offset: [0, -10] }).addTo(map);
+  wargsMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  wargsMarker.on('mouseover', function () {
+    wargsMarker.openPopup();
+  });
+
+  const helmsDeepIcon = L.icon({
+    iconUrl: './assets/scenaries/helmsDeep.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const helmsDeepMarker = L.marker([-73, 190], { icon: helmsDeepIcon }).bindPopup("Helm's Deep", { offset: [0, -10] }).addTo(map);
+  helmsDeepMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 3) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  helmsDeepMarker.on('mouseover', function () {
+    helmsDeepMarker.openPopup();
+  });
+
+  const osgiliathIcon = L.icon({
+    iconUrl: './assets/scenaries/osgiliath.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const osgiliathMarker = L.marker([-77, 265], { icon: osgiliathIcon }).bindPopup("Osgiliath", { offset: [0, -10] }).addTo(map);
+  osgiliathMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 4) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  osgiliathMarker.on('mouseover', function () {
+    osgiliathMarker.openPopup();
+  });
+
+  const minasTirithIcon = L.icon({
+    iconUrl: './assets/scenaries/minas-Tirith.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const minasTirithMarker = L.marker([-77, 255], { icon: minasTirithIcon }).bindPopup("Minas Tirith", { offset: [0, -10] }).addTo(map);
+  minasTirithMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 5) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  minasTirithMarker.on('mouseover', function () {
+    minasTirithMarker.openPopup();
+  });
+
+  const blackGateIcon = L.icon({
+    iconUrl: './assets/scenaries/blackGate.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const blackGateMarker = L.marker([-72, 270], { icon: blackGateIcon }).bindPopup("The Black Gate", { offset: [0, -10] }).addTo(map);
+  blackGateMarker.on('click', function() {
+    if (datosUsuarioActual.level.total < 6) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unloked this level yet',
+      })
+    } else {
+      
+    }
+  });
+  blackGateMarker.on('mouseover', function () {
+    blackGateMarker.openPopup();
+  });
+
+  map.on('zoomend', function () {
+    const currentZoom = map.getZoom();
+    const newSize = [64, 64].map(size => size / Math.pow(2, (3 - currentZoom) * 0.7));
+    const newAnchor = [newSize[0]/2, newSize[1]/2];
+    moriaIcon.options.iconSize = newSize;
+    moriaIcon.options.iconAnchor = newAnchor;
+    amonHenIcon.options.iconSize = newSize;
+    amonHenIcon.options.iconAnchor = newAnchor;
+    wargsIcon.options.iconSize = newSize;
+    wargsIcon.options.iconAnchor = newAnchor;
+    helmsDeepIcon.options.iconSize = newSize;
+    helmsDeepIcon.options.iconAnchor = newAnchor;
+    osgiliathIcon.options.iconSize = newSize;
+    osgiliathIcon.options.iconAnchor = newAnchor;
+    minasTirithIcon.options.iconSize = newSize;
+    minasTirithIcon.options.iconAnchor = newAnchor;
+    blackGateIcon.options.iconSize = newSize;
+    blackGateIcon.options.iconAnchor = newAnchor;
+
+    moriaMarker.setIcon(moriaIcon);
+    amonHenMarker.setIcon(amonHenIcon);
+    wargsMarker.setIcon(wargsIcon);
+    helmsDeepMarker.setIcon(helmsDeepIcon);
+    osgiliathMarker.setIcon(osgiliathIcon);
+    minasTirithMarker.setIcon(minasTirithIcon);
+    blackGateMarker.setIcon(blackGateIcon);
+  });
 }
 
 //Inicio de la página -------------
@@ -1216,12 +1595,11 @@ document.getElementById("battle").addEventListener("click", function() {
     battleContent.classList.remove("hide");
     shopContent.classList.add("hide");
     myCardsContent.classList.add("hide");
-    //pantalla mapa remove hide
     document.getElementById("home").classList.remove("outlined");
     document.getElementById("battle").classList.add("outlined");
     document.getElementById("shop").classList.remove("outlined");
     document.getElementById("myCards").classList.remove("outlined");
-    //cargarBattle();
+    cargarBattle();
   }
 })
 
@@ -1470,6 +1848,14 @@ document.getElementById("filterSelectorMyCards").addEventListener("submit", func
   }
   document.getElementById("filterSelectorMyCards").reset();
 })
+
+let backMap = document.querySelectorAll(".backMap");
+for (let i = 0; i < backMap.length; i++) {
+  backMap[i].addEventListener("click", function() {
+    document.getElementById("battleHomeContainer").classList.remove("hide");
+    document.getElementById("moria").classList.add("hide");
+  })
+}
 
 let mute = document.getElementById("muteButton");
 let audio = document.getElementById("audio");
