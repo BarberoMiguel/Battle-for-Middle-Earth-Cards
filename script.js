@@ -143,6 +143,29 @@ async function validarFormularioLogin(email, password) {
   }
 }
 
+//funciones para la batalla
+//función devuelve que personajes no tienes de un set
+function availableFromSet(array) {
+  let personajesDisponibles = [];
+  array.forEach(element => {
+    for (let i = 0; i < personajesNoObtenidos.length; i++) {
+      if (personajesNoObtenidos[i].name == element) {
+        personajesDisponibles.push([element, i]);
+        break;
+      }
+    }
+  });
+  return personajesDisponibles;
+}
+
+//función elige uno aleatorio de set, lo devuelve y lo elimina de set
+function getRandomFromSet(array) {
+  let i = Math.round(Math.random()*(array.length - 1));
+  let personajeElegido = array[i];
+  array.splice(i, 1);
+  return personajeElegido;
+}
+
 
 //funciones de inicio y modificación de las cartas
 function dataAPI() {
@@ -156,6 +179,7 @@ function dataAPI() {
   .then(res => res.docs)
 }
 
+//función iniciar personajes
 function iniciarPersonajes() {
   for (let i = 0; i < personajes.length; i++) {
     let personaje = {name: personajes[i], specialMoveActualAmount: "",
@@ -1024,6 +1048,100 @@ function cargarMyCards() {
   });
 }
 
+function battleMoria1() {
+  battleOnGoing = 1;
+  document.getElementById("mapMoria").classList.add("hide");
+  document.getElementById("gateMoria").classList.remove("hide");
+  if (personajesObtenidos.length == 0) {
+    let availableBronze = availableFromSet(bronzeMoria);
+    let personaje1 = getRandomFromSet(availableBronze);
+    personajesObtenidos.push(personajesNoObtenidos[personaje1[1]]);
+    heroesGlobal.push(personajesNoObtenidos[personaje1[1]]);
+    personajesNoObtenidos.splice(personaje1[1], 1);
+    let nuevoPersonaje1 = {
+      name: heroesGlobal[0].name,
+      xp: 0
+    }
+    datosUsuarioActual.charactersOwned.push(nuevoPersonaje1);
+    let availableGold = availableFromSet(goldMoria);
+    let personaje2 = getRandomFromSet(availableGold);
+    personajesObtenidos.push(personajesNoObtenidos[personaje2[1]]);
+    heroesGlobal.push(personajesNoObtenidos[personaje2[1]]);
+    personajesNoObtenidos.splice(personaje2[1], 1);
+    let nuevoPersonaje2 = {
+      name: heroesGlobal[1].name,
+      xp: 0
+    }
+    datosUsuarioActual.charactersOwned.push(nuevoPersonaje2);
+    availableBronze = availableFromSet(bronzeMoria);
+    let personaje3 = getRandomFromSet(availableBronze);
+    personajesObtenidos.push(personajesNoObtenidos[personaje3[1]]);
+    heroesGlobal.push(personajesNoObtenidos[personaje3[1]]);
+    personajesNoObtenidos.splice(personaje3[1], 1);
+    let nuevoPersonaje3 = {
+      name: heroesGlobal[2].name,
+      xp: 0
+    }
+    datosUsuarioActual.charactersOwned.push(nuevoPersonaje3);
+    const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+    documentRef.update({
+      charactersOwned: datosUsuarioActual.charactersOwned
+    });
+    document.querySelector(".newCardsMoria1").innerHTML = `
+      <section class="newCard">
+          <section class="secretCard"><img src="./assets/secretCard.png" alt="secretCard"></section>
+          <section id="newCard1" class="hide newCardImg">${heroesGlobal[0].image}</section>
+      </section>
+      <section class="newCard">
+          <section class="secretCard"><img src="./assets/secretCard.png" alt="secretCard"></section>
+          <section id="newCard2" class="hide newCardImg">${heroesGlobal[1].image}</section>
+      </section>
+      <section class="newCard">
+          <section class="secretCard"><img src="./assets/secretCard.png" alt="secretCard"></section>
+          <section id="newCard3" class="hide newCardImg">${heroesGlobal[2].image}</section>
+      </section>`;
+    console.log(document.querySelector(".newCardsMoria1").innerHTML);
+    setTimeout(function() {
+      let secretCard = document.querySelectorAll(".secretCard img");
+      for (let i = 1; i <= 3; i++) {
+        secretCard[i-1].classList.add("hide");
+        document.getElementById(`newCard${i}`).classList.add("appear");
+        document.getElementById(`newCard${i}`).classList.remove("hide");
+      }
+      setTimeout(function() {
+        for (let i = 1; i <= 3; i++) {
+          secretCard = document.querySelectorAll(".secretCard");
+          secretCard[i-1].innerHTML += `<img src="./assets/effects/new_Card.gif" alt="effect">`;
+        }
+        setTimeout(function() {
+          document.getElementById("newCardsMoria1").classList.add("hide");
+          document.querySelector(".heroesMoria1").classList.remove("hide");
+          document.querySelector(".enemiesMoria1").classList.remove("hide");
+          //pintar los personajes
+          for (let i = 1; i <= 3; i++) {
+            document.querySelector(`.hero${i}Moria1`).innerHTML += heroesGlobal[i-1].image;
+            document.querySelector(`.hero${i}Moria1`).innerHTML += heroesGlobal[i-1].healthBar;
+            document.getElementById(`info${i}`).innerHTML = `
+              <p><b>Attack:</b> ${heroesGlobal[i-1].attackDescription}</p>
+              <p><b>Special Move:</b> ${heroesGlobal[i-1].specialMoveDescription}</p>`;
+            document.querySelector(`.hero${i}Moria1`).addEventListener("mouseover", function() {
+              document.getElementById(`info${i}`).classList.remove("hide");
+            })
+            document.querySelector(`.hero${i}Moria1`).addEventListener("mouseout", function() {
+              document.getElementById(`info${i}`).classList.add("hide");
+            })
+            }
+          }, 1000);
+        }, 2000);
+      }, 2000);
+  } else if (personajesObtenidos.length == 3) {
+    
+  } else {
+
+  }
+  
+}
+
 function cargarMoria() {
   const map = L.map('mapaMoria', {
     maxZoom: 3, 
@@ -1078,16 +1196,29 @@ function cargarMoria() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this battle yet',
+        text: 'You havent unlocked this battle yet',
       })
     } else {
       Swal.fire({
-        title: 'Do you want to play this battle?',
+        title: 'Do you want to play this battle for 40 coins?',
         showCancelButton: true,
         confirmButtonText: 'Yes',
       }).then((result) => {
       if (result.isConfirmed) {
-        battleMoria2();
+        if (datosUsuarioActual.coins < 40) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 40 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 40;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleMoria2();
+        }
       }});
     }
   });
@@ -1101,16 +1232,29 @@ function cargarMoria() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this battle yet',
+        text: 'You havent unlocked this battle yet',
       })
     } else {
       Swal.fire({
-        title: 'Do you want to play this battle?',
+        title: 'Do you want to play this battle for 45 coins?',
         showCancelButton: true,
         confirmButtonText: 'Yes',
       }).then((result) => {
       if (result.isConfirmed) {
-        battleMoria3();
+        if (datosUsuarioActual.coins < 45) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 45 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 45;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleMoria3();
+        }
       }});
     }
   });
@@ -1129,16 +1273,29 @@ function cargarMoria() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this battle yet',
+        text: 'You havent unlocked this battle yet',
       })
     } else {
       Swal.fire({
-        title: 'Do you want to play this battle?',
+        title: 'Do you want to play this battle for 50 coins?',
         showCancelButton: true,
         confirmButtonText: 'Yes',
       }).then((result) => {
       if (result.isConfirmed) {
-        battleMoria4();
+        if (datosUsuarioActual.coins < 50) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 50 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 50;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleMoria4();
+        }
       }});
     }
   });
@@ -1157,16 +1314,29 @@ function cargarMoria() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this battle yet',
+        text: 'You havent unlocked this battle yet',
       })
     } else {
       Swal.fire({
-        title: 'Do you want to play this battle?',
+        title: 'Do you want to play this battle for 55 coins?',
         showCancelButton: true,
         confirmButtonText: 'Yes',
       }).then((result) => {
       if (result.isConfirmed) {
-        battleMoria5();
+        if (datosUsuarioActual.coins < 55) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 55 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 55;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleMoria5();
+        }
       }});
     }
   });
@@ -1185,16 +1355,29 @@ function cargarMoria() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this battle yet',
+        text: 'You havent unlocked this battle yet',
       })
     } else {
       Swal.fire({
-        title: 'Do you want to play this battle?',
+        title: 'Do you want to play this battle for 60 coins?',
         showCancelButton: true,
         confirmButtonText: 'Yes',
       }).then((result) => {
       if (result.isConfirmed) {
-        battleMoria6();
+        if (datosUsuarioActual.coins < 60) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 60 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 60;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleMoria6();
+        }
       }});
     }
   });
@@ -1260,6 +1443,7 @@ function cargarBattle() {
     document.getElementById("battleHomeContainer").classList.add("hide");
     document.getElementById("moria").classList.remove("hide");
     document.getElementById("mapMoria").classList.remove("hide");
+    document.getElementById("gateMoria").classList.add("hide");
     cargarMoria();
   });
   moriaMarker.on('mouseover', function () {
@@ -1277,7 +1461,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1298,7 +1482,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1319,7 +1503,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1340,7 +1524,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1361,7 +1545,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1382,7 +1566,7 @@ function cargarBattle() {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You havent unloked this level yet',
+        text: 'You havent unlocked this level yet',
       })
     } else {
       
@@ -1442,7 +1626,12 @@ firebase.auth().onAuthStateChanged((user) => {
   loginLogout(user);
 });
 
-
+//datos batalla
+let bronzeMoria = ["Arador", "Aranarth", "Elrohir", "Elladan"];
+let silverMoria = ["Merry", "Pippin"];
+let goldMoria = ["Aragorn", "Legolas", "Gimli"];
+let heroesGlobal = [];
+let enemiesGlobal = []; 
 
 
 

@@ -22,6 +22,24 @@ html {
     font-size: 15px;
 }
 
+@keyframes disappear {
+    0% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+}
+
+@keyframes appear {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+}
+
 header {
     margin-top: -7vh;
     position: fixed;
@@ -192,8 +210,8 @@ main {
 .healthbar {
     position: absolute;
     top: 5px;
-    width: 100%;
-    height: 20px;
+    width: 20vw;
+    height: 2vh;
     background-color: red;
     border: 1px solid #000;
     border-radius: 10px;
@@ -203,6 +221,8 @@ main {
     height: 100%;
     width: 100%;
     background-color: rgb(0, 209, 0);
+    border: 1px solid #000;
+    border-radius: 10px;
 }
 
 #menu {
@@ -486,6 +506,7 @@ main {
 
 .cardImage {
     width: 100%;
+    
 }
 
 .displayCard .cardLevel {
@@ -648,8 +669,99 @@ main {
 
 .backMap {
     position: absolute;
-    bottom: 5vh;
-    right: 10vw;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#gateMoria {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/westGate.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;
+}
+
+.newCards {
+    position: absolute;
+    width: 100vw;
+    height: fit-content;
+    top: 50%; 
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+}
+
+.newCard {
+    width: 25vw;
+    height: 35vw;
+    position: relative;
+}
+
+.secretCard {
+    position: absolute;
+}
+
+.secretCard img{
+    position: relative;
+    width: 100%;
+    animation: disappear 2s ease-in-out;
+    z-index: 3;
+}
+
+.newCardImg {
+    position: absolute;
+    z-index: 0;
+}
+
+.appear {
+    animation: appear 2s ease-in-out;
+}
+
+.heroes {
+    width: 100vw;
+    height: fit-content;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.hero {
+    width: 20vw;
+    height: 28vw;
+}
+
+.enemies {
+    width: 100vw;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.enemy {
+    width: 20vw;
+    height: 28vw;
+}
+
+.infoCharacters {
+    position: absolute;
+    bottom: 0;
+    left: 25vw;
+    width: 50vw;
+    height: fit-content;
+    background-color: var(--back);
+    border-radius: 10px;
+    border: 1px solid black;
+    z-index: 5;
 }
 
 
@@ -890,5 +1002,12 @@ main {
         height: fit-content;
         margin: 0;
         right: 10vw;
+    }
+    .healthbar {
+        width: 12vw;
+    }
+    .hero {
+        width: 12vw;
+        height: 16.8vw;
     }
 }
