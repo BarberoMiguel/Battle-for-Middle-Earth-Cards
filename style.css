@@ -54,6 +54,18 @@ html {
     }
 }
 
+@keyframes enemyAttack {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(50%);
+      }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 @keyframes heroesEnter {
     0% {
         transform: translateY(50%);
@@ -79,6 +91,47 @@ html {
     100% {
         transform: scale(1);
     }
+}
+
+@keyframes rising {
+    0% {
+    bottom: 0;
+    left: 50%;
+    opacity: 1;
+    transform: rotate(0deg) translate(-50%, 0);
+    }
+    100% {
+    bottom: 100%;
+    left: calc(50% + var(--spread-distance, 0px));
+    opacity: 0.5;
+    transform: rotate(720deg);
+    }
+}
+
+#confeti {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 10;
+}
+
+svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    animation-name: rising;
+    animation-duration: calc(var(--speed) * 1s);
+    animation-iteration-count: 2;
+    animation-timing-function: ease-out;
 }
 
 header {
@@ -358,6 +411,7 @@ main {
 }
 
 #personalInfo {
+    position: relative;
     height: 50vh;
     width: 80vw;
     background-color: #f0bb83c1;
@@ -367,6 +421,10 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#personalInfo h3 {
+    text-align: center;
 }
 
 #avatar {
@@ -397,19 +455,15 @@ main {
     display: none;
 }
 
-#grafica {
+#graficaContainer {
     width: 80%;
     height: 80%;
-    overflow: visible;
-}
-
-#grafica .ct-bar {
-    stroke: blue;
 }
 
 #selectAvatar {
-    width: 20%;
-    height: 30%;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
     position: absolute;
     background-color: #f0bb83;
     border-radius: 30px;
@@ -699,11 +753,31 @@ main {
     background-color: var(--back);
 }
 
+#mapAmonHen {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background-color: var(--back);
+}
+
 #mapaMoria {
     width: 70vw;
     height: 50vh;
-    left: 15vw;
+    left: 50vw;
     top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapaAmonHen {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
     position: relative;
     border-radius: 20px;
     border: 5px solid #c29511;
@@ -733,6 +807,94 @@ main {
     overflow-y: hidden;
 }
 
+#balinsTomb, #caveTroll {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/balinsTomb.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;
+}
+
+#Hall {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/HallMoria.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden; 
+}
+
+#stairs {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/stairs.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden; 
+}
+
+#Balrog {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/Balrog.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#Nazgul {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/Argonath.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#uruk-Hai {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/UrukHaiAmonHen.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#AmonHen {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/AmonHen1.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#Lurtz {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/AmonHen.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
 .newCards {
     position: absolute;
     width: 100vw;
@@ -748,6 +910,12 @@ main {
     width: 25vw;
     height: 35vw;
     position: relative;
+}
+
+.turn {
+    color: white;
+    font-size: 20vh;
+    z-index: 6;
 }
 
 .secretCard {
@@ -775,12 +943,11 @@ main {
     height: fit-content;
     position: absolute;
     bottom: 0;
-    display: flex;
-    justify-content: space-around;
     z-index: 1;
 }
 
 .hero {
+    position: absolute;
     width: 20vw;
     height: 28vw;
 }
@@ -790,8 +957,6 @@ main {
     height: fit-content;
     position: absolute;
     top: 0;
-    display: flex;
-    justify-content: space-around;
     z-index: 1;
 }
 
@@ -802,7 +967,7 @@ main {
 }
 
 .infoCharacters {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 25vw;
     width: 50vw;
@@ -814,10 +979,10 @@ main {
 }
 
 .infoEnemies {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 16vh;
     width: 50vw;
-    left: 15vh;
+    left: 50vw;
     transform: translateX(-50%);
     height: fit-content;
     background-color: var(--back);
@@ -898,10 +1063,18 @@ main {
     cursor: pointer;
 }
 
+.attack:hover {
+    cursor: pointer; 
+}
+
 .SMove {
     text-align: center;
     width: 100%;
     margin: 5px;
+    cursor: pointer;
+}
+
+.sMove:hover {
     cursor: pointer;
 }
 
@@ -963,11 +1136,66 @@ main {
     5px 5px 0 #000;
 }
 
+.victory {
+    font-family: 'Agbalumo', sans-serif;
+    font-size: 20vh;
+    color: var(--gold);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-shadow:
+    -5px -5px 0 #000, 
+    5px -5px 0 #000,  
+    -5px 5px 0 #000,  
+    5px 5px 0 #000;
+}
+
 .damageTaken {
-    width: 100%;
+    width: 20vw;
     height: 100%;
-    font-size: 10vh;
+    font-size: 5vh;
     background-color: rgba(255, 0, 0, 0.541);
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+}
+
+.heal {
+    width: 20vw;
+    height: 100%;
+    font-size: 7vh;
+    background-color: rgba(0, 255, 38, 0.758);
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+}
+
+.dodge {
+    width: 20vw;
+    height: 100%;
+    font-size: 7vh;
+    background-color: rgba(0, 128, 255, 0.637);
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+}
+
+.Xp {
+    width: 20vw;
+    height: 100%;
+    font-size: 7vh;
+    background-color: #d5a4139e;
     text-align: center;
     position: absolute;
     left: 50%;
@@ -980,11 +1208,75 @@ main {
     position: absolute;
     width: 20vw;
     bottom: 5vh;
-    z-index: 6;
+    z-index: 5;
 }
 
 .downgrade {
     transform: scaleY(-1);
+}
+
+#hero1 {
+    position: absolute;
+    bottom: 0;
+    left: 10vw;
+}
+
+#enemy2 {
+    position: absolute;
+    top: 0;
+    left: 10vw;
+}
+
+#hero2 {
+    position: absolute;
+    bottom: 0;
+    left: 40vw; 
+}
+
+#enemy1 {
+    position: absolute;
+    top: 0;
+    left: 40vw;
+}
+
+#hero3 {
+    position: absolute;
+    bottom: 0;
+    right: 10vw;
+}
+
+#enemy3 {
+    position: absolute;
+    top: 0;
+    right: 10vw;
+}
+
+.reward {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.reward img {
+    height: 100%;
+}
+
+.reward span {
+    font-size: 18vh;
+    margin: 1vh 2vw;
+    color: var(--gold);
+    font-family: 'Agbalumo', sans-serif;
+    text-shadow:
+    -5px -5px 0 #000, 
+    5px -5px 0 #000,  
+    -5px 5px 0 #000,  
+    5px 5px 0 #000;
 }
 
 
@@ -1027,7 +1319,7 @@ main {
         height: 120px;
     }
     #selector {
-        margin: 0 -20% -5% 0;
+        margin: 0 -50% -5% 0;
     }
     #searchstarts {
         width: 70px;
@@ -1048,6 +1340,9 @@ main {
     }
     .enemies {
         top: 2vh;
+    }
+    #grafica {
+        width: 200px;
     }
 }
 
@@ -1090,7 +1385,7 @@ main {
         height: 150px;
     }
     #selector {
-        margin: 0 -20% -4% 0;
+        margin: 0 -50% -4% 0;
     }
     #searchstarts {
         width: 90px;
@@ -1153,7 +1448,7 @@ main {
         height: 180px;
     }
     #selector {
-        margin: 0 -20% -4% 0;
+        margin: 0 -50% -4% 0;
     }
     #searchstarts {
         width: 110px;
@@ -1186,8 +1481,26 @@ main {
     .enemies {
         top: 2vh;
     }
-    .effects {
+    .effects, .damageTaken, .dodge, .heal, .Xp {
         width: 12vw; 
+    }
+    #hero1 {
+        left: 16vw;
+    }
+    #hero2 {
+        left: 44vw;
+    }
+    #hero3 {
+        right: 16vw;
+    }
+    #enemy2 {
+        left: 16vw;
+    }
+    #enemy1 {
+        left: 44vw;
+    }
+    #enemy3 {
+        right: 16vw;
     }
 }
 
@@ -1230,7 +1543,7 @@ main {
         height: 200px;
     }
     #selector {
-        margin: 0 -15% -2% 0;
+        margin: 0 -40% -2% 0;
     }
     #searchstarts {
         width: 140px;
@@ -1263,7 +1576,34 @@ main {
     .enemies {
         top: 2vh;
     }
-    .effects {
+    .effects, .damageTaken, .dodge, .heal, .Xp {
         width: 12vw; 
+    }
+    #hero1 {
+        left: 16vw;
+    }
+    #hero2 {
+        left: 44vw;
+    }
+    #hero3 {
+        right: 16vw;
+    }
+    #enemy2 {
+        left: 16vw;
+    }
+    #enemy1 {
+        left: 44vw;
+    }
+    #enemy3 {
+        right: 16vw;
+    }
+    #map {
+        width: 1024px;
+    }
+    #mapaMoria {
+        width: 800px;
+    }
+    #mapaAmonHen {
+        width: 800px;
     }
 }
