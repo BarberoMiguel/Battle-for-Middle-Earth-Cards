@@ -155,7 +155,7 @@ header {
 }
 
 .header {
-    font-size: 3vh;
+    font-size: 6vw;
     margin: 10px;
 }
 
@@ -326,7 +326,7 @@ main {
 }
 
 #menuBar {
-    margin-top: 8vh;
+    margin-top: 7vh;
     background-color: #F3BC14;
     width: 100vw;
     height: 7vh;
@@ -1332,16 +1332,23 @@ main {
 select { 
     overflow-y: scroll; 
 }
+
+@media screen and (min-height: 500px) and (max-width: 300px) {
+    #menuBar {
+        margin-top: 6vh;
+    }
+}
+
 @media screen and (min-width: 300px) and (max-width: 490px) {
     #menuBar h2 {
-        font-size: 3vh;
-        margin: 10px;
+        font-size: 5vw;
+        margin: 0px;
     }
     .headerContainer img{
-        height: 5vh;
+        height: 4vh;
     }
     .header {
-        font-size: 4vh;
+        font-size: 5vw;
     }
 }
 
@@ -1362,7 +1369,7 @@ select {
         width: 50%;
     }
     #menuBar {
-        margin-top: 10vh;
+        margin-top: 8vh;
     }
     #barRight {
         right: 10px;
@@ -1441,7 +1448,7 @@ select {
         width: 50%;
     }
     #menuBar {
-        margin-top: 10vh;
+        margin-top: 8vh;
     }
     #barRight {
         right: 15px;
@@ -1517,7 +1524,7 @@ select {
         width: 50%;
     }
     #menuBar {
-        margin-top: 10vh;
+        margin-top: 8vh;
     }
     #barRight {
         right: 20px;
@@ -1625,7 +1632,7 @@ select {
         width: 50%;
     }
     #menuBar {
-        margin-top: 9vh;
+        margin-top: 7vh;
     } 
     #barRight {
         right: 25px;
