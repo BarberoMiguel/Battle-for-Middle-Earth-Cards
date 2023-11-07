@@ -1339,6 +1339,12 @@ select {
     }
 }
 
+@media screen and (min-height: 500px) and (min-width: 300px) and (max-width: 490px) {
+    #menuBar {
+        margin-top: 6vh;
+    }
+}
+
 @media screen and (min-width: 300px) and (max-width: 490px) {
     #menuBar h2 {
         font-size: 5vw;
