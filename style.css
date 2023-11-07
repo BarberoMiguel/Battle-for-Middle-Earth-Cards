@@ -142,7 +142,7 @@ header {
 }
 
 .headerContainer img {
-    height: 5vh;
+    height: 3vh;
     margin: 10px 0px;
 }
 
@@ -155,7 +155,7 @@ header {
 }
 
 .header {
-    font-size: 4vh;
+    font-size: 3vh;
     margin: 10px;
 }
 
@@ -339,10 +339,10 @@ main {
 }
 
 #menuBar h2 {
-    font-size: 4vh;
+    font-size: 2vh;
     font-family: "Rubik", sans-serif;
     padding: 4px;
-    margin: 10px;
+    margin: 0px;
     text-shadow: 2px 2px 4px #fff;
 }
 
@@ -458,6 +458,8 @@ main {
 #graficaContainer {
     width: 80%;
     height: 80%;
+    display: flex;
+    align-items: center;
 }
 
 #selectAvatar {
@@ -613,7 +615,6 @@ main {
     z-index: 2;
 }
 .displayCard .nameDisplay {
-    font-size: 5vh;
     left: 50%; 
     transform: translateX(-50%);
     bottom: 5%;
@@ -624,6 +625,14 @@ main {
     1px -1px 0 #000,  
     -1px 1px 0 #000,  
     1px 1px 0 #000;
+}
+
+.displayCard {
+    font-size: 5vh;
+}
+
+.nameDisplay {
+    font-size: 4vw;
 }
 
 .markCard {
@@ -1323,8 +1332,18 @@ main {
 select { 
     overflow-y: scroll; 
 }
-
-
+@media screen and (min-width: 300px) and (max-width: 490px) {
+    #menuBar h2 {
+        font-size: 3vh;
+        margin: 10px;
+    }
+    .headerContainer img{
+        height: 5vh;
+    }
+    .header {
+        font-size: 4vh;
+    }
+}
 
 @media screen and (min-width: 490px) and (max-width: 750px) {
     html {
@@ -1390,6 +1409,19 @@ select {
     #grafica {
         width: 200px;
     }
+    .nameDisplay {
+        font-size: 3vw;
+    }
+    #menuBar h2 {
+        font-size: 4vh;
+        margin: 10px;
+    }
+    .headerContainer img{
+        height: 5vh;
+    }
+    .header {
+        font-size: 4vh;
+    }
 }
 
 @media screen and (min-width: 750px) and (max-width: 1000px) {
@@ -1452,6 +1484,19 @@ select {
     }
     .enemies {
         top: 2vh;
+    }
+    .nameDisplay {
+        font-size: 3vw;
+    }
+    #menuBar h2 {
+        font-size: 4vh;
+        margin: 10px;
+    }
+    .headerContainer img{
+        height: 5vh;
+    }
+    .header {
+        font-size: 4vh;
     }
 }
 
@@ -1547,6 +1592,19 @@ select {
     }
     #enemy3 {
         right: 16vw;
+    }
+    .nameDisplay {
+        font-size: 2vw;
+    }
+    #menuBar h2 {
+        font-size: 4vh;
+        margin: 10px;
+    }
+    .headerContainer img{
+        height: 5vh;
+    }
+    .header {
+        font-size: 4vh;
     }
 }
 
@@ -1654,5 +1712,18 @@ select {
     }
     #mapaWargs {
         width: 800px;
+    }
+    .nameDisplay {
+        font-size: 2vw;
+    }
+    #menuBar h2 {
+        font-size: 4vh;
+        margin: 10px;
+    }
+    .headerContainer img{
+        height: 5vh;
+    }
+    .header {
+        font-size: 4vh;
     }
 }

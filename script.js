@@ -12331,7 +12331,7 @@ async function actualizarEnemigo(carta, level, rank) {
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount - level*2;
         cartaActual.attackDescription = "He shoots an arrow at you";
         cartaActual.specialMoveDescription = `He stabs himself and becomes enraged, he attacks you and deals x3 damage`;
-        cartaActual.image += `<p class="${rank} nameDisplay">Ugluk</p>
+        cartaActual.image += `<p class="${rank} nameDisplay">Lurtz</p>
                                 </figure>`;
         break;
       case "WargRider1":
