@@ -1712,7 +1712,7 @@ function victoria() {
           }
         }
         if (datosUsuarioActual.level.amonHen == 3) {
-          datosUsuarioActual.level.moria = 4;
+          datosUsuarioActual.level.amonHen = 4;
           datosUsuarioActual.level.total = 2;
         }
         if (nuevoPersonaje.length > 0) {
@@ -1850,6 +1850,12 @@ function attackbufsenemies(attackactive) {
   if (SMoveActualEnemies.hasOwnProperty("urukHai1")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "urukHai1") {
+        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        break;
+      }}};
+  if (SMoveActualEnemies.hasOwnProperty("WargRider2")) {
+    for (let i = 0; i < enemiesGlobal.length; i++) {
+      if (heroesGlobal[i].name == "WargRider2") {
         attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
@@ -8161,6 +8167,951 @@ async function attackLurtz(index) {
   });
 }
 
+async function attackWargRider1(index) {
+  return new Promise((resolve) => {
+    attackactive = [0.5*enemiesGlobal[index].attack, index];
+    enemiesGlobal[index].actualARecharge = enemiesGlobal[index].attackRecharge;
+    if (SMoveActualEnemies.hasOwnProperty("WargRider1")) {
+      attackactive[0] *= (1 + enemiesGlobal[index].specialMoveAmount);
+    }
+    document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "enemyAttack 1s ease-in-out";
+    setTimeout(() => {
+      document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "";
+    }, 1000);
+    let enemigosVivos = [];
+    for (let i = 0; i < heroesGlobal.length; i++) {
+      if (heroesGlobal[i].actualHealth > 0) {
+        enemigosVivos.push([heroesGlobal[i].name, i]);
+      }
+    }
+    let enemigoElegido;
+    async function ataque() {
+      enemigoElegido = await getRandomFromSet(enemigosVivos);
+      attackbufsenemies(attackactive);
+      attackactive = [Math.round(await attackactive[0]), attackactive[1]];
+      if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener")) {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        setTimeout(() => {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+          resolve(true);
+        }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Haldir")) {
+        let enemiesAlive = [];
+        for (let k = 0; k < enemiesGlobal.length; k++) {
+          if (enemiesGlobal[k].actualHealth > 0) {
+            enemiesAlive.push([enemiesGlobal[k].name, k]);
+          }
+        }
+        let enemigoConfusion;
+        async function confusion() {
+          enemigoConfusion = await getRandomFromSet(enemiesAlive);
+          document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
+          document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
+            document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${enemiesGlobal[enemigoConfusion[1]].name}`).style.width = (enemiesGlobal[enemigoConfusion[1]].actualHealth/enemiesGlobal[enemigoConfusion[1]].maxHealth)*100 + "%";
+          if (!comprobarVictoria()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+        confusion();
+      } else if (SMoveActualHeroes.hasOwnProperty("Gandalf")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Gandalf") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }} 
+        if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Boromir") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+          let devolverAtaque = 0;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              for (let i = 0; i < heroesGlobal.length; i++) {
+                if (heroesGlobal[i].name == "Gimli") {
+                  devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                  Math.round(devolverAtaque);
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                  enemiesGlobal[index].actualHealth -= devolverAtaque;
+                  if (enemiesGlobal[index].actualHealth < 0) {
+                    enemiesGlobal[index].actualHealth = 0;
+                    document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                  }
+                  document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                  break;
+                }};
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+          let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+          Math.round(devolverAtaque);
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+              enemiesGlobal[index].actualHealth -= devolverAtaque;
+              if (enemiesGlobal[index].actualHealth < 0) {
+                enemiesGlobal[index].actualHealth = 0;
+                document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+              }
+              document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Guthred")){
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Guthred") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+            heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+              document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+        } else {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Boromir") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+        let devolverAtaque = 0;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            for (let i = 0; i < heroesGlobal.length; i++) {
+              if (heroesGlobal[i].name == "Gimli") {
+                devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                Math.round(devolverAtaque);
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                enemiesGlobal[index].actualHealth -= devolverAtaque;
+                if (enemiesGlobal[index].actualHealth < 0) {
+                  enemiesGlobal[index].actualHealth = 0;
+                  document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                }
+                document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                break;
+              }};
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+        let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+        Math.round(devolverAtaque);
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+            enemiesGlobal[index].actualHealth -= devolverAtaque;
+            if (enemiesGlobal[index].actualHealth < 0) {
+              enemiesGlobal[index].actualHealth = 0;
+              document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Guthred")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Guthred") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      }
+    }
+    ataque();
+  });
+}
+
+async function attackWargRider2(index) {
+  return new Promise((resolve) => {
+    attackactive = [0.5*enemiesGlobal[index].attack, index];
+    enemiesGlobal[index].actualARecharge = enemiesGlobal[index].attackRecharge;
+    document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "enemyAttack 1s ease-in-out";
+    setTimeout(() => {
+      document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "";
+    }, 1000);
+    let enemigosVivos = [];
+    for (let i = 0; i < heroesGlobal.length; i++) {
+      if (heroesGlobal[i].actualHealth > 0) {
+        enemigosVivos.push([heroesGlobal[i].name, i]);
+      }
+    }
+    let enemigoElegido;
+    async function ataque() {
+      enemigoElegido = await getRandomFromSet(enemigosVivos);
+      attackbufsenemies(attackactive);
+      attackactive = [Math.round(await attackactive[0]), attackactive[1]];
+      if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener")) {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        setTimeout(() => {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+          resolve(true);
+        }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Haldir")) {
+        let enemiesAlive = [];
+        for (let k = 0; k < enemiesGlobal.length; k++) {
+          if (enemiesGlobal[k].actualHealth > 0) {
+            enemiesAlive.push([enemiesGlobal[k].name, k]);
+          }
+        }
+        let enemigoConfusion;
+        async function confusion() {
+          enemigoConfusion = await getRandomFromSet(enemiesAlive);
+          document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
+          document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
+            document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${enemiesGlobal[enemigoConfusion[1]].name}`).style.width = (enemiesGlobal[enemigoConfusion[1]].actualHealth/enemiesGlobal[enemigoConfusion[1]].maxHealth)*100 + "%";
+          if (!comprobarVictoria()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+        confusion();
+      } else if (SMoveActualHeroes.hasOwnProperty("Gandalf")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Gandalf") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }} 
+        if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Boromir") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+          let devolverAtaque = 0;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              for (let i = 0; i < heroesGlobal.length; i++) {
+                if (heroesGlobal[i].name == "Gimli") {
+                  devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                  Math.round(devolverAtaque);
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                  enemiesGlobal[index].actualHealth -= devolverAtaque;
+                  if (enemiesGlobal[index].actualHealth < 0) {
+                    enemiesGlobal[index].actualHealth = 0;
+                    document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                  }
+                  document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                  break;
+                }};
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+          let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+          Math.round(devolverAtaque);
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+              enemiesGlobal[index].actualHealth -= devolverAtaque;
+              if (enemiesGlobal[index].actualHealth < 0) {
+                enemiesGlobal[index].actualHealth = 0;
+                document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+              }
+              document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Guthred")){
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Guthred") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+            heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+              document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+        } else {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Boromir") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+        let devolverAtaque = 0;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            for (let i = 0; i < heroesGlobal.length; i++) {
+              if (heroesGlobal[i].name == "Gimli") {
+                devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                Math.round(devolverAtaque);
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                enemiesGlobal[index].actualHealth -= devolverAtaque;
+                if (enemiesGlobal[index].actualHealth < 0) {
+                  enemiesGlobal[index].actualHealth = 0;
+                  document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                }
+                document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                break;
+              }};
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+        let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+        Math.round(devolverAtaque);
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+            enemiesGlobal[index].actualHealth -= devolverAtaque;
+            if (enemiesGlobal[index].actualHealth < 0) {
+              enemiesGlobal[index].actualHealth = 0;
+              document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Guthred")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Guthred") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      }
+    }
+    ataque();
+  });
+}
+
+async function attackWarg1(index) {
+  return new Promise((resolve) => {
+    attackactive = [0.5*enemiesGlobal[index].attack, index];
+    enemiesGlobal[index].actualARecharge = enemiesGlobal[index].attackRecharge;
+    document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "enemyAttack 1s ease-in-out";
+    setTimeout(() => {
+      document.getElementById(`enemy${attackactive[1]+1}`).style.animation = "";
+    }, 1000);
+    let enemigosVivos = [];
+    for (let i = 0; i < heroesGlobal.length; i++) {
+      if (heroesGlobal[i].actualHealth > 0) {
+        enemigosVivos.push([heroesGlobal[i].name, i]);
+      }
+    }
+    let enemigoElegido;
+    async function ataque() {
+      enemigoElegido = await getRandomFromSet(enemigosVivos);
+      attackbufsenemies(attackactive);
+      attackactive = [Math.round(await attackactive[0]), attackactive[1]];
+      if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener")) {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        setTimeout(() => {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+          resolve(true);
+        }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Haldir")) {
+        let enemiesAlive = [];
+        for (let k = 0; k < enemiesGlobal.length; k++) {
+          if (enemiesGlobal[k].actualHealth > 0) {
+            enemiesAlive.push([enemiesGlobal[k].name, k]);
+          }
+        }
+        let enemigoConfusion;
+        async function confusion() {
+          enemigoConfusion = await getRandomFromSet(enemiesAlive);
+          document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
+          document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
+            document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${enemiesGlobal[enemigoConfusion[1]].name}`).style.width = (enemiesGlobal[enemigoConfusion[1]].actualHealth/enemiesGlobal[enemigoConfusion[1]].maxHealth)*100 + "%";
+          if (!comprobarVictoria()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+        confusion();
+      } else if (SMoveActualHeroes.hasOwnProperty("Gandalf")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Gandalf") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }} 
+        if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Boromir") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+          let devolverAtaque = 0;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              for (let i = 0; i < heroesGlobal.length; i++) {
+                if (heroesGlobal[i].name == "Gimli") {
+                  devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                  Math.round(devolverAtaque);
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                  enemiesGlobal[index].actualHealth -= devolverAtaque;
+                  if (enemiesGlobal[index].actualHealth < 0) {
+                    enemiesGlobal[index].actualHealth = 0;
+                    document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                  }
+                  document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                  break;
+                }};
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+          let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+          Math.round(devolverAtaque);
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+              enemiesGlobal[index].actualHealth -= devolverAtaque;
+              if (enemiesGlobal[index].actualHealth < 0) {
+                enemiesGlobal[index].actualHealth = 0;
+                document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+              }
+              document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+              if (!comprobarVictoria()) {
+                setTimeout(() => {
+                  document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                  resolve(true);
+                }, 1000);
+              } else {
+                resolve(false);
+              }
+            }, 1000);
+          }
+        } else if (SMoveActualHeroes.hasOwnProperty("Guthred")){
+          for (let i = 0; i < heroesGlobal.length; i++) {
+            if (heroesGlobal[i].name == "Guthred") {
+              attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+              break;
+            }}
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+            heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+              document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+        } else {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          if (!comprobarDerrota()) {
+            setTimeout(() => {
+              document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+              resolve(true);
+            }, 1000);
+          } else {
+            resolve(false);
+          }
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Boromir")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Boromir") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else if (SMoveActualHeroes.hasOwnProperty("Gimli")) {
+        let devolverAtaque = 0;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            for (let i = 0; i < heroesGlobal.length; i++) {
+              if (heroesGlobal[i].name == "Gimli") {
+                devolverAtaque = heroesGlobal[i].specialMoveActualAmount * attackactive[0];
+                Math.round(devolverAtaque);
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+                enemiesGlobal[index].actualHealth -= devolverAtaque;
+                if (enemiesGlobal[index].actualHealth < 0) {
+                  enemiesGlobal[index].actualHealth = 0;
+                  document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+                }
+                document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+                break;
+              }};
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      } else if ((SMoveActualHeroes.hasOwnProperty("Elrohir") && heroesGlobal[enemigoElegido[1]].name == "Elrohir") || (SMoveActualHeroes.hasOwnProperty("Eothain") && heroesGlobal[enemigoElegido[1]].name == "Eothain")) {
+        let devolverAtaque = heroesGlobal[enemigoElegido[1]].specialMoveActualAmount * attackactive[0];
+        Math.round(devolverAtaque);
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
+            enemiesGlobal[index].actualHealth -= devolverAtaque;
+            if (enemiesGlobal[index].actualHealth < 0) {
+              enemiesGlobal[index].actualHealth = 0;
+              document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+            }
+            document.getElementById(`health${enemiesGlobal[index].name}`).style.width = (enemiesGlobal[index].actualHealth/enemiesGlobal[index].maxHealth)*100 + "%";
+            if (!comprobarVictoria()) {
+              setTimeout(() => {
+                document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+                resolve(true);
+              }, 1000);
+            } else {
+              resolve(false);
+            }
+          }, 1000);
+        }
+      } else if (SMoveActualHeroes.hasOwnProperty("Guthred")) {
+        for (let i = 0; i < heroesGlobal.length; i++) {
+          if (heroesGlobal[i].name == "Guthred") {
+            attackactive[0] *= (1 - heroesGlobal[i].specialMoveActualAmount);
+            break;
+          }}
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+            document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+          }
+          document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+      } else {
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+        heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
+        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          heroesGlobal[enemigoElegido[1]].actualHealth = 0;
+          document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+        }
+        document.getElementById(`health${heroesGlobal[enemigoElegido[1]].name}`).style.width = (heroesGlobal[enemigoElegido[1]].actualHealth/heroesGlobal[enemigoElegido[1]].maxHealth)*100 + "%";
+        if (!comprobarDerrota()) {
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      }
+    }
+    ataque();
+  });
+}
+
 async function sMoveWatcher(index) {
   return new Promise((resolve) => {
     attackactive = [enemiesGlobal[index].specialMoveActualAmount, index];
@@ -9031,6 +9982,46 @@ async function sMoveLurtz(index) {
   })
 }
 
+async function sMoveWargRider1(index) {
+  return new Promise((resolve) => {
+    SMoveActualEnemies.WargRider1 = 1;
+    enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
+    document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
+    setTimeout(() => {
+      document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+      resolve(true);
+    }, 750)
+  });
+}
+
+async function sMoveWargRider2(index) {
+  return new Promise((resolve) => {
+    SMoveActualEnemies.WargRider2 = 1;
+    enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
+    for (let j = 0; j < enemiesGlobal.length; j++) {
+      document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
+    }
+    setTimeout(() => {
+      for (let j = 0; j < enemiesGlobal.length; j++) {
+        document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
+      }
+      resolve(true);
+    }, 750)
+  });
+}
+
+async function sMoveWarg1(index) {
+  return new Promise((resolve) => {
+    enemiesAttaks = 2;
+    enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
+    document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
+    setTimeout(() => {
+      document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = "";
+      resolve(true);
+    }, 750)
+  });
+}
+
 //eventos battalla
 function eventosBatalla(battle) {
   document.getElementById("attackfunction").addEventListener("click", function() {
@@ -9712,6 +10703,27 @@ function iniciarEnemigos() {
                                             <div id="healthLurtz" class="health"></div>
                                           </div>` }
   enemies.push(Lurtz);
+  let WargRider1 = {name: "WargRider1", specialMoveActualAmount: 0, card: "", specialMoveAmount: 0.5, attackDescription: "", 
+  attack: "", level: "", maxHealth: "", actualHealth: "", attackRecharge: 2, specialMoveDescription: "",
+  specialMoveRecharge: 3, specialMoveRounds: 1, actualARecharge: 0, actualSRecharge: 0, 
+  specialMove: 0, image: "", healthBar: `<div class="healthbar">
+                                            <div id="healthWargRider1" class="health"></div>
+                                          </div>` }
+  enemies.push(WargRider1);
+  let WargRider2 = {name: "WargRider2", specialMoveActualAmount: 0, card: "", specialMoveAmount: 0.4, attackDescription: "", 
+  attack: "", level: "", maxHealth: "", actualHealth: "", attackRecharge: 2, specialMoveDescription: "",
+  specialMoveRecharge: 3, specialMoveRounds: 1, actualARecharge: 0, actualSRecharge: 0, 
+  specialMove: 0, image: "", healthBar: `<div class="healthbar">
+                                            <div id="healthWargRider2" class="health"></div>
+                                          </div>` }
+  enemies.push(WargRider2);
+  let Warg1 = {name: "Warg1", specialMoveActualAmount: 0, card: "", specialMoveAmount: 0, attackDescription: "", 
+  attack: "", level: "", maxHealth: "", actualHealth: "", attackRecharge: 2, specialMoveDescription: "",
+  specialMoveRecharge: 3, specialMoveRounds: 1, actualARecharge: 0, actualSRecharge: 0, 
+  specialMove: 0, image: "", healthBar: `<div class="healthbar">
+                                            <div id="healthWarg1" class="health"></div>
+                                          </div>` }
+  enemies.push(Warg1);
 }
 
 //function actualizar Enemigo para la batalla
@@ -9838,6 +10850,26 @@ async function actualizarEnemigo(carta, level, rank) {
         cartaActual.attackDescription = "He shoots an arrow at you";
         cartaActual.specialMoveDescription = `He stabs himself and becomes enraged, he attacks you and deals x3 damage`;
         cartaActual.image += `<p class="${rank} nameDisplay">Ugluk</p>
+                                </figure>`;
+        break;
+      case "WargRider1":
+        cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
+        cartaActual.attackDescription = "He wields his sword at you";
+        cartaActual.specialMoveDescription = `He increases his attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.image += `<p class="${rank} nameDisplay">Warg Rider</p>
+                                </figure>`;
+        break;
+      case "WargRider2":
+        cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
+        cartaActual.attackDescription = "He attacks you while passing by";
+        cartaActual.specialMoveDescription = `He increases all enemies attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.image += `<p class="${rank} nameDisplay">Warg Rider</p>
+                                </figure>`;
+        break;
+      case "Warg1":
+        cartaActual.attackDescription = "He jumps at you and bits you";
+        cartaActual.specialMoveDescription = `He increases all enemies speed this round adding an additional attack`;
+        cartaActual.image += `<p class="${rank} nameDisplay">Warg</p>
                                 </figure>`;
         break;
     }
@@ -10745,6 +11777,9 @@ async function battleMoria1() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -11017,6 +12052,9 @@ async function battleMoria2() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -11296,6 +12334,9 @@ async function battleMoria3() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -11575,6 +12616,9 @@ async function battleMoria4() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -11854,6 +12898,9 @@ async function battleMoria5() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -12133,6 +13180,9 @@ async function battleMoria6() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -12667,6 +13717,9 @@ async function battleAmonHen1() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -12946,6 +13999,9 @@ async function battleAmonHen2() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -13225,6 +14281,9 @@ async function battleAmonHen3() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -13504,6 +14563,9 @@ async function battleAmonHen4() {
   document.getElementById(`SMContainer${battle}`).classList.add("hide");
   document.getElementById(`selection${battle}`).classList.add("hide");
   document.getElementById(`nextRound${battle}`).addEventListener("click", async function() {
+    if (!comprobarVictoria()) {
+      comprobarDerrota()
+    }
     document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
     document.getElementById(`attackContainer${battle}`).classList.add("hide");
     document.getElementById(`SMContainer${battle}`).classList.add("hide");
@@ -13822,11 +14884,169 @@ function cargarAmonHen() {
   });
 }
 
+function cargarWargs() {
+  if (mapWargs) {
+    mapWargs.remove();
+  }
+  mapWargs = L.map('mapaWargs', {
+    maxZoom: 3, 
+    minZoom: 2,
+    maxBounds: [
+      [0, 0], 
+      [-400, 300]  
+    ],
+    maxBoundsViscosity: 1.0 
+  });
+  
+  L.imageOverlay('./assets/scenaries/Rohan_map.jpg', [
+    [0, 0], 
+    [-400, 300] 
+  ]).addTo(mapWargs);
+  
+  mapWargs.fitBounds([
+    [0, 0], 
+    [-400, 300] 
+  ]);
+
+  mapWargs.setView([-77, 105], 2.5);
+
+  const wargRidersIcon = L.icon({
+    iconUrl: './assets/scenaries/wargRiders.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const wargRidersMarker = L.marker([-77, 105], { icon: wargRidersIcon }).bindPopup("1: The Ambush", { offset: [0, -10] }).addTo(mapWargs);
+  wargRidersMarker.on('click', function() {
+    Swal.fire({
+      title: 'Do you want to play this battle for 160 coins?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+    if (result.isConfirmed) {
+      if (datosUsuarioActual.coins < 160) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'You dont have 160 coins',
+        })
+      } else {
+        datosUsuarioActual.coins -= 160;
+        const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+        documentRef.update({
+          coins: datosUsuarioActual.coins
+        });
+        battleWargs1();
+      }
+    }});
+  });
+  wargRidersMarker.on('mouseover', function () {
+    wargRidersMarker.openPopup();
+  });
+
+  const wargsIcon = L.icon({
+    iconUrl: './assets/scenaries/wargs.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+  const wargsMarker = L.marker([-78, 91], { icon: wargsIcon }).bindPopup("2: Wargs", { offset: [0, -10] }).addTo(mapWargs);
+  wargsMarker.on('click', function() {
+    if (datosUsuarioActual.level.wargs < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unlocked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle for 180 coins?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        if (datosUsuarioActual.coins < 180) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 180 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 180;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleWargs2();
+        }
+      }});
+    }
+  });
+  wargsMarker.on('mouseover', function () {
+    wargsMarker.openPopup();
+  });
+
+  const wargsLeaderIcon = L.icon({
+    iconUrl: './assets/scenaries/wargLeader.png', 
+    iconSize: [64, 64], 
+    iconAnchor: [32, 32], 
+  });
+
+  const wargsLeaderMarker = L.marker([-78, 79], { icon: wargsLeaderIcon }).bindPopup("3: Wargs Leader", { offset: [0, -10] }).addTo(mapWargs);
+  wargsLeaderMarker.on('click', function() {
+    if (datosUsuarioActual.level.wargs < 2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You havent unlocked this battle yet',
+      })
+    } else {
+      Swal.fire({
+        title: 'Do you want to play this battle for 200 coins?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        if (datosUsuarioActual.coins < 200) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You dont have 200 coins',
+          })
+        } else {
+          datosUsuarioActual.coins -= 200;
+          const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+          documentRef.update({
+            coins: datosUsuarioActual.coins
+          });
+          battleWargs3();
+        }
+      }});
+    }
+  });
+  wargsLeaderMarker.on('mouseover', function () {
+    wargsLeaderMarker.openPopup();
+  });
+
+  mapWargs.on('zoomend', function () {
+    const currentZoom = mapWargs.getZoom();
+    const newSize = [64, 64].map(size => size / Math.pow(2, (3 - currentZoom) * 0.5));
+    const newAnchor = [newSize[0]/2, newSize[1]/2];
+    wargRidersIcon.options.iconSize = newSize;
+    wargRidersIcon.options.iconAnchor = newAnchor;
+    wargsIcon.options.iconSize = newSize;
+    wargsIcon.options.iconAnchor = newAnchor;
+    wargsLeaderIcon.options.iconSize = newSize;
+    wargsLeaderIcon.options.iconAnchor = newAnchor;
+
+    wargRidersMarker.setIcon(wargRidersIcon);
+    wargsMarker.setIcon(wargsIcon);
+    wargsLeaderMarker.setIcon(wargsLeaderIcon);
+  });
+}
+
 function cargarBattle() {
   document.getElementById("battleHomeContainer").classList.remove("hide");
   if (map) {
     map.remove();
-    console.log(map);
   }
   map = L.map('map', {
     maxZoom: 4, 
@@ -13904,7 +15124,10 @@ function cargarBattle() {
         text: 'You havent unlocked this level yet',
       })
     } else {
-      
+      document.getElementById("battleHomeContainer").classList.add("hide");
+      document.getElementById("wargs").classList.remove("hide");
+      document.getElementById("mapWargs").classList.remove("hide");
+      cargarWargs();
     }
   });
   wargsMarker.on('mouseover', function () {
@@ -14051,6 +15274,7 @@ firebase.auth().onAuthStateChanged((user) => {
 let map = null;
 let mapMoria = null;
 let mapAmonHen = null;
+let mapWargs = null;
 
 //datos batalla
 let battle = "";
@@ -14440,6 +15664,7 @@ for (let i = 0; i < backMap.length; i++) {
     document.getElementById("battleHomeContainer").classList.remove("hide");
     document.getElementById("moria").classList.add("hide");
     document.getElementById("amonHen").classList.add("hide");
+    document.getElementById("wargs").classList.add("hide");
     cargarBattle();
   })
 }

@@ -761,6 +761,14 @@ main {
     background-color: var(--back);
 }
 
+#mapWargs {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background-color: var(--back);
+}
+
 #mapaMoria {
     width: 70vw;
     height: 50vh;
@@ -773,6 +781,17 @@ main {
 }
 
 #mapaAmonHen {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapaWargs {
     width: 70vw;
     height: 50vh;
     left: 50vw;
@@ -1604,6 +1623,9 @@ main {
         width: 800px;
     }
     #mapaAmonHen {
+        width: 800px;
+    }
+    #mapaWargs {
         width: 800px;
     }
 }
