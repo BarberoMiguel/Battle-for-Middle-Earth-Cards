@@ -3547,7 +3547,7 @@ async function sMoveLegolas() {
     if (heroesGlobal[i].name == "Legolas") {
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
-      attackactive = [0.25*heroesGlobal[i].attack, i];
+      attackactive = [heroesGlobal[i].specialMoveActualAmount*heroesGlobal[i].attack, i];
       document.getElementById(`SMContainer${battle}`).classList.add("hide");
       break;
     }
