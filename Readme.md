@@ -12,4 +12,4 @@ Now you are ready to play. Dont worry we'll give you 3 new cards to fight your f
 <img src="./assets/md/Battle.png" alt="Battle">
 
 Win battles to obtain rewards, level up your cards and unlock different battles. Play with your friends and compete to see which one of you finishes the game first!
-Hope you enjoy the game <a href="">here</a>!
+Hope you enjoy the game <a href="https://barberomiguel.github.io/Battle-for-Middle-Earth-Cards/">here</a>!
