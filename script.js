@@ -17965,7 +17965,7 @@ document.getElementById("xMyCards").addEventListener("click", function() {
 document.getElementById("filterSelectorMyCards").addEventListener("submit", function(event) {
   event.preventDefault();
   let respuesta = event.target.character.value.toLowerCase();
-  cardsMyCards = document.getElementById("cardsMyCards");
+  let cardsMyCards = document.getElementById("cardsMyCards");
   if (respuesta == "") {
     if (personajesObtenidos.length === 0) {
       cardsMyCards.innerHTML = "";
@@ -17985,7 +17985,7 @@ document.getElementById("filterSelectorMyCards").addEventListener("submit", func
       });
     }
   } else {
-    dato = personajesObtenidos.filter(el => el.name.toLowerCase().startsWith(respuesta));
+    let dato = personajesObtenidos.filter(el => el.name.toLowerCase().startsWith(respuesta));
     cardsMyCards.innerHTML = "";
     if (dato.length === 0) {
       cardsMyCards.innerHTML = `<h2 style="text-align: center;">You dont have any card with that name</h2>`;
