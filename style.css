@@ -914,6 +914,28 @@ main {
     overflow-y: hidden;  
 }
 
+#ambush {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/wargInitial.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#wargs1, #wargLeader {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 4vh;
+    background: url(./assets/scenaries/WargRiders.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
 .newCards {
     position: absolute;
     width: 100vw;
@@ -1297,6 +1319,11 @@ main {
     -5px 5px 0 #000,  
     5px 5px 0 #000;
 }
+
+select { 
+    overflow-y: scroll; 
+}
+
 
 
 @media screen and (min-width: 490px) and (max-width: 750px) {
