@@ -453,7 +453,7 @@ function victoria() {
         }
       }
       if (datosUsuarioActual.level[datos.scenario] == datos.level-1) {
-        datosUsuarioActual.level[datos.scenario] == datos.level;
+        datosUsuarioActual.level[datos.scenario] = datos.level;
         if (battle == "Moria6") {
           datosUsuarioActual.level.total = 1;
         } else if (battle == "AmonHen4") {
@@ -5355,7 +5355,7 @@ async function actualizarCartas(carta, xp) {
         break;
       case "Eowyn":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.1;
-        cartaActual.specialMoveDescription = `She charges a fatal blow and her next attack deals damage x${Math.round(cartaActual.specialMoveActualAmount*100)}`;
+        cartaActual.specialMoveDescription = `She charges a fatal blow and her next attack deals damage x${cartaActual.specialMoveActualAmount}`;
         break;
       case "Faramir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*5;
@@ -6797,8 +6797,8 @@ let silverAmonHen = ["Merry", "Pippin", "Haldir"];
 let goldTotal = ["Aragorn", "Legolas", "Gimli", "Gandalf"];
 let bronzeRohan = ["Eothain", "Guthred", "Herubeam", "Holdbald"];
 let silverRohan = ["Eomer", "Gamling", "Hama", "Treebeard"];
-
-
+let bronzeGondor = ["Cyryannil", "Damrod", "Maradir", "Minarorn"];
+let silverGondor = ["Beregond"];
 
 
 //eventos
@@ -6851,7 +6851,7 @@ logout.addEventListener("click", () => {
         documentRef.update({
           defeats: datosUsuarioActual.defeats
         });
-        //show defeat
+        defeat(1);
         setTimeout(function() {
           signOut();
           Swal.fire('You signed out successfully!', '', 'success');
