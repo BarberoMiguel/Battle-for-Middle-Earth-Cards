@@ -655,7 +655,7 @@ main {
 
 .detalleShop, .detalleMyCards, .homeBattle {
     position: relative;
-    top: 4vh;
+    top: 3vh;
     width: 100vw;
     height: fit-content;
     min-height: 85vh;
@@ -758,7 +758,7 @@ main {
     width: 100vw;
     height: 85vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background-color: var(--back);
 }
 
@@ -766,7 +766,7 @@ main {
     width: 100vw;
     height: 85vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background-color: var(--back);
 }
 
@@ -774,7 +774,7 @@ main {
     width: 100vw;
     height: 85vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background-color: var(--back);
 }
 
@@ -826,9 +826,9 @@ main {
 
 #gateMoria {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/westGate.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -837,9 +837,9 @@ main {
 
 #balinsTomb, #caveTroll {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/balinsTomb.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -848,9 +848,9 @@ main {
 
 #Hall {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/HallMoria.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -859,9 +859,9 @@ main {
 
 #stairs {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/stairs.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -870,9 +870,9 @@ main {
 
 #Balrog {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/Balrog.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -881,9 +881,9 @@ main {
 
 #Nazgul {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/Argonath.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -892,9 +892,9 @@ main {
 
 #uruk-Hai {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/UrukHaiAmonHen.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -903,9 +903,9 @@ main {
 
 #AmonHen {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/AmonHen1.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -914,9 +914,9 @@ main {
 
 #Lurtz {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/AmonHen.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -925,9 +925,9 @@ main {
 
 #ambush {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/wargInitial.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -936,9 +936,9 @@ main {
 
 #wargs1, #wargLeader {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
-    top: 4vh;
+    top: 3vh;
     background: url(./assets/scenaries/WargRiders.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
@@ -963,8 +963,9 @@ main {
 }
 
 .turn {
+    text-align: center;
     color: white;
-    font-size: 20vh;
+    font-size: 20vw;
     z-index: 6;
 }
 
@@ -1172,7 +1173,7 @@ main {
 
 .defeat {
     font-family: 'Agbalumo', sans-serif;
-    font-size: 20vh;
+    font-size: 20vw;
     color: rgb(209, 10, 10);
     position: absolute;
     left: 50%;
@@ -1188,7 +1189,7 @@ main {
 
 .victory {
     font-family: 'Agbalumo', sans-serif;
-    font-size: 20vh;
+    font-size: 20vw;
     color: var(--gold);
     position: absolute;
     left: 50%;
@@ -1205,7 +1206,7 @@ main {
 .damageTaken {
     width: 20vw;
     height: 100%;
-    font-size: 5vh;
+    font-size: 5vw;
     background-color: rgba(255, 0, 0, 0.541);
     text-align: center;
     position: absolute;
@@ -1218,7 +1219,7 @@ main {
 .heal {
     width: 20vw;
     height: 100%;
-    font-size: 7vh;
+    font-size: 5vw;
     background-color: rgba(0, 255, 38, 0.758);
     text-align: center;
     position: absolute;
@@ -1231,7 +1232,7 @@ main {
 .dodge {
     width: 20vw;
     height: 100%;
-    font-size: 7vh;
+    font-size: 5vw;
     background-color: rgba(0, 128, 255, 0.637);
     text-align: center;
     position: absolute;
@@ -1244,7 +1245,7 @@ main {
 .Xp {
     width: 20vw;
     height: 100%;
-    font-size: 7vh;
+    font-size: 5vw;
     background-color: #d5a4139e;
     text-align: center;
     position: absolute;
@@ -1318,7 +1319,7 @@ main {
 }
 
 .reward span {
-    font-size: 18vh;
+    font-size: 18vw;
     margin: 1vh 2vw;
     color: var(--gold);
     font-family: 'Agbalumo', sans-serif;
@@ -1336,6 +1337,9 @@ select {
 @media screen and (min-height: 500px) and (max-width: 300px) {
     #menuBar {
         margin-top: 6vh;
+    }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 3vh;
     }
 }
 
@@ -1355,6 +1359,9 @@ select {
     }
     .header {
         font-size: 5vw;
+    }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 3vh;
     }
 }
 
@@ -1435,6 +1442,9 @@ select {
     .header {
         font-size: 4vh;
     }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 4vh;
+    }
 }
 
 @media screen and (min-width: 750px) and (max-width: 1000px) {
@@ -1511,6 +1521,9 @@ select {
     .header {
         font-size: 4vh;
     }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 4vh;
+    }
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1200px) {
@@ -1586,7 +1599,8 @@ select {
         top: 2vh;
     }
     .effects, .damageTaken, .dodge, .heal, .Xp {
-        width: 12vw; 
+        width: 12vw;
+        font-size: 3vw; 
     }
     #hero1 {
         left: 16vw;
@@ -1618,6 +1632,9 @@ select {
     }
     .header {
         font-size: 4vh;
+    }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 4vh;
     }
 }
 
@@ -1695,6 +1712,7 @@ select {
     }
     .effects, .damageTaken, .dodge, .heal, .Xp {
         width: 12vw; 
+        font-size: 3vw;
     }
     #hero1 {
         left: 16vw;
@@ -1738,5 +1756,8 @@ select {
     }
     .header {
         font-size: 4vh;
+    }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+        top: 3vh;
     }
 }
