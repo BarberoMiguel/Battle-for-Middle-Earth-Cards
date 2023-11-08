@@ -12245,7 +12245,7 @@ async function actualizarEnemigo(carta, level, rank) {
       case "Goblin1":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
         cartaActual.attackDescription = "He wields his sword at you";
-        cartaActual.specialMoveDescription = `He increases his attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.specialMoveDescription = `He increases his attack this round by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         cartaActual.image += `<p class="${rank} nameDisplay">Goblin</p>
                                 </figure>`;
         break;
@@ -12258,7 +12258,7 @@ async function actualizarEnemigo(carta, level, rank) {
       case "Goblin3":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
         cartaActual.attackDescription = "He throws his spear at you";
-        cartaActual.specialMoveDescription = `He increases his companions attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.specialMoveDescription = `He increases his companions attack this round by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         cartaActual.image += `<p class="${rank} nameDisplay">Goblin</p>
                                 </figure>`;
         break;
@@ -12297,14 +12297,14 @@ async function actualizarEnemigo(carta, level, rank) {
       case "urukHai1":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
         cartaActual.attackDescription = "He trows an attack";
-        cartaActual.specialMoveDescription = `He increases the damage of all alies by ${cartaActual.specialMoveActualAmount*100}% for 1 round`;
+        cartaActual.specialMoveDescription = `He increases the damage of all alies by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for 1 round`;
         cartaActual.image += `<p class="${rank} nameDisplay">Uruk Hai</p>
                                 </figure>`;
         break;
       case "urukHai2":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
         cartaActual.attackDescription = "He attacks with fury";
-        cartaActual.specialMoveDescription = `He drinks a potion and increases his damage by ${cartaActual.specialMoveActualAmount*100}% for 1 round`;
+        cartaActual.specialMoveDescription = `He drinks a potion and increases his damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for 1 round`;
         cartaActual.image += `<p class="${rank} nameDisplay">Uruk Hai</p>
                                 </figure>`;
         break;
@@ -12337,14 +12337,14 @@ async function actualizarEnemigo(carta, level, rank) {
       case "WargRider1":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
         cartaActual.attackDescription = "He wields his sword at you";
-        cartaActual.specialMoveDescription = `He increases his attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.specialMoveDescription = `He increases his attack this round by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         cartaActual.image += `<p class="${rank} nameDisplay">Warg Rider</p>
                                 </figure>`;
         break;
       case "WargRider2":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
         cartaActual.attackDescription = "He attacks you while passing by";
-        cartaActual.specialMoveDescription = `He increases all enemies attack this round by ${cartaActual.specialMoveActualAmount*100}%`;
+        cartaActual.specialMoveDescription = `He increases all enemies attack this round by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         cartaActual.image += `<p class="${rank} nameDisplay">Warg Rider</p>
                                 </figure>`;
         break;
@@ -12357,7 +12357,7 @@ async function actualizarEnemigo(carta, level, rank) {
       case "Warg2":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
         cartaActual.attackDescription = "He sticks his claws into you";
-        cartaActual.specialMoveDescription = `He increases all enemies speed making them counterattack with ${cartaActual.specialMoveActualAmount*100}% damage`;
+        cartaActual.specialMoveDescription = `He increases all enemies speed making them counterattack with ${Math.round(cartaActual.specialMoveActualAmount*100)}% damage`;
         cartaActual.image += `<p class="${rank} nameDisplay">Warg</p>
                                 </figure>`;
         break;
@@ -12426,14 +12426,14 @@ async function actualizarCartas(carta, xp) {
         if (level > 4) {
           cartaActual.specialMoveRounds = 2;
         }
-        cartaActual.specialMoveDescription = `He protects his companions with a magic shield that stops ${cartaActual.specialMoveActualAmount *100}% of the damage for ${cartaActual.specialMoveRounds} rounds`;
+        cartaActual.specialMoveDescription = `He protects his companions with a magic shield that stops ${Math.round(cartaActual.specialMoveActualAmount*100)}% of the damage for ${cartaActual.specialMoveRounds} rounds`;
         break;
       case "Theoden":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.1;
         if (level > 4) {
           cartaActual.specialMoveRounds = 2;
         }
-        cartaActual.specialMoveDescription = `He inspires his companions increasing their damage by ${cartaActual.specialMoveActualAmount * 100}% for ${cartaActual.specialMoveRounds} rounds`;
+        cartaActual.specialMoveDescription = `He inspires his companions increasing their damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for ${cartaActual.specialMoveRounds} rounds`;
         break;
       case "Aragorn":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.1;
@@ -12442,39 +12442,39 @@ async function actualizarCartas(carta, xp) {
       case "Aranarth":
       case "Holdbald":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
-        cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${cartaActual.specialMoveActualAmount * 100}% more damage`;
+        cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
         break;
       case "Beregond":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${cartaActual.specialMoveActualAmount * 100}% more damage`;
+        cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
         break;
       case "Boromir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `He uses his shield to protect his companions from the next attack reducing its dammage by ${cartaActual.specialMoveActualAmount * 100}%`;
+        cartaActual.specialMoveDescription = `He uses his shield to protect his companions from the next attack reducing its dammage by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         break;
       case "Ciryannil":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        cartaActual.specialMoveDescription = `He sharpens his aim and gains a critical damage increase of ${cartaActual.specialMoveActualAmount * 100}% for his next attack`;
+        cartaActual.specialMoveDescription = `He sharpens his aim and gains a critical damage increase of ${Math.round(cartaActual.specialMoveActualAmount*100)}% for his next attack`;
         break;
       case "Damrod":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        cartaActual.specialMoveDescription = `He shoots a pierced arrow at the enemy that deals bleed with ${cartaActual.specialMoveActualAmount * 100}% additional damage for two rounds`;
+        cartaActual.specialMoveDescription = `He shoots a pierced arrow at the enemy that deals bleed with ${Math.round(cartaActual.specialMoveActualAmount*100)}% additional damage for two rounds`;
         break;
       case "Elladan":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `He shouts a war cry increasing his damage by ${cartaActual.specialMoveActualAmount * 100}% for two rounds`;
+        cartaActual.specialMoveDescription = `He shouts a war cry increasing his damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for two rounds`;
         break;
       case "Elrohir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `If he is attacked this round he returns ${cartaActual.specialMoveActualAmount * 100}% of the damage`;
+        cartaActual.specialMoveDescription = `If he is attacked this round he returns ${Math.round(cartaActual.specialMoveActualAmount*100)}% of the damage`;
         break;
       case "Eothain":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.04;
-        cartaActual.specialMoveDescription = `He reflects ${cartaActual.specialMoveActualAmount * 100}% of the damage he recives this round to the enemy`;
+        cartaActual.specialMoveDescription = `He reflects ${Math.round(cartaActual.specialMoveActualAmount*100)}% of the damage he recives this round to the enemy`;
         break;
       case "Eowyn":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.1;
-        cartaActual.specialMoveDescription = `She charges a fatal blow and her next attack deals damage x${cartaActual.specialMoveActualAmount}`;
+        cartaActual.specialMoveDescription = `She charges a fatal blow and her next attack deals damage x${Math.round(cartaActual.specialMoveActualAmount*100)}`;
         break;
       case "Faramir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*5;
@@ -12486,28 +12486,28 @@ async function actualizarCartas(carta, xp) {
         break;
       case "Gimli":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.06;
-        cartaActual.specialMoveDescription = `He encourages his companions making them counterattack with ${cartaActual.specialMoveActualAmount *100}% of the damage they have recived for 1 round`;
+        cartaActual.specialMoveDescription = `He encourages his companions making them counterattack with ${Math.round(cartaActual.specialMoveActualAmount*100)}% of the damage they have recived for 1 round`;
         break;
       case "Guthred":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
-        cartaActual.specialMoveDescription = `With a battle cry he scares the enemy and reduces de damage of the next attack by ${cartaActual.specialMoveActualAmount *100}%`;
+        cartaActual.specialMoveDescription = `With a battle cry he scares the enemy and reduces de damage of the next attack by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         break;
       case "Legolas":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        cartaActual.specialMoveDescription = `He shoots three arrows at the same time hitting all three enemies and dealing a damage of ${cartaActual.specialMoveActualAmount * 100}%`;
+        cartaActual.specialMoveDescription = `He shoots three arrows at the same time hitting all three enemies and dealing a damage of ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         break;
       case "Maradir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `He increases his damage by ${personajesNoObtenidos[i].specialMoveActualAmount * 100}% for this round`;
+        cartaActual.specialMoveDescription = `He increases his damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for this round`;
         break;
       case "Merry":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `He attacks with his enchanted sword breaking his enemy's guard and reducing his defense for two rounds by ${cartaActual.specialMoveActualAmount * 100}%`;
+        cartaActual.specialMoveDescription = `He attacks with his enchanted sword breaking his enemy's guard and reducing his defense for two rounds by ${Math.round(cartaActual.specialMoveActualAmount*100)}%`;
         break;
       case "Minarorn":
       case "Undome":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
-        cartaActual.specialMoveDescription = `He orders an archer attack hitting all enemies an dealing ${cartaActual.specialMoveActualAmount * 100}% damage`;
+        cartaActual.specialMoveDescription = `He orders an archer attack hitting all enemies an dealing ${Math.round(cartaActual.specialMoveActualAmount*100)}% damage`;
         break;
       case "Treebeard":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*3;
