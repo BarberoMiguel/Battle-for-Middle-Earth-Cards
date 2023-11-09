@@ -778,6 +778,14 @@ main {
     background-color: var(--back);
 }
 
+#mapHelmsDeep {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background-color: var(--back);
+}
+
 #mapaMoria {
     width: 70vw;
     height: 50vh;
@@ -811,6 +819,17 @@ main {
     border: 5px solid #c29511;
 }
 
+#mapaHelmsDeep {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
 .middle {
     text-align: center;
     position: relative;
@@ -826,7 +845,7 @@ main {
 
 #gateMoria {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/westGate.jpg) no-repeat center;
@@ -837,7 +856,7 @@ main {
 
 #balinsTomb, #caveTroll {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/balinsTomb.webp) no-repeat center;
@@ -848,7 +867,7 @@ main {
 
 #Hall {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/HallMoria.jpg) no-repeat center;
@@ -859,7 +878,7 @@ main {
 
 #stairs {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/stairs.jpg) no-repeat center;
@@ -870,7 +889,7 @@ main {
 
 #Balrog {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/Balrog.jpg) no-repeat center;
@@ -881,7 +900,7 @@ main {
 
 #Nazgul {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/Argonath.webp) no-repeat center;
@@ -892,7 +911,7 @@ main {
 
 #uruk-Hai {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/UrukHaiAmonHen.webp) no-repeat center;
@@ -903,7 +922,7 @@ main {
 
 #AmonHen {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/AmonHen1.webp) no-repeat center;
@@ -914,7 +933,7 @@ main {
 
 #Lurtz {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/AmonHen.webp) no-repeat center;
@@ -925,7 +944,7 @@ main {
 
 #ambush {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/wargInitial.jpg) no-repeat center;
@@ -936,10 +955,98 @@ main {
 
 #wargs1, #wargLeader {
     width: 100vw;
-    height: 89vh;
+    height: 85vh;
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/WargRiders.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#arrival {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/arrivalBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#ladders {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/HelmsDeepWalls.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#bomb {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/The_BombBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#breach {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/The_Breach.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#batteringRam {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/The_Battering_Ram.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#charge {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/chargeBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#reinforcement {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/reinforcementsBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#isengard {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/Isengard.webp) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
     overflow-y: hidden;  
@@ -1338,7 +1445,7 @@ select {
     #menuBar {
         margin-top: 6vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 3vh;
     }
 }
@@ -1360,7 +1467,7 @@ select {
     .header {
         font-size: 5vw;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 3vh;
     }
 }
@@ -1442,7 +1549,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 4vh;
     }
 }
@@ -1521,7 +1628,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 4vh;
     }
 }
@@ -1633,7 +1740,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 4vh;
     }
 }
@@ -1744,6 +1851,9 @@ select {
     #mapaWargs {
         width: 800px;
     }
+    #mapaHelmsDeep {
+        width: 1000px;
+    }
     .nameDisplay {
         font-size: 2vw;
     }
@@ -1757,7 +1867,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
         top: 3vh;
     }
 }
