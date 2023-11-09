@@ -1868,7 +1868,6 @@ async function sMoveLegolas() {
   setTimeout(() => {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
-  attacksRemaining -= 1;
   for (let i = 1; i <= enemiesGlobal.length; i++) {
     attackHeroes(i);
   }
@@ -1960,7 +1959,6 @@ async function sMoveMinarorn() {
   setTimeout(() => {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
-  attacksRemaining -= 1;
   for (let i = 1; i <= enemiesGlobal.length; i++) {
     attackHeroes(i);
   }
@@ -2070,7 +2068,6 @@ async function sMoveUndome() {
   setTimeout(() => {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
-  attacksRemaining -= 1;
   for (let i = 1; i <= enemiesGlobal.length; i++) {
     attackHeroes(i);
   }
