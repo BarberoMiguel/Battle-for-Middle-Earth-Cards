@@ -6999,40 +6999,41 @@ async function battleFunction(battle, battleEnemies) {
           document.getElementById(`health${heroesGlobal[delayedDamage[0]].name}`).style.width = (heroesGlobal[delayedDamage[0]].actualHealth/heroesGlobal[delayedDamage[0]].maxHealth)*100 + "%";
         }
         if (!comprobarDerrota()) {
-          document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = "";
-        } else {
-          for (let i = 0; i < heroesGlobal.length; i++) {
-            if (heroesGlobal[i].actualARecharge > 0) {
-              heroesGlobal[i].actualARecharge -= 1;
-            }
-            if (heroesGlobal[i].actualSRecharge > 0) {
-              heroesGlobal[i].actualSRecharge -= 1;
-            }
-          }
-          for (const propiedad in SMoveActualHeroes) {
-            if (Object.hasOwnProperty.call(SMoveActualHeroes, propiedad)) {
-              if (SMoveActualHeroes[propiedad] === 1) {
-                delete SMoveActualHeroes[propiedad]; 
-              } else if (SMoveActualHeroes[propiedad] > 1) {
-                SMoveActualHeroes[propiedad]--;
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = "";
+            for (let i = 0; i < heroesGlobal.length; i++) {
+              if (heroesGlobal[i].actualARecharge > 0) {
+                heroesGlobal[i].actualARecharge -= 1;
+              }
+              if (heroesGlobal[i].actualSRecharge > 0) {
+                heroesGlobal[i].actualSRecharge -= 1;
               }
             }
-          }
-          document.getElementById(`newCards${battle}`).innerHTML = `<p class="turn">Your turn</p>`;
-          document.getElementById(`newCards${battle}Container`).classList.remove("hide");
-          setTimeout(() => {
-            document.getElementById(`newCards${battle}`).innerHTML = "";
-            attacksRemaining = 1;
-            SMRemaining = 1;
-            let attack = document.getElementById("attackfunction");
-            let SM = document.getElementById("SMfunction");
-            actualizarBotones(attack, SM, battle);
-            document.getElementById(`controls${battle}`).classList.remove("hide");
-            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
-            document.getElementById(`nextRound${battle}`).classList.remove("hide");
-            eventosBatalla(battle);
+            for (const propiedad in SMoveActualHeroes) {
+              if (Object.hasOwnProperty.call(SMoveActualHeroes, propiedad)) {
+                if (SMoveActualHeroes[propiedad] === 1) {
+                  delete SMoveActualHeroes[propiedad]; 
+                } else if (SMoveActualHeroes[propiedad] > 1) {
+                  SMoveActualHeroes[propiedad]--;
+                }
+              }
+            }
+            document.getElementById(`newCards${battle}`).innerHTML = `<p class="turn">Your turn</p>`;
+            document.getElementById(`newCards${battle}Container`).classList.remove("hide");
+            setTimeout(() => {
+              document.getElementById(`newCards${battle}`).innerHTML = "";
+              attacksRemaining = 1;
+              SMRemaining = 1;
+              let attack = document.getElementById("attackfunction");
+              let SM = document.getElementById("SMfunction");
+              actualizarBotones(attack, SM, battle);
+              document.getElementById(`controls${battle}`).classList.remove("hide");
+              document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+              document.getElementById(`nextRound${battle}`).classList.remove("hide");
+              eventosBatalla(battle);
+            }, 1000);
           }, 1000);
-        }
+        } 
       } else {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].actualARecharge > 0) {
