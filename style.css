@@ -786,6 +786,14 @@ main {
     background-color: var(--back);
 }
 
+#mapOsgiliath {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background-color: var(--back);
+}
+
 #mapaMoria {
     width: 70vw;
     height: 50vh;
@@ -820,6 +828,17 @@ main {
 }
 
 #mapaHelmsDeep {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapaOsgiliath {
     width: 70vw;
     height: 50vh;
     left: 50vw;
@@ -1047,6 +1066,39 @@ main {
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/Isengard.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#river {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/OsgiliathInitial.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#battleOsgiliath {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/OsgiliathBattleBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#retreat {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/retreatBack.png) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
     overflow-y: hidden;  
@@ -1445,7 +1497,7 @@ select {
     #menuBar {
         margin-top: 6vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 3vh;
     }
 }
@@ -1467,7 +1519,7 @@ select {
     .header {
         font-size: 5vw;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 3vh;
     }
 }
@@ -1549,7 +1601,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 4vh;
     }
 }
@@ -1628,7 +1680,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 4vh;
     }
 }
@@ -1740,7 +1792,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 4vh;
     }
 }
@@ -1852,7 +1904,10 @@ select {
         width: 800px;
     }
     #mapaHelmsDeep {
-        width: 1000px;
+        width: 600px;
+    }
+    #mapaOsgiliath {
+        width: 800px;
     }
     .nameDisplay {
         font-size: 2vw;
@@ -1867,7 +1922,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
         top: 3vh;
     }
 }
