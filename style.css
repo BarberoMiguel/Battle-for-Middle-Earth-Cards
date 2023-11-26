@@ -658,7 +658,7 @@ main {
     top: 3vh;
     width: 100vw;
     height: fit-content;
-    min-height: 85vh;
+    min-height: 89vh;
     background-color: var(--back);
     display: flex;
     flex-direction: column;
@@ -756,7 +756,7 @@ main {
 
 #mapMoria {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
     top: 3vh;
     background-color: var(--back);
@@ -764,7 +764,7 @@ main {
 
 #mapAmonHen {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
     top: 3vh;
     background-color: var(--back);
@@ -772,7 +772,7 @@ main {
 
 #mapWargs {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
     top: 3vh;
     background-color: var(--back);
@@ -780,7 +780,7 @@ main {
 
 #mapHelmsDeep {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
     position: relative;
     top: 3vh;
     background-color: var(--back);
@@ -788,7 +788,15 @@ main {
 
 #mapOsgiliath {
     width: 100vw;
-    height: 85vh;
+    height: 89vh;
+    position: relative;
+    top: 3vh;
+    background-color: var(--back);
+}
+
+#mapMinasTirith {
+    width: 100vw;
+    height: 89vh;
     position: relative;
     top: 3vh;
     background-color: var(--back);
@@ -839,6 +847,17 @@ main {
 }
 
 #mapaOsgiliath {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapaMinasTirith {
     width: 70vw;
     height: 50vh;
     left: 50vw;
@@ -1104,6 +1123,94 @@ main {
     overflow-y: hidden;  
 }
 
+#siegueTower {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/siegueTowerBack.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#walls {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/wallsBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#grond {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/Grond.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#gate {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/GateBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#rohirrim {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/rohirrimCharge.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#mumakil {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/Mumakil.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#port {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/HarlondPortBack.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#witchKing {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/witchKingBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
 .newCards {
     position: absolute;
     width: 100vw;
@@ -1185,7 +1292,7 @@ main {
     background-color: var(--back);
     border-radius: 10px;
     border: 1px solid black;
-    z-index: 5;
+    z-index: 10;
 }
 
 .infoEnemies {
@@ -1198,7 +1305,7 @@ main {
     background-color: var(--back);
     border-radius: 10px;
     border: 1px solid black;
-    z-index: 5;
+    z-index: 10;
 }
 
 .AttackSM {
@@ -1497,14 +1604,23 @@ select {
     #menuBar {
         margin-top: 6vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
-        top: 3vh;
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+        top: 0;
+    }
+    .homeBattle, #mapMoria, #mapAmonHen, #mapWargs, #mapHelmsDeep, #mapOsgiliath, #mapMinasTirith, #mapBlackGate {
+        top: 2vh;
     }
 }
 
 @media screen and (min-height: 500px) and (min-width: 300px) and (max-width: 490px) {
     #menuBar {
         margin-top: 6vh;
+    }
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+        top: 0;
+    }
+    .homeBattle, #mapMoria, #mapAmonHen, #mapWargs, #mapHelmsDeep, #mapOsgiliath, #mapMinasTirith, #mapBlackGate {
+        top: 2vh;
     }
 }
 
@@ -1519,8 +1635,9 @@ select {
     .header {
         font-size: 5vw;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
         top: 3vh;
+        height: 89vh;
     }
 }
 
@@ -1582,9 +1699,6 @@ select {
         height: fit-content;
         margin: 30px 0 10px 0;
     }
-    .enemies {
-        top: 2vh;
-    }
     #grafica {
         width: 200px;
     }
@@ -1601,7 +1715,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
         top: 4vh;
     }
 }
@@ -1664,9 +1778,6 @@ select {
         height: fit-content;
         margin: 30px 0 10px 0;
     }
-    .enemies {
-        top: 2vh;
-    }
     .nameDisplay {
         font-size: 3vw;
     }
@@ -1680,7 +1791,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
         top: 4vh;
     }
 }
@@ -1754,9 +1865,6 @@ select {
         width: 12vw;
         height: 16.8vw;
     }
-    .enemies {
-        top: 2vh;
-    }
     .effects, .damageTaken, .dodge, .heal, .Xp {
         width: 12vw;
         font-size: 3vw; 
@@ -1792,7 +1900,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
         top: 4vh;
     }
 }
@@ -1866,7 +1974,7 @@ select {
         width: 12vw;
         height: 16.8vw;
     }
-    .enemies {
+    .enemies{
         top: 2vh;
     }
     .effects, .damageTaken, .dodge, .heal, .Xp {
@@ -1909,6 +2017,9 @@ select {
     #mapaOsgiliath {
         width: 800px;
     }
+    #mapaMinasTirith {
+        width: 800px;
+    }
     .nameDisplay {
         font-size: 2vw;
     }
@@ -1922,7 +2033,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
         top: 3vh;
     }
 }
