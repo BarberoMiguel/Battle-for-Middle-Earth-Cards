@@ -2305,7 +2305,7 @@ function attackEnemy(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -2965,7 +2965,7 @@ async function attackWargLeader(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -3468,7 +3468,7 @@ async function attackSaruman(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -4408,7 +4408,7 @@ async function sMovecrossbow(index) {
             }
           }
           confusion();
-        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -4829,7 +4829,7 @@ async function sMoveurukHai8(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -5279,7 +5279,7 @@ async function sMovespearman(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -5725,7 +5725,7 @@ async function sMoveGrima(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -6154,7 +6154,7 @@ async function sMoveSaruman(index) {
             }
           }
           confusion();
-        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -6487,7 +6487,7 @@ async function sMovearcherMordor1(index) {
             }
           }
           confusion();
-        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -6948,7 +6948,7 @@ async function sMoveorcMordor11(index) {
           }
         }
         confusion();
-      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+      } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -7346,7 +7346,7 @@ async function sMovearcherHaradrim(index) {
             }
           }
           confusion();
-        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == kingDead) {
+        } else if (SMoveActualHeroes.hasOwnProperty("kingDead") && heroesGlobal[enemigoElegido[1]].name == "kingDead") {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -9083,7 +9083,7 @@ function iniciarPersonajes() {
         personajesNoObtenidos[i].attackActualAmount = 0.1;
         personajesNoObtenidos[i].specialMoveActualAmount = 1;
         personajesNoObtenidos[i].attackDescription = `Each time he attacks he increases his attack by ${personajesNoObtenidos[i].attackActualAmount * 100}%`;
-        personajesNoObtenidos[i].specialMoveDescription = `He becomes unvunerable for one round`;
+        personajesNoObtenidos[i].specialMoveDescription = `He becomes invulnerable for one round`;
         break;
       case "Legolas":
         personajesNoObtenidos[i].height = `1.83 m`;
@@ -10108,7 +10108,7 @@ async function actualizarCartas(carta, xp) {
           cartaActual.specialMoveRounds = 2;
         }
         cartaActual.attackDescription = `Each time he attacks he increases his attack by ${cartaActual.attackActualAmount * 100}%`;
-        cartaActual.specialMoveDescription = `He becomes unvunerable for ${cartaActual.specialMoveRounds} rounds`;
+        cartaActual.specialMoveDescription = `He becomes invulnerable for ${cartaActual.specialMoveRounds} rounds`;
         break;
       case "Beregond":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
