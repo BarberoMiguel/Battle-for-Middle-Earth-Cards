@@ -152,7 +152,7 @@ async function validarFormularioLogin(email, password) {
 //función devuelve que personajes no tienes de un set
 function availableFromSet(array) {
   let personajesDisponibles = [];
-  if (array[0]) {
+  if (array.length > 0) {
     if (array[0].hasOwnProperty("name")) {
       for (let i = 0; i < array.length; i++) {
         personajesDisponibles.push([array[i].name, i]);
@@ -10739,8 +10739,12 @@ async function battleFunction(battle, battleEnemies) {
     }
     if (battle == "BlackGate4") {
       for (let i = 0; i < enemiesGlobal.length; i++) {
-        enemiesGlobal[i].actualARecharge = 0;
-        enemiesGlobal[i].actualSRecharge = 0;
+        if (enemiesGlobal[i].actualARecharge > 0) {
+          enemiesGlobal[i].actualARecharge -= 1;
+        }
+        if (enemiesGlobal[i].actualSRecharge > 0) {
+          enemiesGlobal[i].actualSRecharge -= 1;
+        }
       }
     }
     let enemySMove = [];
