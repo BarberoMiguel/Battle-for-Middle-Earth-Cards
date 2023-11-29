@@ -12272,11 +12272,11 @@ async function actualizarCartas(carta, xp) {
         break;
       case "Dernwine":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        personajesNoObtenidos[i].specialMoveDescription = `He increases his defense by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for two rounds`;
+        cartaActual[i].specialMoveDescription = `He increases his defense by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for two rounds`;
         break;
       case "Duinhir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        personajesNoObtenidos[i].specialMoveDescription = `He increases the damage of his next attack x${Math.round(cartaActual.specialMoveActualAmount)}`;
+        cartaActual[i].specialMoveDescription = `He increases the damage of his next attack x${Math.round(cartaActual.specialMoveActualAmount)}`;
         break;
       case "Elladan":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
@@ -12328,7 +12328,7 @@ async function actualizarCartas(carta, xp) {
         break;
       case "Ohtar":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
-        personajesNoObtenidos[i].specialMoveDescription = `He covers with his shield his companions reducing the damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for one round`;
+        cartaActual[i].specialMoveDescription = `He covers with his shield his companions reducing the damage by ${Math.round(cartaActual.specialMoveActualAmount*100)}% for one round`;
         break;
       case "Merry":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
