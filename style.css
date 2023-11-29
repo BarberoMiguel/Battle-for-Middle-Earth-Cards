@@ -802,6 +802,14 @@ main {
     background-color: var(--back);
 }
 
+#mapBlackGate {
+    width: 100vw;
+    height: 89vh;
+    position: relative;
+    top: 3vh;
+    background-color: var(--back);
+}
+
 #mapaMoria {
     width: 70vw;
     height: 50vh;
@@ -858,6 +866,17 @@ main {
 }
 
 #mapaMinasTirith {
+    width: 70vw;
+    height: 50vh;
+    left: 50vw;
+    top: 15vh;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 20px;
+    border: 5px solid #c29511;
+}
+
+#mapaBlackGate {
     width: 70vw;
     height: 50vh;
     left: 50vw;
@@ -1206,6 +1225,61 @@ main {
     position: relative;
     top: 3vh;
     background: url(./assets/scenaries/witchKingBack.png) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#surrounded {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/BlackGate1.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#firstWave {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/BlackGate2.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#secondWave {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/BlackGate3.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#thirdWave {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/BlackGate4.webp) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: hidden;  
+}
+
+#Sauron {
+    width: 100vw;
+    height: 85vh;
+    position: relative;
+    top: 3vh;
+    background: url(./assets/scenaries/BlackGate5Back.png) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
     overflow-y: hidden;  
@@ -1604,7 +1678,7 @@ select {
     #menuBar {
         margin-top: 6vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 0;
     }
     .homeBattle, #mapMoria, #mapAmonHen, #mapWargs, #mapHelmsDeep, #mapOsgiliath, #mapMinasTirith, #mapBlackGate {
@@ -1616,7 +1690,7 @@ select {
     #menuBar {
         margin-top: 6vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 0;
     }
     .homeBattle, #mapMoria, #mapAmonHen, #mapWargs, #mapHelmsDeep, #mapOsgiliath, #mapMinasTirith, #mapBlackGate {
@@ -1635,7 +1709,7 @@ select {
     .header {
         font-size: 5vw;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 3vh;
         height: 89vh;
     }
@@ -1715,7 +1789,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 4vh;
     }
 }
@@ -1791,7 +1865,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 4vh;
     }
 }
@@ -1900,7 +1974,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 4vh;
     }
 }
@@ -2020,6 +2094,9 @@ select {
     #mapaMinasTirith {
         width: 800px;
     }
+    #mapaBlackGate {
+        width: 800px;
+    }
     .nameDisplay {
         font-size: 2vw;
     }
@@ -2033,7 +2110,7 @@ select {
     .header {
         font-size: 4vh;
     }
-    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing {
+    #gateMoria, #balinsTomb, #caveTroll, #Hall, #stairs, #Balrog, #Nazgul, #uruk-Hai, #AmonHen, #Lurtz, #ambush, #wargs1, #wargLeader, #arrival, #ladders, #bomb, #breach, #batteringRam, #charge, #reinforcement, #isengard, #river, #battleOsgiliath, #retreat, #siegueTower, #walls, #grond, #gate, #rohirrim, #mumakil, #port, #witchKing, #surrounded, #firstWave, #secondWave, #thirdWave, #Sauron {
         top: 3vh;
     }
 }
