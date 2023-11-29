@@ -535,7 +535,6 @@ function victoria() {
           datosUsuarioActual.level.total = 7;
         }
       }
-      console.log(nuevoPersonaje);
       if (nuevoPersonaje.length > 0) {
         setTimeout(() => {
           document.getElementById(`newCards${battle}Container`).innerHTML = `<section class="newCards" id="newCards${battle}">
@@ -752,7 +751,7 @@ async function attackHeroes(i) {
       document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
       eventosBatalla(battle);
     }, 1000);
-  } else if ((SMoveActualEnemies.hasOwnProperty("urukHai4") && enemiesGlobal[i-1].name == "urukHai4") || (SMoveActualEnemies.hasOwnProperty("urukHai6") && enemiesGlobal[i].name == "urukHai6") || (SMoveActualEnemies.hasOwnProperty("orcMordor3")) || (SMoveActualEnemies.hasOwnProperty("orcMordor7") && enemiesGlobal[i-1].name == "orcMordor7") || ((SMoveActualEnemies.hasOwnProperty("mumakil") && enemiesGlobal[i-1].name == "mumakil"))) {
+  } else if ((SMoveActualEnemies.hasOwnProperty("urukHai4") && enemiesGlobal[i-1].name == "urukHai4") || (SMoveActualEnemies.hasOwnProperty("urukHai6") && enemiesGlobal[i-1].name == "urukHai6") || (SMoveActualEnemies.hasOwnProperty("orcMordor3")) || (SMoveActualEnemies.hasOwnProperty("orcMordor7") && enemiesGlobal[i-1].name == "orcMordor7") || ((SMoveActualEnemies.hasOwnProperty("mumakil") && enemiesGlobal[i-1].name == "mumakil"))) {
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
     if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
       Damrod = 0;
@@ -781,7 +780,7 @@ async function attackHeroes(i) {
       Damrod = 0;
       DamrodAttack = i;
     }
-    document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+    document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
     attackactive[0] = attackactive[0]*0.3;
     if (Gandalf == 1) {
       Gandalf = 0;
@@ -795,18 +794,24 @@ async function attackHeroes(i) {
       } else {
         enemiesGlobal[i].actualSRecharge += 1;
       }
-      document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<img src="./assets/effects/level_Up.gif" alt="downgrade" class="effects downgrade">`;
+      document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<img src="./assets/effects/level_Up.gif" alt="downgrade" class="effects downgrade">`;
     }
-    document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
-    enemiesGlobal[i].actualHealth -= attackactive[0];
-    if (enemiesGlobal[i].actualHealth < 0) {
-      enemiesGlobal[i].actualHealth = 0;
-      document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
+    document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
+    enemiesGlobal[i-1].actualHealth -= attackactive[0];
+    if (enemiesGlobal[i-1].actualHealth < 0) {
+      enemiesGlobal[i-1].actualHealth = 0;
+      document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
-    document.getElementById(`health${enemiesGlobal[i].name}`).style.width = (enemiesGlobal[i].actualHealth/enemiesGlobal[i].maxHealth)*100 + "%";
+    document.getElementById(`health${enemiesGlobal[i-1].name}`).style.width = (enemiesGlobal[i-1].actualHealth/enemiesGlobal[i-1].maxHealth)*100 + "%";
     if (!comprobarVictoria()) {
       setTimeout(() => {
-        document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+        document.getElementById(`specialEfectsEnemy${i}`).innerHTML = "";
+        let attack = document.getElementById("attackfunction");
+        let SM = document.getElementById("SMfunction");
+        actualizarBotones(attack, SM, battle);
+        document.getElementById(`controls${battle}`).classList.remove("hide");
+        document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+        eventosBatalla(battle);
       }, 1000);} 
     } else if (SMoveActualEnemies.hasOwnProperty("urukHai9") ) {
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
@@ -883,6 +888,12 @@ async function attackHeroes(i) {
     if (!comprobarDerrota()) {
       setTimeout(() => {
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = "";
+        let attack = document.getElementById("attackfunction");
+        let SM = document.getElementById("SMfunction");
+        actualizarBotones(attack, SM, battle);
+        document.getElementById(`controls${battle}`).classList.remove("hide");
+        document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+        eventosBatalla(battle);
       }, 1000);
     }
   } else {
@@ -939,6 +950,12 @@ async function attackHeroes(i) {
             document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
             document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
           }
+          let attack = document.getElementById("attackfunction");
+          let SM = document.getElementById("SMfunction");
+          actualizarBotones(attack, SM, battle);
+          document.getElementById(`controls${battle}`).classList.remove("hide");
+          document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+          eventosBatalla(battle);
         }
       }
     } else if (!comprobarVictoria()) {
@@ -2608,6 +2625,7 @@ function attackEnemy(index) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
                 }
+                resolve(true);
               }
             }
           } else if (!comprobarVictoria()) {
@@ -5053,7 +5071,6 @@ async function sMoveWarg2(index) {
 }
 
 async function sMoveWargLeader(index) {
-  console.log("1er control");
   return new Promise((resolve) => {
     async function sMove() {
       enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
@@ -5593,6 +5610,7 @@ async function sMoveurukHai8(index) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
                 }
+                resolve(true);
               }
             }
           } else if (!comprobarVictoria()) {
@@ -5991,11 +6009,11 @@ async function sMoveurukHai9(index) {
     SMoveActualEnemies.urukHai9 = 1;
     enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
     for (let i = 0; i < heroesGlobal.length; i++) {
-      document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="downgrade" class="effects downgrade">`;
+      document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
     }
     setTimeout(() => {
       for (let i = 0; i < heroesGlobal.length; i++) {
-        document.getElementById(`specialEfectsHero${i+1}`).innerHTML = "";
+        document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
       }
       resolve(true);
     }, 750)
@@ -6513,6 +6531,7 @@ async function sMoveGrima(index) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
                 }
+                resolve(true);
               }
             }
           } else if (!comprobarVictoria()) {
@@ -8105,7 +8124,7 @@ async function sMoveorcMordor10(index) {
   });
 }
 
-async function sMoveorcMahud(index) {
+async function sMoveMahud(index) {
   return new Promise((resolve) => {
     SMoveActualEnemies.mumakil = 1;
     enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
@@ -9008,6 +9027,7 @@ async function sMoveSnaga(index) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = "";
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
                 }
+                resolve(true);
               }
             }
           } else if (!comprobarVictoria()) {
