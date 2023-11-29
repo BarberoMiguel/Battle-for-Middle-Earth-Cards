@@ -8128,7 +8128,7 @@ async function sMoveMahud(index) {
   return new Promise((resolve) => {
     SMoveActualEnemies.mumakil = 1;
     enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
-    document.getElementById(`specialEfectsEnemy$1`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
+    document.getElementById(`specialEfectsEnemy1`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
     setTimeout(() => {
       document.getElementById(`specialEfectsEnemy1`).innerHTML = "";
       resolve(true);
