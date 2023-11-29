@@ -308,6 +308,7 @@ function comprobarVictoria() {
 
 function victoria() {
   //pintar el confeti en el DOM
+  document.getElementById(`controls${battle}`).classList.add("hide");
   let section = document.createElement("section");
   section.id = "confeti";
   document.getElementById(`${scenario}`).appendChild(section);
@@ -345,7 +346,6 @@ function victoria() {
     enemiesGlobal[i].actualARecharge = 0;
     enemiesGlobal[i].actualSRecharge = 0;
     enemiesGlobal[i].sMove = 0;
-    enemiesGlobal[i].actualHealth = enemiesGlobal[i].maxHealth;
   }
   let datos;
   if (battle == "Moria1") {
@@ -444,7 +444,6 @@ function victoria() {
     setTimeout(async function() {
       document.getElementById(`enemies${battle}`).classList.add("hide");
       document.getElementById(`heroes${battle}`).classList.add("hide");
-      document.getElementById(`controls${battle}`).classList.add("hide");
       document.getElementById(`newCards${battle}Container`).innerHTML = `<section class="reward">
                                                                             <span>+${datos.coins}</span>
                                                                             <img src="./assets/monedas.png" alt="coins">
