@@ -2302,7 +2302,7 @@ async function sMoveMendener() {
 async function sMoveMerry() {
   for (let i = 0; i < heroesGlobal.length; i++) {
     if (heroesGlobal[i].name == "Merry") {
-      SMoveActualHeroes.Merry = 1;
+      SMoveActualHeroes.Merry = 2;
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
       for (let j = 0; j < enemiesGlobal.length; j++) {
@@ -2414,7 +2414,7 @@ async function sMoveprinceImrahil() {
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
       for (let j = 0; j < heroesGlobal.length; j++) {
-        document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`; 
+        document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`; 
         if (heroesGlobal[j].actualARecharge > 0) {
           heroesGlobal[j].actualARecharge -= 1;
         }
