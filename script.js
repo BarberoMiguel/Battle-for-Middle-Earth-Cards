@@ -152,22 +152,23 @@ async function validarFormularioLogin(email, password) {
 //función devuelve que personajes no tienes de un set
 function availableFromSet(array) {
   let personajesDisponibles = [];
-  if (array[0].name) {
-    for (let i = 0; i < array.length; i++) {
-      personajesDisponibles.push([array[i].name, i]);
-    }
-    return personajesDisponibles;
-  } else {
-    array.forEach(element => {
-      for (let i = 0; i < personajesNoObtenidos.length; i++) {
-        if (personajesNoObtenidos[i].name == element) {
-          personajesDisponibles.push([element, i]);
-          break;
-        }
+  if (array[0]) {
+    if (array[0].hasOwnProperty("name")) {
+      for (let i = 0; i < array.length; i++) {
+        personajesDisponibles.push([array[i].name, i]);
       }
-    });
-    return personajesDisponibles;
+    } else {
+      array.forEach(element => {
+        for (let i = 0; i < personajesNoObtenidos.length; i++) {
+          if (personajesNoObtenidos[i].name == element) {
+            personajesDisponibles.push([element, i]);
+            break;
+          }
+        }
+      });
+    }
   }
+  return personajesDisponibles;
 }
 
 //función elige uno aleatorio de set, lo devuelve y lo elimina de set
@@ -813,7 +814,7 @@ async function attackHeroes(i) {
         document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
         eventosBatalla(battle);
       }, 1000);} 
-    } else if (SMoveActualEnemies.hasOwnProperty("urukHai9") ) {
+  } else if (SMoveActualEnemies.hasOwnProperty("urukHai9") ) {
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
     ataqueActual[0] = ataqueActual[0]*0.5;
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
@@ -9593,6 +9594,12 @@ function eventosBatalla(battle) {
         }
         setTimeout(() => {
           document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+          let attack = document.getElementById("attackfunction");
+          let SM = document.getElementById("SMfunction");
+          actualizarBotones(attack, SM, battle);
+          document.getElementById(`controls${battle}`).classList.remove("hide");
+          document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+          eventosBatalla(battle);
         }, 1000);
       } else if (SMoveActualEnemies.hasOwnProperty("archerGoblin") || SMoveActualEnemies.hasOwnProperty("archer") || SMoveActualEnemies.hasOwnProperty("orcMordor5") || SMoveActualEnemies.hasOwnProperty("archerMordor2")) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
@@ -9601,6 +9608,12 @@ function eventosBatalla(battle) {
         }
         setTimeout(() => {
           document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+          let attack = document.getElementById("attackfunction");
+          let SM = document.getElementById("SMfunction");
+          actualizarBotones(attack, SM, battle);
+          document.getElementById(`controls${battle}`).classList.remove("hide");
+          document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+          eventosBatalla(battle);
         }, 1000);
       } else if ((SMoveActualEnemies.hasOwnProperty("urukHai3") && enemiesGlobal[i].name == "urukHai3") || (SMoveActualEnemies.hasOwnProperty("orcMordor2") && enemiesGlobal[i].name == "orcMordor2") || (SMoveActualEnemies.hasOwnProperty("Mauhur") && enemiesGlobal[i].name == "Mauhur")) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
@@ -9620,6 +9633,12 @@ function eventosBatalla(battle) {
         }
         setTimeout(() => {
           document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+          let attack = document.getElementById("attackfunction");
+            let SM = document.getElementById("SMfunction");
+            actualizarBotones(attack, SM, battle);
+            document.getElementById(`controls${battle}`).classList.remove("hide");
+            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+            eventosBatalla(battle);
         }, 1000);
       } else if ((SMoveActualEnemies.hasOwnProperty("urukHai4") && enemiesGlobal[i].name == "urukHai4") || (SMoveActualEnemies.hasOwnProperty("urukHai6") && enemiesGlobal[i].name == "urukHai6") || (SMoveActualEnemies.hasOwnProperty("orcMordor3")) || (SMoveActualEnemies.hasOwnProperty("orcMordor7") && enemiesGlobal[i].name == "orcMordor7") || ((SMoveActualEnemies.hasOwnProperty("mumakil") && enemiesGlobal[i].name == "mumakil"))) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
@@ -9648,6 +9667,12 @@ function eventosBatalla(battle) {
         if (!comprobarVictoria()) {
           setTimeout(() => {
             document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+            let attack = document.getElementById("attackfunction");
+            let SM = document.getElementById("SMfunction");
+            actualizarBotones(attack, SM, battle);
+            document.getElementById(`controls${battle}`).classList.remove("hide");
+            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+            eventosBatalla(battle);
           }, 1000);}
       } else if ((SMoveActualEnemies.hasOwnProperty("Haradrim2"))) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
@@ -9676,6 +9701,12 @@ function eventosBatalla(battle) {
         if (!comprobarVictoria()) {
           setTimeout(() => {
             document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+            let attack = document.getElementById("attackfunction");
+            let SM = document.getElementById("SMfunction");
+            actualizarBotones(attack, SM, battle);
+            document.getElementById(`controls${battle}`).classList.remove("hide");
+            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+            eventosBatalla(battle);
           }, 1000);} 
         } else if (SMoveActualEnemies.hasOwnProperty("urukHai9")) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
@@ -9704,6 +9735,12 @@ function eventosBatalla(battle) {
         if (!comprobarVictoria()) {
           setTimeout(() => {
             document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
+            let attack = document.getElementById("attackfunction");
+            let SM = document.getElementById("SMfunction");
+            actualizarBotones(attack, SM, battle);
+            document.getElementById(`controls${battle}`).classList.remove("hide");
+            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+            eventosBatalla(battle);
           }, 1000);}
       } else if (SMoveActualEnemies.hasOwnProperty("Warg2")) {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
@@ -9749,6 +9786,12 @@ function eventosBatalla(battle) {
             if (!comprobarDerrota()) {
               setTimeout(() => {
                 document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = "";
+                let attack = document.getElementById("attackfunction");
+                let SM = document.getElementById("SMfunction");
+                actualizarBotones(attack, SM, battle);
+                document.getElementById(`controls${battle}`).classList.remove("hide");
+                document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+                eventosBatalla(battle);
               }, 1000);
             }
           }, 1000);
@@ -9764,6 +9807,12 @@ function eventosBatalla(battle) {
         if (!comprobarDerrota()) {
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = "";
+            let attack = document.getElementById("attackfunction");
+            let SM = document.getElementById("SMfunction");
+            actualizarBotones(attack, SM, battle);
+            document.getElementById(`controls${battle}`).classList.remove("hide");
+            document.getElementById(`AttackSMContainer${battle}`).classList.remove("hide");
+            eventosBatalla(battle);
           }, 1000);
         }
       } else {
