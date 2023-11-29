@@ -9572,6 +9572,7 @@ function eventosBatalla(battle) {
   for (let i = 0; i < enemiesGlobal.length; i++) {
     document.getElementById(`enemy${i+1}`).addEventListener("click", function() {
     if (ataqueactivo == 1 && enemiesGlobal[i].actualHealth > 0) {
+      attacksRemaining -= 1;
       ataqueactivo = 0;
       document.getElementById(`selection${battle}`).classList.add("hide");
       document.getElementById(`hero${attackactive[1]+1}`).style.animation = "heroAttack 1s ease-in-out";
@@ -9888,7 +9889,6 @@ function eventosBatalla(battle) {
         if (!comprobarVictoria()) {
           setTimeout(function() {
             document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = "";
-            attacksRemaining -= 1;
             let attack = document.getElementById("attackfunction");
             let SM = document.getElementById("SMfunction");
             actualizarBotones(attack, SM, battle);
@@ -11461,7 +11461,7 @@ function iniciarEnemigos() {
   enemies.push(Berserker3);
   let urukHai8 = {name: "urukHai8", specialMoveActualAmount: 0, card: "", specialMoveAmount: 0.2, attackDescription: "", 
   attack: "", level: "", maxHealth: "", actualHealth: "", attackRecharge: 2, specialMoveDescription: "",
-  specialMoveRecharge: 3, specialMoveRounds: 1, actualARecharge: 0, actualSRecharge: 0, 
+  specialMoveRecharge: 4, specialMoveRounds: 1, actualARecharge: 0, actualSRecharge: 0, 
   specialMove: 0, image: "", healthBar: `<div class="healthbar">
                                             <div id="healthurukHai8" class="health"></div>
                                           </div>` }
@@ -12315,8 +12315,11 @@ async function actualizarCartas(carta, xp) {
         cartaActual.specialMoveDescription = `He shouts "Elendil!" increasing the damage of his next attack x${cartaActual.specialMoveActualAmount}`;
         break;
       case "Aranarth":
-      case "Holdbald":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.02;
+        cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
+        break;
+      case "Holdbald":
+        cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
         cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
         break;
       case "kingDead":
