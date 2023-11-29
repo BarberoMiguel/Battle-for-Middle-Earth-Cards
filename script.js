@@ -12349,7 +12349,7 @@ async function actualizarCartas(carta, xp) {
         break;
       case "Duinhir":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
-        cartaActual.specialMoveDescription = `He increases the damage of his next attack x${Math.round(cartaActual.specialMoveActualAmount)}`;
+        cartaActual.specialMoveDescription = `He increases the damage of his next attack x${cartaActual.specialMoveActualAmount}`;
         break;
       case "Elladan":
         cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.05;
