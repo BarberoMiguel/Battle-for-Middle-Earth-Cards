@@ -9959,6 +9959,16 @@ async function battleMoria1() {
   kingDead = 0;
   esquivaGwaihir = false;
   DamrodAttack = 3;
+  for (let i = 0; i < enemiesGlobal.length; i++) {
+    enemiesGlobal[i].actualARecharge = 0;
+    enemiesGlobal[i].actualSRecharge = 0;
+    enemiesGlobal[i].actualHealth = enemiesGlobal[i].maxHealth;
+  }
+  for (let i = 0; i < heroesGlobal.length; i++) {
+    heroesGlobal[i].actualARecharge = 0;
+    heroesGlobal[i].actualSRecharge = 0;
+    heroesGlobal[i].actualHealth = heroesGlobal[i].maxHealth;
+  }
   battle = "Moria1";
   scenario = "gateMoria";
   audio.src = "./assets/music/Moria1.mp3";
@@ -10381,6 +10391,16 @@ async function battleFunction(battle, battleEnemies) {
   esquivaGwaihir = false;
   DamrodAttack = 3;
   armoredTroll = 0;
+  for (let i = 0; i < enemiesGlobal.length; i++) {
+    enemiesGlobal[i].actualARecharge = 0;
+    enemiesGlobal[i].actualSRecharge = 0;
+    enemiesGlobal[i].actualHealth = enemiesGlobal[i].maxHealth;
+  }
+  for (let i = 0; i < heroesGlobal.length; i++) {
+    heroesGlobal[i].actualARecharge = 0;
+    heroesGlobal[i].actualSRecharge = 0;
+    heroesGlobal[i].actualHealth = heroesGlobal[i].maxHealth;
+  }
   audio.src = `./assets/music/${battle}.mp3`;
   if (music == true) {
     audio.play();
