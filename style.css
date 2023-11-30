@@ -410,6 +410,47 @@ main {
     align-items: center;
 }
 
+#challengeContainer {
+    z-index: 2;
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    background-color: #f0bb83;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#challengeContainer p:nth-child(3) {
+    color: var(--bronze);
+    text-shadow:
+    -1px -1px 0 #000, 
+    1px -1px 0 #000,  
+    -1px 1px 0 #000,  
+    1px 1px 0 #000;
+}
+
+#challengeContainer p:nth-child(4) {
+    color: var(--silver);
+    text-shadow:
+    -1px -1px 0 #000, 
+    1px -1px 0 #000,  
+    -1px 1px 0 #000,  
+    1px 1px 0 #000;
+}
+
+#challengeContainer p:nth-child(5) {
+    color: var(--gold);
+    text-shadow:
+    -1px -1px 0 #000, 
+    1px -1px 0 #000,  
+    -1px 1px 0 #000,  
+    1px 1px 0 #000;
+}
+
 #personalInfo {
     position: relative;
     height: 50vh;

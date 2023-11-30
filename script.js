@@ -73,7 +73,10 @@ const signUpUser = (email, password, username) => {
                 moria: 0, amonHen: 0,
                 wargs: 0, helmsDeep: 0,
                 osgiliath: 0, minasTirith: 0,
-                blackGate: 0}
+                blackGate: 0},
+        challengeBronze: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        challengeSilver: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        challengeGold: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
       })
       signInUser(email, password);
     })
@@ -350,79 +353,79 @@ function victoria() {
   }
   let datos;
   if (battle == "Moria1") {
-    datos = {scenario: "moria", level: 1, xp: 200, coins: 150, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 1, xp: 200, total: 0, coins: 150, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "Moria2") {
-    datos = {scenario: "moria", level: 2, xp: 210, coins: 160, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 2, xp: 210, total: 1, coins: 160, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "Moria3") {
-    datos = {scenario: "moria", level: 3, xp: 250, coins: 200, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 3, xp: 250, total: 2, coins: 200, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "Moria4") {
-    datos = {scenario: "moria", level: 4, xp: 230, coins: 180, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 4, xp: 230, total: 3, coins: 180, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "Moria5") {
-    datos = {scenario: "moria", level: 5, xp: 240, coins: 190, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 5, xp: 240, total: 4, coins: 190, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "Moria6") {
-    datos = {scenario: "moria", level: 6, xp: 280, coins: 230, cards: [goldMoria, silverMoria, bronzeMoria]}
+    datos = {scenario: "moria", level: 6, xp: 280, total: 5, coins: 230, cards: [goldMoria, silverMoria, bronzeMoria]}
   } else if (battle == "AmonHen1") {
-    datos = {scenario: "amonHen", level: 1, xp: 250, coins: 190, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
+    datos = {scenario: "amonHen", level: 1, xp: 250, total: 6, coins: 190, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
   } else if (battle == "AmonHen2") {
-    datos = {scenario: "amonHen", level: 2, xp: 270, coins: 210, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
+    datos = {scenario: "amonHen", level: 2, xp: 270, total: 7, coins: 210, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
   } else if (battle == "AmonHen3") {
-    datos = {scenario: "amonHen", level: 3, xp: 290, coins: 230, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
+    datos = {scenario: "amonHen", level: 3, xp: 290, total: 8, coins: 230, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
   } else if (battle == "AmonHen4") {
-    datos = {scenario: "amonHen", level: 4, xp: 340, coins: 280, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
+    datos = {scenario: "amonHen", level: 4, xp: 340, total: 9, coins: 280, cards: [goldTotal, silverAmonHen, bronzeAmonHen]}
   } else if (battle == "Wargs1") {
-    datos = {scenario: "wargs", level: 1, xp: 280, coins: 250, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "wargs", level: 1, xp: 280, total: 10, coins: 250, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "Wargs2") {
-    datos = {scenario: "wargs", level: 2, xp: 310, coins: 280, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "wargs", level: 2, xp: 310, total: 11, coins: 280, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "Wargs3") {
-    datos = {scenario: "wargs", level: 3, xp: 360, coins: 340, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "wargs", level: 3, xp: 360, total: 12, coins: 340, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep1") {
-    datos = {scenario: "helmsDeep", level: 1, xp: 360, coins: 360, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 1, xp: 360, total: 13, coins: 360, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep2") {
-    datos = {scenario: "helmsDeep", level: 2, xp: 390, coins: 390, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 2, xp: 390, total: 14, coins: 390, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep3") {
-    datos = {scenario: "helmsDeep", level: 3, xp: 410, coins: 410, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 3, xp: 410, total: 15, coins: 410, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep4") {
-    datos = {scenario: "helmsDeep", level: 4, xp: 440, coins: 440, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 4, xp: 440, total: 16, coins: 440, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep5") {
-    datos = {scenario: "helmsDeep", level: 5, xp: 470, coins: 470, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 5, xp: 470, total: 17, coins: 470, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep6") {
-    datos = {scenario: "helmsDeep", level: 6, xp: 500, coins: 500, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 6, xp: 500, total: 18, coins: 500, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep7") {
-    datos = {scenario: "helmsDeep", level: 7, xp: 530, coins: 530, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 7, xp: 530, total: 19, coins: 530, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "HelmsDeep8") {
-    datos = {scenario: "helmsDeep", level: 8, xp: 600, coins: 600, cards: [goldTotal, silverRohan, bronzeRohan]}
+    datos = {scenario: "helmsDeep", level: 8, xp: 600, total: 20, coins: 600, cards: [goldTotal, silverRohan, bronzeRohan]}
   } else if (battle == "Osgiliath1") {
-    datos = {scenario: "osgiliath", level: 1, xp: 520, coins: 500, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "osgiliath", level: 1, xp: 520, total: 21, coins: 500, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "Osgiliath2") {
-    datos = {scenario: "osgiliath", level: 2, xp: 560, coins: 540, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "osgiliath", level: 2, xp: 560, total: 22, coins: 540, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "Osgiliath3") {
-    datos = {scenario: "osgiliath", level: 3, xp: 640, coins: 620, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "osgiliath", level: 3, xp: 640, total: 23, coins: 620, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith1") {
-    datos = {scenario: "minasTirith", level: 1, xp: 590, coins: 570, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 1, xp: 590, total: 24, coins: 570, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith2") {
-    datos = {scenario: "minasTirith", level: 2, xp: 640, coins: 620, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 2, xp: 640, total: 25, coins: 620, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith3") {
-    datos = {scenario: "minasTirith", level: 3, xp: 690, coins: 670, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 3, xp: 690, total: 26, coins: 670, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith4") {
-    datos = {scenario: "minasTirith", level: 4, xp: 740, coins: 720, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 4, xp: 740, total: 27, coins: 720, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith5") {
-    datos = {scenario: "minasTirith", level: 5, xp: 790, coins: 770, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 5, xp: 790, total: 28, coins: 770, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith6") {
-    datos = {scenario: "minasTirith", level: 6, xp: 840, coins: 820, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 6, xp: 840, total: 29, coins: 820, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith7") {
-    datos = {scenario: "minasTirith", level: 7, xp: 890, coins: 870, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 7, xp: 890, total: 30, coins: 870, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "MinasTirith8") {
-    datos = {scenario: "minasTirith", level: 8, xp: 980, coins: 960, cards: [goldTotal, silverGondor, bronzeGondor]}
+    datos = {scenario: "minasTirith", level: 8, xp: 980, total: 31, coins: 960, cards: [goldTotal, silverGondor, bronzeGondor]}
   } else if (battle == "BlackGate1") {
-    datos = {scenario: "blackGate", level: 1, xp: 870, coins: 850, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
+    datos = {scenario: "blackGate", level: 1, xp: 870, total: 32, coins: 850, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
   } else if (battle == "BlackGate2") {
-    datos = {scenario: "blackGate", level: 2, xp: 930, coins: 910, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
+    datos = {scenario: "blackGate", level: 2, xp: 930, total: 33, coins: 910, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
   } else if (battle == "BlackGate3") {
-    datos = {scenario: "blackGate", level: 3, xp: 990, coins: 970, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
+    datos = {scenario: "blackGate", level: 3, xp: 990, total: 34, coins: 970, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
   } else if (battle == "BlackGate4") {
-    datos = {scenario: "blackGate", level: 4, xp: 1050, coins: 1030, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
+    datos = {scenario: "blackGate", level: 4, xp: 1050, total: 35, coins: 1030, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
   } else if (battle == "BlackGate5") {
-    datos = {scenario: "blackGate", level: 5, xp: 1250, coins: 1250, cards: [personajesNoObtenidos, personajesNoObtenidos, personajesNoObtenidos]}
+    datos = {scenario: "blackGate", level: 5, xp: 1250, total: 36, coins: 1250, cards: [personajesNoObtenidos, personajesNoObtenidos, personajesNoObtenidos]}
   }
   setTimeout(() => {
     for (let i = 0; i < heroesGlobal.length; i++) {
@@ -441,6 +444,34 @@ function victoria() {
           break;
         }
       }
+    }
+    const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+    if (heroesGlobal[0].card == "bronze" && heroesGlobal[1].card == "bronze" && heroesGlobal[2].card == "bronze") {
+      if (!datosUsuarioActual.challengeBronze) {
+        datosUsuarioActual.challengeBronze = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+      }
+      datosUsuarioActual.challengeBronze[datos.total] = true;
+      documentRef.update({
+        challengeBronze: datosUsuarioActual.challengeBronze
+      });
+    }
+    if (heroesGlobal[0].card == "silver" && heroesGlobal[1].card == "silver" && heroesGlobal[2].card == "silver") {
+      if (!datosUsuarioActual.challengeSilver) {
+        datosUsuarioActual.challengeSilver = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+      }
+      datosUsuarioActual.challengeSilver[datos.total] = true;
+      documentRef.update({
+        challengeSilver: datosUsuarioActual.challengeSilver
+      });
+    }
+    if (heroesGlobal[0].card == "gold" && heroesGlobal[1].card == "gold" && heroesGlobal[2].card == "gold") {
+      if (!datosUsuarioActual.challengeGold) {
+        datosUsuarioActual.challengeGold = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+      }
+      datosUsuarioActual.challengeGold[datos.total] = true;
+      documentRef.update({
+        challengeGold: datosUsuarioActual.challengeGold
+      });
     }
     setTimeout(async function() {
       document.getElementById(`enemies${battle}`).classList.add("hide");
@@ -12482,7 +12513,56 @@ function cargarHome() {
     document.getElementById("statistics").innerHTML = `<h2>Statistics:</h2>
                                                       <div id="graficaContainer">
                                                         <canvas id="grafica"></canvas>
-                                                      </div>`;
+                                                      </div>
+                                                      <button type="button" id="challenge" class="blue button">Challenge</button>`;
+    document.getElementById("challenge").addEventListener("click", function () {
+      document.getElementById("challengeContainer").classList.remove("hide");
+    });
+    let challengeBronze = document.getElementById("challengeBronze");
+    let challengeSilver = document.getElementById("challengeSilver");
+    let challengeGold = document.getElementById("challengeGold");
+    if (datosUsuarioActual.challengeBronze) {
+      let count = 0;
+      for (let i = 0; i < datosUsuarioActual.challengeBronze.length; i++) {
+        if (datosUsuarioActual.challengeBronze[i] == true) {
+          count += 1;
+        }
+      }
+      if (count == 37) {
+        challengeBronze.style = "color='green'";
+      }
+      challengeBronze.innerHTML = ` ${count}/37`
+    } else {
+      challengeBronze.innerHTML = " 0/37"
+    }
+    if (datosUsuarioActual.challengeSilver) {
+      let count = 0;
+      for (let i = 0; i < datosUsuarioActual.challengeSilver.length; i++) {
+        if (datosUsuarioActual.challengeSilver[i] == true) {
+          count += 1;
+        }
+      }
+      if (count == 37) {
+        challengeSilver.style = "color='green'";
+      }
+      challengeSilver.innerHTML = ` ${count}/37`
+    } else {
+      challengeSilver.innerHTML = " 0/37"
+    }
+    if (datosUsuarioActual.challengeGold) {
+      let count = 0;
+      for (let i = 0; i < datosUsuarioActual.challengeGold.length; i++) {
+        if (datosUsuarioActual.challengeGold[i] == true) {
+          count += 1;
+        }
+      }
+      if (count == 37) {
+        challengeGold.style = "color='green'";
+      }
+      challengeGold.innerHTML = ` ${count}/37`
+    } else {
+      challengeGold.innerHTML = " 0/37"
+    }
     const grafica = document.getElementById('grafica');
 
     new Chart(grafica, {
@@ -15501,6 +15581,10 @@ document.getElementById("filterSelectorMyCards").addEventListener("submit", func
     });
   }
   document.getElementById("filterSelectorMyCards").reset();
+})
+
+document.querySelector("#challengeContainer > button").addEventListener("click", function () {
+  document.getElementById("challengeContainer").classList.add("hide");
 })
 
 let backMap = document.querySelectorAll(".backMap");
