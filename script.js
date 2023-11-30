@@ -792,7 +792,7 @@ async function attackHeroes(i) {
     ataqueActual[0] = ataqueActual[0]*0.6;
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
     enemiesGlobal[i-1].actualHealth -= ataqueActual[0];
-    if (enemiesGlobal[i-1].actualHealth < 0) {
+    if (enemiesGlobal[i-1].actualHealth <= 0) {
       enemiesGlobal[i-1].actualHealth = 0;
       document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
@@ -830,7 +830,7 @@ async function attackHeroes(i) {
     }
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
     enemiesGlobal[i-1].actualHealth -= attackactive[0];
-    if (enemiesGlobal[i-1].actualHealth < 0) {
+    if (enemiesGlobal[i-1].actualHealth <= 0) {
       enemiesGlobal[i-1].actualHealth = 0;
       document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
@@ -850,7 +850,7 @@ async function attackHeroes(i) {
     ataqueActual[0] = ataqueActual[0]*0.5;
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
     enemiesGlobal[i-1].actualHealth -= ataqueActual[0];
-    if (enemiesGlobal[i-1].actualHealth < 0) {
+    if (enemiesGlobal[i-1].actualHealth <= 0) {
       enemiesGlobal[i-1].actualHealth = 0;
       document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
@@ -873,7 +873,7 @@ async function attackHeroes(i) {
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
     enemiesGlobal[i-1].actualHealth -= ataqueActual[0];
-    if (enemiesGlobal[i-1].actualHealth < 0) {
+    if (enemiesGlobal[i-1].actualHealth <= 0) {
       enemiesGlobal[i-1].actualHealth = 0;
       document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
@@ -891,7 +891,7 @@ async function attackHeroes(i) {
         ataqueActual[0] *= devolucion;
         document.getElementById(`specialEfectsHero${ataqueActual[1]+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[ataqueActual[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[ataqueActual[1]].actualHealth < 0) {
+        if (heroesGlobal[ataqueActual[1]].actualHealth <= 0) {
           heroesGlobal[ataqueActual[1]].actualHealth = 0;
           document.getElementById(`hero${ataqueActual[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -912,7 +912,7 @@ async function attackHeroes(i) {
   } else if ((SMoveActualEnemies.hasOwnProperty("Guritz") && Guritz[1] == attackactive[1])) {
     document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
     document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML += `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
-    if (heroesGlobal[attackactive[1]].actualHealth < 0) {
+    if (heroesGlobal[attackactive[1]].actualHealth <= 0) {
       heroesGlobal[attackactive[1]].actualHealth = 0;
       document.getElementById(`hero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
     }
@@ -935,7 +935,7 @@ async function attackHeroes(i) {
     }
     document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<p class="damageTaken">-${await ataqueActual[0]}pH</p>`;
     enemiesGlobal[i-1].actualHealth -= await ataqueActual[0];
-    if (enemiesGlobal[i-1].actualHealth < 0) {
+    if (enemiesGlobal[i-1].actualHealth <= 0) {
       enemiesGlobal[i-1].actualHealth = 0;
       document.getElementById(`enemy${i}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
       if (enemiesGlobal[i-1].name == "Troll") {
@@ -961,7 +961,7 @@ async function attackHeroes(i) {
       for (let j = 1; j < enemiesGlobal.length; j++) {
         document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
         enemiesGlobal[j].actualHealth -= 60;
-        if (enemiesGlobal[j].actualHealth < 0) {
+        if (enemiesGlobal[j].actualHealth <= 0) {
           enemiesGlobal[j].actualHealth = 0;
           document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -970,7 +970,7 @@ async function attackHeroes(i) {
       for (let j = 0; j < heroesGlobal.length; j++) {
         document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
         heroesGlobal[j].actualHealth -= 60;
-        if (heroesGlobal[j].actualHealth < 0) {
+        if (heroesGlobal[j].actualHealth <= 0) {
           heroesGlobal[j].actualHealth = 0;
           document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -2610,7 +2610,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             if (enemiesGlobal[enemigoConfusion[1]].name == "Troll") {
@@ -2636,7 +2636,7 @@ function attackEnemy(index) {
             for (let j = 1; j < enemiesGlobal.length; j++) {
               document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               enemiesGlobal[j].actualHealth -= 60;
-              if (enemiesGlobal[j].actualHealth < 0) {
+              if (enemiesGlobal[j].actualHealth <= 0) {
                 enemiesGlobal[j].actualHealth = 0;
                 document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -2645,7 +2645,7 @@ function attackEnemy(index) {
             for (let j = 0; j < heroesGlobal.length; j++) {
               document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               heroesGlobal[j].actualHealth -= 60;
-              if (heroesGlobal[j].actualHealth < 0) {
+              if (heroesGlobal[j].actualHealth <= 0) {
                 heroesGlobal[j].actualHealth = 0;
                 document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -2692,7 +2692,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -2710,7 +2710,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -2724,7 +2724,7 @@ function attackEnemy(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     if (enemiesGlobal[index].name == "Troll") {
@@ -2752,7 +2752,7 @@ function attackEnemy(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -2761,7 +2761,7 @@ function attackEnemy(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -2793,7 +2793,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -2803,7 +2803,7 @@ function attackEnemy(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 if (enemiesGlobal[index].name == "Troll") {
@@ -2829,7 +2829,7 @@ function attackEnemy(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -2838,7 +2838,7 @@ function attackEnemy(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -2871,7 +2871,7 @@ function attackEnemy(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -2884,7 +2884,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -2907,7 +2907,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -2921,7 +2921,7 @@ function attackEnemy(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -2935,7 +2935,7 @@ function attackEnemy(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   if (enemiesGlobal[index].name == "Troll") {
@@ -2963,7 +2963,7 @@ function attackEnemy(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -2972,7 +2972,7 @@ function attackEnemy(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -3004,7 +3004,7 @@ function attackEnemy(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -3014,7 +3014,7 @@ function attackEnemy(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               if (enemiesGlobal[index].name == "Troll") {
@@ -3040,7 +3040,7 @@ function attackEnemy(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -3049,7 +3049,7 @@ function attackEnemy(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -3082,7 +3082,7 @@ function attackEnemy(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3094,7 +3094,7 @@ function attackEnemy(index) {
       } else {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -3327,7 +3327,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3374,7 +3374,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3392,7 +3392,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3406,7 +3406,7 @@ async function attackWargLeader(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -3431,7 +3431,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3441,7 +3441,7 @@ async function attackWargLeader(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -3465,7 +3465,7 @@ async function attackWargLeader(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -3478,7 +3478,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3511,7 +3511,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3535,7 +3535,7 @@ async function attackWargLeader(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -3549,7 +3549,7 @@ async function attackWargLeader(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -3584,7 +3584,7 @@ async function attackWargLeader(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -3594,7 +3594,7 @@ async function attackWargLeader(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -3628,7 +3628,7 @@ async function attackWargLeader(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3650,7 +3650,7 @@ async function attackWargLeader(index) {
         }
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -3842,7 +3842,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3889,7 +3889,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3907,7 +3907,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3921,7 +3921,7 @@ async function attackSaruman(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -3946,7 +3946,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -3956,7 +3956,7 @@ async function attackSaruman(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -3980,7 +3980,7 @@ async function attackSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -3993,7 +3993,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -4026,7 +4026,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -4050,7 +4050,7 @@ async function attackSaruman(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -4064,7 +4064,7 @@ async function attackSaruman(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -4099,7 +4099,7 @@ async function attackSaruman(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -4109,7 +4109,7 @@ async function attackSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4143,7 +4143,7 @@ async function attackSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -4165,7 +4165,7 @@ async function attackSaruman(index) {
         }
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -4505,7 +4505,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
             document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-            if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
               enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
               document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4542,7 +4542,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4560,7 +4560,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4574,7 +4574,7 @@ async function attackSauron(index) {
                     Math.round(devolverAtaque);
                     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                     enemiesGlobal[index].actualHealth -= devolverAtaque;
-                    if (enemiesGlobal[index].actualHealth < 0) {
+                    if (enemiesGlobal[index].actualHealth <= 0) {
                       enemiesGlobal[index].actualHealth = 0;
                       document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     }
@@ -4599,7 +4599,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4609,7 +4609,7 @@ async function attackSauron(index) {
                 document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -4633,7 +4633,7 @@ async function attackSauron(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
               heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-              if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
                 heroesGlobal[enemigoElegido[1]].actualHealth = 0;
                 document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -4646,7 +4646,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4669,7 +4669,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4683,7 +4683,7 @@ async function attackSauron(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -4697,7 +4697,7 @@ async function attackSauron(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -4722,7 +4722,7 @@ async function attackSauron(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -4732,7 +4732,7 @@ async function attackSauron(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -4756,7 +4756,7 @@ async function attackSauron(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -4768,7 +4768,7 @@ async function attackSauron(index) {
         } else {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5121,7 +5121,7 @@ async function sMoveWargLeader(index) {
       document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="heal">+40pH</p>`;
       heroesGlobal[enemigoElegido[1]].actualHealth -= 40;
       enemiesGlobal[index].actualHealth += 40;
-      if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+      if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
         heroesGlobal[enemigoElegido[1]].actualHealth = 0;
         document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
       }
@@ -5205,7 +5205,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
             document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-            if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
               enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
               document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5243,7 +5243,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5261,7 +5261,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5275,7 +5275,7 @@ async function sMovecrossbow(index) {
                     Math.round(devolverAtaque);
                     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                     enemiesGlobal[index].actualHealth -= devolverAtaque;
-                    if (enemiesGlobal[index].actualHealth < 0) {
+                    if (enemiesGlobal[index].actualHealth <= 0) {
                       enemiesGlobal[index].actualHealth = 0;
                       document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     }
@@ -5300,7 +5300,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5310,7 +5310,7 @@ async function sMovecrossbow(index) {
                 document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -5334,7 +5334,7 @@ async function sMovecrossbow(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
               heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-              if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
                 heroesGlobal[enemigoElegido[1]].actualHealth = 0;
                 document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -5347,7 +5347,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5370,7 +5370,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5384,7 +5384,7 @@ async function sMovecrossbow(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5398,7 +5398,7 @@ async function sMovecrossbow(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5423,7 +5423,7 @@ async function sMovecrossbow(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5433,7 +5433,7 @@ async function sMovecrossbow(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -5457,7 +5457,7 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5469,7 +5469,7 @@ async function sMovecrossbow(index) {
         } else {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5612,7 +5612,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5621,7 +5621,7 @@ async function sMoveurukHai8(index) {
             for (let j = 1; j < enemiesGlobal.length; j++) {
               document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               enemiesGlobal[j].actualHealth -= 60;
-              if (enemiesGlobal[j].actualHealth < 0) {
+              if (enemiesGlobal[j].actualHealth <= 0) {
                 enemiesGlobal[j].actualHealth = 0;
                 document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -5630,7 +5630,7 @@ async function sMoveurukHai8(index) {
             for (let j = 0; j < heroesGlobal.length; j++) {
               document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               heroesGlobal[j].actualHealth -= 60;
-              if (heroesGlobal[j].actualHealth < 0) {
+              if (heroesGlobal[j].actualHealth <= 0) {
                 heroesGlobal[j].actualHealth = 0;
                 document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -5678,7 +5678,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5696,7 +5696,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5710,7 +5710,7 @@ async function sMoveurukHai8(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5721,7 +5721,7 @@ async function sMoveurukHai8(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5730,7 +5730,7 @@ async function sMoveurukHai8(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5762,7 +5762,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5772,7 +5772,7 @@ async function sMoveurukHai8(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -5781,7 +5781,7 @@ async function sMoveurukHai8(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5790,7 +5790,7 @@ async function sMoveurukHai8(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -5823,7 +5823,7 @@ async function sMoveurukHai8(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5836,7 +5836,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5860,7 +5860,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -5875,7 +5875,7 @@ async function sMoveurukHai8(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -5889,7 +5889,7 @@ async function sMoveurukHai8(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -5900,7 +5900,7 @@ async function sMoveurukHai8(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -5909,7 +5909,7 @@ async function sMoveurukHai8(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -5942,7 +5942,7 @@ async function sMoveurukHai8(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -5952,7 +5952,7 @@ async function sMoveurukHai8(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -5961,7 +5961,7 @@ async function sMoveurukHai8(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -5970,7 +5970,7 @@ async function sMoveurukHai8(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6004,7 +6004,7 @@ async function sMoveurukHai8(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6017,7 +6017,7 @@ async function sMoveurukHai8(index) {
         delayedDamage = [enemigoElegido[1], enemiesGlobal[index].specialMoveActualAmount*enemiesGlobal[index].attack];
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6102,7 +6102,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6144,7 +6144,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6162,7 +6162,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6176,7 +6176,7 @@ async function sMovespearman(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6201,7 +6201,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6211,7 +6211,7 @@ async function sMovespearman(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -6235,7 +6235,7 @@ async function sMovespearman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -6248,7 +6248,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6276,7 +6276,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6295,7 +6295,7 @@ async function sMovespearman(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6309,7 +6309,7 @@ async function sMovespearman(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6339,7 +6339,7 @@ async function sMovespearman(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6349,7 +6349,7 @@ async function sMovespearman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -6378,7 +6378,7 @@ async function sMovespearman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6395,7 +6395,7 @@ async function sMovespearman(index) {
         }
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6533,7 +6533,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6542,7 +6542,7 @@ async function sMoveGrima(index) {
             for (let j = 1; j < enemiesGlobal.length; j++) {
               document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               enemiesGlobal[j].actualHealth -= 60;
-              if (enemiesGlobal[j].actualHealth < 0) {
+              if (enemiesGlobal[j].actualHealth <= 0) {
                 enemiesGlobal[j].actualHealth = 0;
                 document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -6551,7 +6551,7 @@ async function sMoveGrima(index) {
             for (let j = 0; j < heroesGlobal.length; j++) {
               document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               heroesGlobal[j].actualHealth -= 60;
-              if (heroesGlobal[j].actualHealth < 0) {
+              if (heroesGlobal[j].actualHealth <= 0) {
                 heroesGlobal[j].actualHealth = 0;
                 document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -6599,7 +6599,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6617,7 +6617,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6631,7 +6631,7 @@ async function sMoveGrima(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6642,7 +6642,7 @@ async function sMoveGrima(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6651,7 +6651,7 @@ async function sMoveGrima(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6683,7 +6683,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6693,7 +6693,7 @@ async function sMoveGrima(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -6702,7 +6702,7 @@ async function sMoveGrima(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6711,7 +6711,7 @@ async function sMoveGrima(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -6744,7 +6744,7 @@ async function sMoveGrima(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -6757,7 +6757,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6781,7 +6781,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6796,7 +6796,7 @@ async function sMoveGrima(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6810,7 +6810,7 @@ async function sMoveGrima(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6821,7 +6821,7 @@ async function sMoveGrima(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6830,7 +6830,7 @@ async function sMoveGrima(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6863,7 +6863,7 @@ async function sMoveGrima(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -6873,7 +6873,7 @@ async function sMoveGrima(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -6882,7 +6882,7 @@ async function sMoveGrima(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6891,7 +6891,7 @@ async function sMoveGrima(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -6925,7 +6925,7 @@ async function sMoveGrima(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -6938,7 +6938,7 @@ async function sMoveGrima(index) {
         delayedDamage = [enemigoElegido[1], 0.45*enemiesGlobal[index].attack];
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -7002,7 +7002,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
             document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-            if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
               enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
               document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7039,7 +7039,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7057,7 +7057,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7071,7 +7071,7 @@ async function sMoveSaruman(index) {
                     Math.round(devolverAtaque);
                     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                     enemiesGlobal[index].actualHealth -= devolverAtaque;
-                    if (enemiesGlobal[index].actualHealth < 0) {
+                    if (enemiesGlobal[index].actualHealth <= 0) {
                       enemiesGlobal[index].actualHealth = 0;
                       document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     }
@@ -7096,7 +7096,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7106,7 +7106,7 @@ async function sMoveSaruman(index) {
                 document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -7130,7 +7130,7 @@ async function sMoveSaruman(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
               heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-              if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
                 heroesGlobal[enemigoElegido[1]].actualHealth = 0;
                 document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -7143,7 +7143,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7166,7 +7166,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7180,7 +7180,7 @@ async function sMoveSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7194,7 +7194,7 @@ async function sMoveSaruman(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -7219,7 +7219,7 @@ async function sMoveSaruman(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7229,7 +7229,7 @@ async function sMoveSaruman(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -7253,7 +7253,7 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7265,7 +7265,7 @@ async function sMoveSaruman(index) {
         } else {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7330,7 +7330,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
             document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-            if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
               enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
               document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               if (enemiesGlobal[enemigoConfusion[1]].name == "Troll") {
@@ -7384,7 +7384,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7402,7 +7402,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7416,7 +7416,7 @@ async function sMovearcherMordor1(index) {
                     Math.round(devolverAtaque);
                     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                     enemiesGlobal[index].actualHealth -= devolverAtaque;
-                    if (enemiesGlobal[index].actualHealth < 0) {
+                    if (enemiesGlobal[index].actualHealth <= 0) {
                       enemiesGlobal[index].actualHealth = 0;
                       document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     }
@@ -7441,7 +7441,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7451,7 +7451,7 @@ async function sMovearcherMordor1(index) {
                 document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -7475,7 +7475,7 @@ async function sMovearcherMordor1(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
               heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-              if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
                 heroesGlobal[enemigoElegido[1]].actualHealth = 0;
                 document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -7488,7 +7488,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7511,7 +7511,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7525,7 +7525,7 @@ async function sMovearcherMordor1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7539,7 +7539,7 @@ async function sMovearcherMordor1(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -7564,7 +7564,7 @@ async function sMovearcherMordor1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7574,7 +7574,7 @@ async function sMovearcherMordor1(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -7598,7 +7598,7 @@ async function sMovearcherMordor1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7610,7 +7610,7 @@ async function sMovearcherMordor1(index) {
         } else {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7820,7 +7820,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7862,7 +7862,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7880,7 +7880,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7894,7 +7894,7 @@ async function sMoveorcMordor11(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -7919,7 +7919,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7929,7 +7929,7 @@ async function sMoveorcMordor11(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -7953,7 +7953,7 @@ async function sMoveorcMordor11(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -7966,7 +7966,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -7994,7 +7994,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8013,7 +8013,7 @@ async function sMoveorcMordor11(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -8027,7 +8027,7 @@ async function sMoveorcMordor11(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -8057,7 +8057,7 @@ async function sMoveorcMordor11(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -8067,7 +8067,7 @@ async function sMoveorcMordor11(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8096,7 +8096,7 @@ async function sMoveorcMordor11(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8113,7 +8113,7 @@ async function sMoveorcMordor11(index) {
         }
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -8213,7 +8213,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
             document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-            if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+            if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
               enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
               document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               if (enemiesGlobal[enemigoConfusion[1]].name == "Troll") {
@@ -8267,7 +8267,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8285,7 +8285,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8299,7 +8299,7 @@ async function sMovearcherHaradrim(index) {
                     Math.round(devolverAtaque);
                     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                     enemiesGlobal[index].actualHealth -= devolverAtaque;
-                    if (enemiesGlobal[index].actualHealth < 0) {
+                    if (enemiesGlobal[index].actualHealth <= 0) {
                       enemiesGlobal[index].actualHealth = 0;
                       document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                     }
@@ -8324,7 +8324,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8334,7 +8334,7 @@ async function sMovearcherHaradrim(index) {
                 document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -8358,7 +8358,7 @@ async function sMovearcherHaradrim(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
               heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-              if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+              if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
                 heroesGlobal[enemigoElegido[1]].actualHealth = 0;
                 document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -8371,7 +8371,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8394,7 +8394,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8408,7 +8408,7 @@ async function sMovearcherHaradrim(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8422,7 +8422,7 @@ async function sMovearcherHaradrim(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -8447,7 +8447,7 @@ async function sMovearcherHaradrim(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8457,7 +8457,7 @@ async function sMovearcherHaradrim(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -8481,7 +8481,7 @@ async function sMovearcherHaradrim(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8493,7 +8493,7 @@ async function sMovearcherHaradrim(index) {
         } else {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8638,7 +8638,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= attackactive[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8680,7 +8680,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8698,7 +8698,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8712,7 +8712,7 @@ async function sMoveHaradrim1(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -8737,7 +8737,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8747,7 +8747,7 @@ async function sMoveHaradrim1(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -8771,7 +8771,7 @@ async function sMoveHaradrim1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8784,7 +8784,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8812,7 +8812,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8831,7 +8831,7 @@ async function sMoveHaradrim1(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -8845,7 +8845,7 @@ async function sMoveHaradrim1(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -8875,7 +8875,7 @@ async function sMoveHaradrim1(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -8885,7 +8885,7 @@ async function sMoveHaradrim1(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -8914,7 +8914,7 @@ async function sMoveHaradrim1(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -8931,7 +8931,7 @@ async function sMoveHaradrim1(index) {
         }
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= attackactive[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9029,7 +9029,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
           document.getElementById(`specialEfectsEnemy${enemigoConfusion[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           enemiesGlobal[enemigoConfusion[1]].actualHealth -= ataqueActual[0];
-          if (enemiesGlobal[enemigoConfusion[1]].actualHealth < 0) {
+          if (enemiesGlobal[enemigoConfusion[1]].actualHealth <= 0) {
             enemiesGlobal[enemigoConfusion[1]].actualHealth = 0;
             document.getElementById(`enemy${enemigoConfusion[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9038,7 +9038,7 @@ async function sMoveSnaga(index) {
             for (let j = 1; j < enemiesGlobal.length; j++) {
               document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               enemiesGlobal[j].actualHealth -= 60;
-              if (enemiesGlobal[j].actualHealth < 0) {
+              if (enemiesGlobal[j].actualHealth <= 0) {
                 enemiesGlobal[j].actualHealth = 0;
                 document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -9047,7 +9047,7 @@ async function sMoveSnaga(index) {
             for (let j = 0; j < heroesGlobal.length; j++) {
               document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
               heroesGlobal[j].actualHealth -= 60;
-              if (heroesGlobal[j].actualHealth < 0) {
+              if (heroesGlobal[j].actualHealth <= 0) {
                 heroesGlobal[j].actualHealth = 0;
                 document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -9095,7 +9095,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9113,7 +9113,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9127,7 +9127,7 @@ async function sMoveSnaga(index) {
                   Math.round(devolverAtaque);
                   document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                   enemiesGlobal[index].actualHealth -= devolverAtaque;
-                  if (enemiesGlobal[index].actualHealth < 0) {
+                  if (enemiesGlobal[index].actualHealth <= 0) {
                     enemiesGlobal[index].actualHealth = 0;
                     document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -9138,7 +9138,7 @@ async function sMoveSnaga(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -9147,7 +9147,7 @@ async function sMoveSnaga(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -9179,7 +9179,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9189,7 +9189,7 @@ async function sMoveSnaga(index) {
               document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
               document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
               enemiesGlobal[index].actualHealth -= devolverAtaque;
-              if (enemiesGlobal[index].actualHealth < 0) {
+              if (enemiesGlobal[index].actualHealth <= 0) {
                 enemiesGlobal[index].actualHealth = 0;
                 document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
               }
@@ -9198,7 +9198,7 @@ async function sMoveSnaga(index) {
                 for (let j = 1; j < enemiesGlobal.length; j++) {
                   document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   enemiesGlobal[j].actualHealth -= 60;
-                  if (enemiesGlobal[j].actualHealth < 0) {
+                  if (enemiesGlobal[j].actualHealth <= 0) {
                     enemiesGlobal[j].actualHealth = 0;
                     document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -9207,7 +9207,7 @@ async function sMoveSnaga(index) {
                 for (let j = 0; j < heroesGlobal.length; j++) {
                   document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                   heroesGlobal[j].actualHealth -= 60;
-                  if (heroesGlobal[j].actualHealth < 0) {
+                  if (heroesGlobal[j].actualHealth <= 0) {
                     heroesGlobal[j].actualHealth = 0;
                     document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                   }
@@ -9240,7 +9240,7 @@ async function sMoveSnaga(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
             heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-            if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+            if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
               heroesGlobal[enemigoElegido[1]].actualHealth = 0;
               document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9253,7 +9253,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9277,7 +9277,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9292,7 +9292,7 @@ async function sMoveSnaga(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9306,7 +9306,7 @@ async function sMoveSnaga(index) {
                 Math.round(devolverAtaque);
                 document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
                 enemiesGlobal[index].actualHealth -= devolverAtaque;
-                if (enemiesGlobal[index].actualHealth < 0) {
+                if (enemiesGlobal[index].actualHealth <= 0) {
                   enemiesGlobal[index].actualHealth = 0;
                   document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -9317,7 +9317,7 @@ async function sMoveSnaga(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -9326,7 +9326,7 @@ async function sMoveSnaga(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -9359,7 +9359,7 @@ async function sMoveSnaga(index) {
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9369,7 +9369,7 @@ async function sMoveSnaga(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<p class="damageTaken">-${devolverAtaque}pH</p>`;
             enemiesGlobal[index].actualHealth -= devolverAtaque;
-            if (enemiesGlobal[index].actualHealth < 0) {
+            if (enemiesGlobal[index].actualHealth <= 0) {
               enemiesGlobal[index].actualHealth = 0;
               document.getElementById(`enemy${index+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9378,7 +9378,7 @@ async function sMoveSnaga(index) {
               for (let j = 1; j < enemiesGlobal.length; j++) {
                 document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 enemiesGlobal[j].actualHealth -= 60;
-                if (enemiesGlobal[j].actualHealth < 0) {
+                if (enemiesGlobal[j].actualHealth <= 0) {
                   enemiesGlobal[j].actualHealth = 0;
                   document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -9387,7 +9387,7 @@ async function sMoveSnaga(index) {
               for (let j = 0; j < heroesGlobal.length; j++) {
                 document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
                 heroesGlobal[j].actualHealth -= 60;
-                if (heroesGlobal[j].actualHealth < 0) {
+                if (heroesGlobal[j].actualHealth <= 0) {
                   heroesGlobal[j].actualHealth = 0;
                   document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
                 }
@@ -9421,7 +9421,7 @@ async function sMoveSnaga(index) {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML += `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-          if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+          if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
             heroesGlobal[enemigoElegido[1]].actualHealth = 0;
             document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -9434,7 +9434,7 @@ async function sMoveSnaga(index) {
         delayedDamage = [enemigoElegido[1], 0.45*enemiesGlobal[index].attack];
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
         heroesGlobal[enemigoElegido[1]].actualHealth -= ataqueActual[0];
-        if (heroesGlobal[enemigoElegido[1]].actualHealth < 0) {
+        if (heroesGlobal[enemigoElegido[1]].actualHealth <= 0) {
           heroesGlobal[enemigoElegido[1]].actualHealth = 0;
           document.getElementById(`hero${enemigoElegido[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9691,7 +9691,7 @@ function eventosBatalla(battle) {
         }
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         enemiesGlobal[i].actualHealth -= attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9725,7 +9725,7 @@ function eventosBatalla(battle) {
         }
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         enemiesGlobal[i].actualHealth -= attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9759,7 +9759,7 @@ function eventosBatalla(battle) {
         }
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         enemiesGlobal[i].actualHealth -= attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9792,7 +9792,7 @@ function eventosBatalla(battle) {
           document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML += `<img src="./assets/effects/level_Up.gif" alt="downgrade" class="effects downgrade">`;
         }
         enemiesGlobal[i].actualHealth -= attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9810,7 +9810,7 @@ function eventosBatalla(battle) {
             attackactive[0] *= devolucion;
             document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">-${attackactive[0]}pH</p>`;
             heroesGlobal[attackactive[1]].actualHealth -= attackactive[0];
-            if (heroesGlobal[attackactive[1]].actualHealth < 0) {
+            if (heroesGlobal[attackactive[1]].actualHealth <= 0) {
               heroesGlobal[attackactive[1]].actualHealth = 0;
               document.getElementById(`hero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9831,7 +9831,7 @@ function eventosBatalla(battle) {
       } else if ((SMoveActualEnemies.hasOwnProperty("Guritz") && Guritz[1] == attackactive[1])) {
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML += `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
-        if (heroesGlobal[attackactive[1]].actualHealth < 0) {
+        if (heroesGlobal[attackactive[1]].actualHealth <= 0) {
           heroesGlobal[attackactive[1]].actualHealth = 0;
           document.getElementById(`hero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9850,7 +9850,7 @@ function eventosBatalla(battle) {
       } else {
         document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         enemiesGlobal[i].actualHealth -= attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           if (enemiesGlobal[i].name == "Troll") {
@@ -9876,7 +9876,7 @@ function eventosBatalla(battle) {
           for (let j = 1; j < enemiesGlobal.length; j++) {
             document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
             enemiesGlobal[j].actualHealth -= 60;
-            if (enemiesGlobal[j].actualHealth < 0) {
+            if (enemiesGlobal[j].actualHealth <= 0) {
               enemiesGlobal[j].actualHealth = 0;
               document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9885,7 +9885,7 @@ function eventosBatalla(battle) {
           for (let j = 0; j < heroesGlobal.length; j++) {
             document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
             heroesGlobal[j].actualHealth -= 60;
-            if (heroesGlobal[j].actualHealth < 0) {
+            if (heroesGlobal[j].actualHealth <= 0) {
               heroesGlobal[j].actualHealth = 0;
               document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9938,7 +9938,7 @@ function eventosBatalla(battle) {
       if ((SMoveActualEnemies.hasOwnProperty("Guritz") && Guritz[1] == attackactive[1])) {
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML += `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
-        if (heroesGlobal[attackactive[1]].actualHealth < 0) {
+        if (heroesGlobal[attackactive[1]].actualHealth <= 0) {
           heroesGlobal[attackactive[1]].actualHealth = 0;
           document.getElementById(`hero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -9956,7 +9956,7 @@ function eventosBatalla(battle) {
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = `<p class="heal">+${attackactive[0]}pH</p>`;
         enemiesGlobal[i].actualHealth -= attackactive[0];
         heroesGlobal[attackactive[1]].actualHealth += attackactive[0];
-        if (enemiesGlobal[i].actualHealth < 0) {
+        if (enemiesGlobal[i].actualHealth <= 0) {
           enemiesGlobal[i].actualHealth = 0;
           document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           if (enemiesGlobal[i].name == "Troll") {
@@ -9986,7 +9986,7 @@ function eventosBatalla(battle) {
           for (let j = 1; j < enemiesGlobal.length; j++) {
             document.getElementById(`specialEfectsEnemy${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
             enemiesGlobal[j].actualHealth -= 60;
-            if (enemiesGlobal[j].actualHealth < 0) {
+            if (enemiesGlobal[j].actualHealth <= 0) {
               enemiesGlobal[j].actualHealth = 0;
               document.getElementById(`enemy${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -9995,7 +9995,7 @@ function eventosBatalla(battle) {
           for (let j = 0; j < heroesGlobal.length; j++) {
             document.getElementById(`specialEfectsHero${j+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
             heroesGlobal[j].actualHealth -= 60;
-            if (heroesGlobal[j].actualHealth < 0) {
+            if (heroesGlobal[j].actualHealth <= 0) {
               heroesGlobal[j].actualHealth = 0;
               document.getElementById(`hero${j+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             }
@@ -10034,7 +10034,7 @@ function eventosBatalla(battle) {
         DamrodAttack = 3;
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         document.getElementById(`specialEfectsHero${attackactive[1]+1}`).innerHTML += `<img src="./assets/effects/confusion.png" alt="upgrade" class="effects">`;
-        if (heroesGlobal[attackactive[1]].actualHealth < 0) {
+        if (heroesGlobal[attackactive[1]].actualHealth <= 0) {
           heroesGlobal[attackactive[1]].actualHealth = 0;
           document.getElementById(`hero${attackactive[1]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -10387,7 +10387,7 @@ async function battleMoria1() {
         }
         document.getElementById(`specialEfectsEnemy${DamrodAttack+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
         enemiesGlobal[DamrodAttack].actualHealth -= attackactive[0];
-        if (enemiesGlobal[DamrodAttack].actualHealth < 0) {
+        if (enemiesGlobal[DamrodAttack].actualHealth <= 0) {
           enemiesGlobal[DamrodAttack].actualHealth = 0;
           document.getElementById(`enemy${DamrodAttack+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
         }
@@ -10689,7 +10689,7 @@ async function battleFunction(battle, battleEnemies) {
           }
           document.getElementById(`specialEfectsEnemy${DamrodAttack+1}`).innerHTML = `<p class="damageTaken">-${attackactive[0]}pH</p>`;
           enemiesGlobal[DamrodAttack].actualHealth -= attackactive[0];
-          if (enemiesGlobal[DamrodAttack].actualHealth < 0) {
+          if (enemiesGlobal[DamrodAttack].actualHealth <= 0) {
             enemiesGlobal[DamrodAttack].actualHealth = 0;
             document.getElementById(`enemy${DamrodAttack+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
             if (enemiesGlobal[DamrodAttack].name == "Troll") {
@@ -10718,7 +10718,7 @@ async function battleFunction(battle, battleEnemies) {
         for (let i = 1; i < enemiesGlobal.length; i++) {
           document.getElementById(`specialEfectsEnemy${i+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
           enemiesGlobal[i].actualHealth -= 60;
-          if (enemiesGlobal[i].actualHealth < 0) {
+          if (enemiesGlobal[i].actualHealth <= 0) {
             enemiesGlobal[i].actualHealth = 0;
             document.getElementById(`enemy${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -10727,7 +10727,7 @@ async function battleFunction(battle, battleEnemies) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<p class="damageTaken">-60pH</p>`;
           heroesGlobal[i].actualHealth -= 60;
-          if (heroesGlobal[i].actualHealth < 0) {
+          if (heroesGlobal[i].actualHealth <= 0) {
             heroesGlobal[i].actualHealth = 0;
             document.getElementById(`hero${i+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
@@ -10811,7 +10811,7 @@ async function battleFunction(battle, battleEnemies) {
         if ((SMoveActualEnemies.hasOwnProperty("urukHai8")) || (SMoveActualEnemies.hasOwnProperty("Grima") || (SMoveActualEnemies.hasOwnProperty("Snaga"))) && delayedDamage != 0) {
           document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = `<p class="damageTaken">-${delayedDamage[1]}pH</p>`;
           heroesGlobal[delayedDamage[0]].actualHealth -= delayedDamage[1];
-          if (heroesGlobal[delayedDamage[0]].actualHealth < 0) {
+          if (heroesGlobal[delayedDamage[0]].actualHealth <= 0) {
             heroesGlobal[delayedDamage[0]].actualHealth = 0;
             document.getElementById(`hero${delayedDamage[0]+1}`).innerHTML += `<p class="damageTaken">Defeated</p>`;
           }
