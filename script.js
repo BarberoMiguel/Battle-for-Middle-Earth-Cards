@@ -12319,7 +12319,7 @@ async function actualizarCartas(carta, xp) {
         cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
         break;
       case "Holdbald":
-        cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.03;
+        cartaActual.specialMoveActualAmount = cartaActual.specialMoveAmount + level*0.04;
         cartaActual.specialMoveDescription = `He encourages his companions so the attack in this round deals ${Math.round(cartaActual.specialMoveActualAmount*100)}% more damage`;
         break;
       case "kingDead":
