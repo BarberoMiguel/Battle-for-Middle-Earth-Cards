@@ -1869,6 +1869,9 @@ async function sMoveCeleborn() {
       SMRemaining -= 1;
       for (let j = 1; j <= 3; j++) {
         document.getElementById(`specialEfectsHero${j}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+        if (heroesGlobal[j-1].actualARecharge > 0) {
+          heroesGlobal[j-1].actualARecharge -= 1;
+        }
       }
       document.getElementById(`SMContainer${battle}`).classList.add("hide");
       setTimeout(() => {
@@ -5447,6 +5450,12 @@ async function sMovecrossbow(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
           }, 1000);
+        } else if (SMoveActualHeroes.hasOwnProperty("Radagast") || SMoveActualHeroes.hasOwnProperty("Celeborn")) {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
         } else if (SMoveActualHeroes.hasOwnProperty("Haldir")) {
           let enemiesAlive = [];
           for (let k = 0; k < enemiesGlobal.length; k++) {
@@ -7306,6 +7315,12 @@ async function sMoveSaruman(index) {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
           }, 1000);
+        } else if (SMoveActualHeroes.hasOwnProperty("Radagast") || SMoveActualHeroes.hasOwnProperty("Celeborn")) {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
         } else if (SMoveActualHeroes.hasOwnProperty("Haldir")) {
           let enemiesAlive = [];
           for (let k = 0; k < enemiesGlobal.length; k++) {
@@ -7631,6 +7646,12 @@ async function sMovearcherMordor1(index) {
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
         esquivaGwaihir = false;  
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+        } else if (SMoveActualHeroes.hasOwnProperty("Radagast") || SMoveActualHeroes.hasOwnProperty("Celeborn")) {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -8522,6 +8543,12 @@ async function sMovearcherHaradrim(index) {
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
         esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+          setTimeout(() => {
+            document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
+            resolve(true);
+          }, 1000);
+        } else if (SMoveActualHeroes.hasOwnProperty("Radagast") || SMoveActualHeroes.hasOwnProperty("Celeborn")) {
+          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
