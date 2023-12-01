@@ -1150,7 +1150,6 @@ async function attackCeleborn() {
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       attacksRemaining -= 1;
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
-      document.getElementById(`selection${battle}`).classList.remove("hide");
       break;
     }
   }
@@ -1273,7 +1272,6 @@ async function attackElrond() {
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       attacksRemaining -= 1;
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
-      document.getElementById(`selection${battle}`).classList.remove("hide");
       break;
     }
   }
@@ -1456,7 +1454,6 @@ async function attackGwaihir() {
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       attacksRemaining -= 1;
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
-      document.getElementById(`selection${battle}`).classList.remove("hide");
       break;
     }
   }
