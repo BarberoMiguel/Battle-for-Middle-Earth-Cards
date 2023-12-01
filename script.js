@@ -479,8 +479,8 @@ function victoria() {
         challengeSilver: datosUsuarioActual.challengeSilver
       });
       let count = 0;
-      for (let i = 0; i < datosUsuarioActual.challengeBronze.length; i++) {
-        if (datosUsuarioActual.challengeBronze[i] == true) {
+      for (let i = 0; i < datosUsuarioActual.challengeSilver.length; i++) {
+        if (datosUsuarioActual.challengeSilver[i] == true) {
           count += 1;
         }
       }
@@ -502,8 +502,8 @@ function victoria() {
         challengeGold: datosUsuarioActual.challengeGold
       });
       let count = 0;
-      for (let i = 0; i < datosUsuarioActual.challengeBronze.length; i++) {
-        if (datosUsuarioActual.challengeBronze[i] == true) {
+      for (let i = 0; i < datosUsuarioActual.challengeGold.length; i++) {
+        if (datosUsuarioActual.challengeGold[i] == true) {
           count += 1;
         }
       }
@@ -770,7 +770,7 @@ function attackbufsenemies(attackactive) {
   }
 }
 
-async function attackHeroes(i) {
+async function attackHeroes(i, attackactive) {
   let ataqueActual = attackactive;
   if (enemiesGlobal[i-1].actualHealth > 0) {
     if (enemiesGlobal[i-1].name == "Sauron") {
@@ -1160,7 +1160,8 @@ async function attackCeleborn() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -1282,7 +1283,8 @@ async function attackElrond() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -1428,7 +1430,8 @@ async function attackGimli() {
   }, 1000);
   attacksRemaining -= 1;
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -1464,7 +1467,8 @@ async function attackGwaihir() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -1715,7 +1719,8 @@ async function attackTreebeard() {
   }, 1000);
   attacksRemaining -= 1;
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -2478,7 +2483,8 @@ async function sMoveLegolas() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);
   }
 }
 
@@ -2569,7 +2575,8 @@ async function sMoveMinarorn() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -2759,7 +2766,8 @@ async function sMoveUndome() {
     document.getElementById(`hero${attackactive[1]+1}`).style.animation = "";
   }, 1000);
   for (let i = 1; i <= enemiesGlobal.length; i++) {
-    attackHeroes(i);
+    const localAttackActive = [...attackactive];
+    attackHeroes(i, localAttackActive);;
   }
 }
 
@@ -12942,7 +12950,7 @@ function cargarHome() {
         }
       }
       if (count == 37) {
-        challengeBronze.style = "color='green'";
+        challengeBronze.style.color = 'rgb(13, 169, 13)';
       }
       challengeBronze.innerHTML = ` ${count}/37`
     } else {
@@ -12956,7 +12964,7 @@ function cargarHome() {
         }
       }
       if (count == 37) {
-        challengeSilver.style = "color='green'";
+        challengeSilver.style.color = 'rgb(13, 169, 13)';
       }
       challengeSilver.innerHTML = ` ${count}/37`
     } else {
@@ -12970,7 +12978,7 @@ function cargarHome() {
         }
       }
       if (count == 37) {
-        challengeGold.style = "color='green'";
+        challengeGold.style.color = 'rgb(13, 169, 13)';
       }
       challengeGold.innerHTML = ` ${count}/37`
     } else {
