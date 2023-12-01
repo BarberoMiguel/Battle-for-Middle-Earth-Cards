@@ -1085,9 +1085,9 @@ async function attackAragorn() {
       attackactive = [0.5*heroesGlobal[i].attack, i];
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       ataqueactivo = 1;
-      if (heroesGlobal[i].specialMove == 1) {
+      if (heroesGlobal[i].sMove== 1) {
         attackactive[0] *= heroesGlobal[i].specialMoveActualAmount;
-        heroesGlobal[i].specialMove = 0;
+        heroesGlobal[i].sMove= 0;
       }
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
       document.getElementById(`selection${battle}`).classList.remove("hide");
@@ -1170,9 +1170,9 @@ async function attackCiryannil() {
       attackactive = [0.5*heroesGlobal[i].attack, i];
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       ataqueactivo = 1;
-      if (heroesGlobal[i].specialMove == 1) {
+      if (heroesGlobal[i].sMove == 1) {
         attackactive[0] *= (1 + heroesGlobal[i].specialMoveActualAmount);
-        heroesGlobal[i].specialMove = 0;
+        heroesGlobal[i].sMove = 0;
       }
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
       document.getElementById(`selection${battle}`).classList.remove("hide");
@@ -1307,9 +1307,9 @@ async function attackEowyn() {
       attackactive = [0.5*heroesGlobal[i].attack, i];
       heroesGlobal[i].actualARecharge = heroesGlobal[i].attackRecharge;
       ataqueactivo = 1;
-      if (heroesGlobal[i].specialMove == 1) {
+      if (heroesGlobal[i].sMove== 1) {
         attackactive[0] *= heroesGlobal[i].specialMoveActualAmount;
-        heroesGlobal[i].specialMove = 0;
+        heroesGlobal[i].sMove= 0;
       }
       document.getElementById(`attackContainer${battle}`).classList.add("hide");
       document.getElementById(`selection${battle}`).classList.remove("hide");
@@ -1759,7 +1759,7 @@ async function sMoveArador() {
 async function sMoveAragorn() {
   for (let i = 0; i < heroesGlobal.length; i++) {
     if (heroesGlobal[i].name == "Aragorn") {
-      heroesGlobal[i].specialMove = 1;
+      heroesGlobal[i].sMove= 1;
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
       document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
@@ -1885,7 +1885,7 @@ async function sMoveCeleborn() {
 async function sMoveCiryannil() {
   for (let i = 0; i < heroesGlobal.length; i++) {
     if (heroesGlobal[i].name == "Ciryannil") {
-      heroesGlobal[i].specialMove = 1;
+      heroesGlobal[i].sMove = 1;
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
       document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
@@ -2110,7 +2110,7 @@ async function sMoveEothain() {
 async function sMoveEowyn() {
   for (let i = 0; i < heroesGlobal.length; i++) {
     if (heroesGlobal[i].name == "Eowyn") {
-      heroesGlobal[i].specialMove = 1;
+      heroesGlobal[i].sMove= 1;
       heroesGlobal[i].actualSRecharge = heroesGlobal[i].specialMoveRecharge;
       SMRemaining -= 1;
       document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
@@ -2783,7 +2783,7 @@ function attackEnemy(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -3529,7 +3529,7 @@ async function attackWargLeader(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -4050,7 +4050,7 @@ async function attackSaruman(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -4437,8 +4437,8 @@ async function attackarcherMordor1(index) {
 async function attackorcMordor1(index) {
   return new Promise((resolve) => {
     attackactive = [0.5*enemiesGlobal[index].attack, index];
-    if (enemiesGlobal[index].specialMove == 1) {
-      enemiesGlobal[index].specialMove = 0;
+    if (enemiesGlobal[index].sMove== 1) {
+      enemiesGlobal[index].sMove= 0;
       attackactive[0] *= (1+ enemiesGlobal[index].specialMoveActualAmount);
     }
     enemiesGlobal[index].actualARecharge = enemiesGlobal[index].attackRecharge;
@@ -4719,7 +4719,7 @@ async function attackSauron(index) {
         if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -5419,7 +5419,7 @@ async function sMovecrossbow(index) {
         if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -5826,7 +5826,7 @@ async function sMoveurukHai8(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -6342,7 +6342,7 @@ async function sMovespearman(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -6779,7 +6779,7 @@ async function sMoveGrima(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -7274,7 +7274,7 @@ async function sMoveSaruman(index) {
         if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -7602,7 +7602,7 @@ async function sMovearcherMordor1(index) {
         if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -7932,7 +7932,7 @@ async function sMovearcherMordor1(index) {
 
 async function sMoveorcMordor1(index) {
   return new Promise((resolve) => {
-    enemiesGlobal[index].specialMove = 1;
+    enemiesGlobal[index].sMove= 1;
     enemiesGlobal[index].actualSRecharge = enemiesGlobal[index].specialMoveRecharge;
     document.getElementById(`specialEfectsEnemy${index+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
     setTimeout(() => {
@@ -8092,7 +8092,7 @@ async function sMoveorcMordor11(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -8491,7 +8491,7 @@ async function sMovearcherHaradrim(index) {
         if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -8916,7 +8916,7 @@ async function sMoveHaradrim1(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -9313,7 +9313,7 @@ async function sMoveSnaga(index) {
       if (Gwaihir == 1) {
         for (let i = 0; i < heroesGlobal.length; i++) {
           if (heroesGlobal[i].name == "Gwaihir") {
-            if (Math.random() >= heroesGlobal[i].specialMoveActualAmount) {
+            if (heroesGlobal[i].specialMoveActualAmount >= Math.random()) {
               esquivaGwaihir = true;
             } else {
               esquivaGwaihir = false;
@@ -10418,6 +10418,7 @@ function eventosBatalla(battle) {
 async function battleMoria1() {
   battleOnGoing = 1;
   kingDead = 0;
+  Gwaihir = 0;
   esquivaGwaihir = false;
   DamrodAttack = 3;
   for (let i = 0; i < enemiesGlobal.length; i++) {
@@ -10850,6 +10851,7 @@ async function battleMoria1() {
 async function battleFunction(battle, battleEnemies) {
   battleOnGoing = 1;
   kingDead = 0;
+  Gwaihir = 0;
   esquivaGwaihir = false;
   DamrodAttack = 3;
   armoredTroll = 0;
@@ -11247,7 +11249,7 @@ function iniciarPersonajes() {
       actualHealth: "", attackRecharge: 2, specialMoveRecharge: 3, specialMoveRounds: 1, 
       actualARecharge: 0, actualSRecharge: 0, xp: 0, attackButton: `<p id="attack${personajes[i]}" class="attack">${personajes[i]}</p>`,
       attackDescription: "", specialMoveDescription: "", 
-      specialMove: 0, image: "", healthBar: `<div class="healthbar">
+      sMove: 0, image: "", healthBar: `<div class="healthbar">
                                                 <div id="health${personajes[i]}" class="health"></div>
                                               </div>`};
     personajesNoObtenidos.push(personaje);
