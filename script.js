@@ -613,7 +613,7 @@ function victoria() {
             document.getElementById(`newCards${battle}`).innerHTML += `
               <section class="newCard">
                 <section class="secretCard secretCard${battle}"><img src="./assets/secretCard.png" alt="secretCard"></section>
-                <section id="newCard${i+1}${battle}" class="hide newCardImg">${personajesNoObtenidos[nuevoPersonaje[1]].image}</section>
+                <section id="newCard${i+1}${battle}" class="hide newCardImg">${personajesNoObtenidos[nuevoPersonaje[i][1]].image}</section>
               </section>`;
               let personajeNuevo = {
                 name: nuevoPersonaje[i][0],
@@ -9869,6 +9869,7 @@ async function sMoveOlogHai(index) {
     Damrod = 0;
     kingDead = 0;
     Gwaihir = 0;
+    esquivaGwaihir = false;
     setTimeout(() => {
       for (let j = 0; j < heroesGlobal.length; j++) {
         document.getElementById(`specialEfectsHero${j+1}`).innerHTML = "";
