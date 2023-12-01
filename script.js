@@ -2793,6 +2793,7 @@ function attackEnemy(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -3539,6 +3540,7 @@ async function attackWargLeader(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -4060,6 +4062,7 @@ async function attackSaruman(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -4729,7 +4732,8 @@ async function attackSauron(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
-          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        esquivaGwaihir = false;  
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -5429,7 +5433,8 @@ async function sMovecrossbow(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
-          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        esquivaGwaihir = false;  
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -5836,6 +5841,7 @@ async function sMoveurukHai8(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -6352,6 +6358,7 @@ async function sMovespearman(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -6789,6 +6796,7 @@ async function sMoveGrima(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -7284,7 +7292,8 @@ async function sMoveSaruman(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
-          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        esquivaGwaihir = false;  
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -7612,7 +7621,8 @@ async function sMovearcherMordor1(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
-          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        esquivaGwaihir = false;  
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -8102,6 +8112,7 @@ async function sMoveorcMordor11(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -8501,7 +8512,8 @@ async function sMovearcherHaradrim(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
-          document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
+        esquivaGwaihir = false;
+        document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
             resolve(true);
@@ -8926,6 +8938,7 @@ async function sMoveHaradrim1(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
@@ -9323,6 +9336,7 @@ async function sMoveSnaga(index) {
         }
       }
       if ((SMoveActualHeroes.hasOwnProperty("Arador") && heroesGlobal[enemigoElegido[1]].name == "Arador") || (SMoveActualHeroes.hasOwnProperty("Herubeam") && heroesGlobal[enemigoElegido[1]].name == "Herubeam") || (SMoveActualHeroes.hasOwnProperty("Mendener") && heroesGlobal[enemigoElegido[1]].name == "Mendener") || Gwaihir == 2 || esquivaGwaihir) {
+        esquivaGwaihir = false;
         document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = `<p class="dodge">Dodge</p>`;
         setTimeout(() => {
           document.getElementById(`specialEfectsHero${enemigoElegido[1]+1}`).innerHTML = "";
