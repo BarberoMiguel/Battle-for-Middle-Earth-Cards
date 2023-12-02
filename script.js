@@ -563,7 +563,7 @@ function victoria() {
             break;
           }
         }
-      }  if (datosUsuarioActual.level.minasTirith == 7 && datos.scenario == "minasTirith" && datos.level == 8) {
+      } else if (datosUsuarioActual.level.minasTirith == 7 && datos.scenario == "minasTirith" && datos.level == 8) {
         for (let i = 0; i < personajesNoObtenidos.length; i++) {
           if (personajesNoObtenidos[i].name == "kingDead") {
             nuevoPersonaje.push(["kingDead", i]);
@@ -10551,11 +10551,11 @@ async function battleMoria1() {
         <h2>Select the cards you want to use this battle</h2>
         <section>
             <label for="character1">Character 1:</label>
-            <select name="character1" id="character1" class="characterSelection"></select>
+            <select name="character1" id="character1" class="characterSelection"></select><br>
             <label for="character2">Character 2:</label>
-            <select name="character2" id="character2" class="characterSelection"></select>
+            <select name="character2" id="character2" class="characterSelection"></select><br>
             <label for="character3">Character 3:</label>
-            <select name="character3" id="character3" class="characterSelection"></select>
+            <select name="character3" id="character3" class="characterSelection"></select><br>
         </section>
         <button type="submit" class="blue button">Submit</button>
     </form>  
@@ -10985,11 +10985,11 @@ async function battleFunction(battle, battleEnemies) {
         <h2>Select the cards you want to use this battle</h2>
         <section>
             <label for="character1">Character 1:</label>
-            <select name="character1" id="character1" class="characterSelection"></select>
+            <select name="character1" id="character1" class="characterSelection"></select><br>
             <label for="character2">Character 2:</label>
-            <select name="character2" id="character2" class="characterSelection"></select>
+            <select name="character2" id="character2" class="characterSelection"></select><br>
             <label for="character3">Character 3:</label>
-            <select name="character3" id="character3" class="characterSelection"></select>
+            <select name="character3" id="character3" class="characterSelection"></select><br>
         </section>
         <button type="submit" class="blue button">Submit</button>
     </form>  
