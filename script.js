@@ -306,8 +306,10 @@ function comprobarVictoria() {
   }
   if (comprobador) {
     victoria();
-    document.getElementById(`controls${battle}`).classList.add("hide");
-    document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
+    setTimeout(() => {
+      document.getElementById(`controls${battle}`).classList.add("hide");
+      document.getElementById(`AttackSMContainer${battle}`).classList.add("hide");
+    }, 1000);
   }
   return comprobador;
 }
