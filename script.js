@@ -449,7 +449,7 @@ function victoria() {
     const documentRef = db.collection("users").doc(datosUsuarioActual.id);
     if (heroesGlobal[0].card == "bronze" && heroesGlobal[1].card == "bronze" && heroesGlobal[2].card == "bronze") {
       if (!datosUsuarioActual.challengeBronze) {
-        datosUsuarioActual.challengeBronze = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+        datosUsuarioActual.challengeBronze = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
       }
       datosUsuarioActual.challengeBronze[datos.total] = true;
       documentRef.update({
@@ -461,7 +461,7 @@ function victoria() {
           count += 1;
         }
       }
-      if (count == 37) {
+      if (count > 33) {
         for (let i = 0; i < personajesNoObtenidos.length; i++) {
           if (personajesNoObtenidos[i].name == "Elrond") {
             nuevoPersonaje.push(["Elrond", i])
@@ -472,7 +472,7 @@ function victoria() {
     }
     if (heroesGlobal[0].card == "silver" && heroesGlobal[1].card == "silver" && heroesGlobal[2].card == "silver") {
       if (!datosUsuarioActual.challengeSilver) {
-        datosUsuarioActual.challengeSilver = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+        datosUsuarioActual.challengeSilver = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
       }
       datosUsuarioActual.challengeSilver[datos.total] = true;
       documentRef.update({
@@ -495,7 +495,7 @@ function victoria() {
     }
     if (heroesGlobal[0].card == "gold" && heroesGlobal[1].card == "gold" && heroesGlobal[2].card == "gold") {
       if (!datosUsuarioActual.challengeGold) {
-        datosUsuarioActual.challengeGold = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+        datosUsuarioActual.challengeGold = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
       }
       datosUsuarioActual.challengeGold[datos.total] = true;
       documentRef.update({
@@ -11235,6 +11235,13 @@ async function battleFunction(battle, battleEnemies) {
           setTimeout(() => {
             document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = "";
           }, 1000);
+          if (SMoveActualEnemies.hasOwnProperty("urukHai8")) {
+            delayedDamage = 0;
+          } else if (SMoveActualEnemies.hasOwnProperty("Grima") && SMoveActualEnemies.Grima == 1) {
+            delayedDamage = 0;
+          } else if (SMoveActualEnemies.hasOwnProperty("Snaga") && SMoveActualEnemies.Snaga == 1) {
+            delayedDamage = 0;
+          }
         }
         if (!comprobarDerrota()) {
           setTimeout(() => {
@@ -12976,12 +12983,12 @@ function cargarHome() {
           count += 1;
         }
       }
-      if (count == 37) {
+      if (count > 33) {
         challengeBronze.style.color = 'rgb(13, 169, 13)';
       }
-      challengeBronze.innerHTML = ` ${count}/37`
+      challengeBronze.innerHTML = ` ${count}/34`
     } else {
-      challengeBronze.innerHTML = " 0/37"
+      challengeBronze.innerHTML = " 0/34"
     }
     if (datosUsuarioActual.challengeSilver) {
       let count = 0;
@@ -16070,7 +16077,7 @@ for (let i = 0; i < backMap.length; i++) {
     document.getElementById("helmsDeep").classList.add("hide");
     document.getElementById("osgiliath").classList.add("hide");
     document.getElementById("minasTirith").classList.add("hide");
-    document.getElementById("minasTirith").classList.add("hide");
+    document.getElementById("blackGate").classList.add("hide");
     cargarBattle();
   })
 }
