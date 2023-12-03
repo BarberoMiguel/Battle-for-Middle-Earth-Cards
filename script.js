@@ -155,22 +155,14 @@ async function validarFormularioLogin(email, password) {
 //función devuelve que personajes no tienes de un set
 function availableFromSet(array) {
   let personajesDisponibles = [];
-  if (array.length > 0) {
-    if (array[0].hasOwnProperty("name")) {
-      for (let i = 0; i < array.length; i++) {
-        personajesDisponibles.push([array[i].name, i]);
+  array.forEach(element => {
+    for (let i = 0; i < personajesNoObtenidos.length; i++) {
+      if (personajesNoObtenidos[i].name == element) {
+        personajesDisponibles.push([element, i]);
+        break;
       }
-    } else {
-      array.forEach(element => {
-        for (let i = 0; i < personajesNoObtenidos.length; i++) {
-          if (personajesNoObtenidos[i].name == element) {
-            personajesDisponibles.push([element, i]);
-            break;
-          }
-        }
-      });
     }
-  }
+  });
   return personajesDisponibles;
 }
 
@@ -429,7 +421,7 @@ function victoria() {
   } else if (battle == "BlackGate4") {
     datos = {scenario: "blackGate", level: 4, xp: 1050, total: 35, coins: 1030, cards: [goldBlackGate, silverBlackGate, bronzeBlackGate]}
   } else if (battle == "BlackGate5") {
-    datos = {scenario: "blackGate", level: 5, xp: 1250, total: 36, coins: 1250, cards: [personajesNoObtenidos, personajesNoObtenidos, personajesNoObtenidos]}
+    datos = {scenario: "blackGate", level: 5, xp: 1250, total: 36, coins: 1250, cards: [personajesBlackGate, personajesBlackGate, personajesBlackGate]}
   }
   setTimeout(function () {
     for (let i = 0; i < heroesGlobal.length; i++) {
@@ -15709,7 +15701,14 @@ let silverGondor = ["Beregond"];
 let bronzeBlackGate = ["Dernwine", "Duinhir", "Folcred", "Ohtar"];
 let silverBlackGate = ["princeImrahil"];
 let goldBlackGate = ["Aragorn", "Legolas", "Gimli", "Gandalf", "Gwaihir"];
-
+let personajesBlackGate = [
+  'Arador', 'Aragorn', 'Aranarth', 'Beregond', 'Boromir', 'Ciryannil',
+  'Damrod', 'Dernwine', 'Duinhir', 'Elladan', 'Elrohir', 'Eomer', 'Eothain',
+  'Eowyn', 'Faramir', 'Folcred', 'Galadriel', 'Gamling', 'Gandalf', 'Gimli',
+  'Guthred', 'Gwaihir', 'Haldir', 'Hama', 'Herubeam', 'Holdbald', 'kingDead', 'Legolas',
+  'Maradir', 'Mendener', 'Merry', 'Minarorn', 'Ohtar', 'Pippin', 'princeImrahil',
+  'Theoden', 'Treebeard', 'Undome'
+]
 
 //eventos
 document.getElementById("register").addEventListener("click", function() {
