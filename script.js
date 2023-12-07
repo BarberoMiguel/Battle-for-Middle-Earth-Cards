@@ -11221,6 +11221,7 @@ async function battleFunction(battle, battleEnemies) {
       enemiesAttaks = 1;
       if (continuar || enemyAttack.length == 0) {
         if ((SMoveActualEnemies.hasOwnProperty("urukHai8")) || (SMoveActualEnemies.hasOwnProperty("Grima") || (SMoveActualEnemies.hasOwnProperty("Snaga"))) && delayedDamage != 0) {
+          let delayedDamageCopy = delayedDamage;
           document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = `<p class="damageTaken">-${delayedDamage[1]}pH</p>`;
           heroesGlobal[delayedDamage[0]].actualHealth -= delayedDamage[1];
           if (heroesGlobal[delayedDamage[0]].actualHealth <= 0) {
@@ -11229,7 +11230,7 @@ async function battleFunction(battle, battleEnemies) {
           }
           document.getElementById(`health${heroesGlobal[delayedDamage[0]].name}`).style.width = (heroesGlobal[delayedDamage[0]].actualHealth/heroesGlobal[delayedDamage[0]].maxHealth)*100 + "%";
           setTimeout(() => {
-            document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = "";
+            document.getElementById(`specialEfectsHero${delayedDamageCopy[0]+1}`).innerHTML = "";
           }, 1000);
           if (SMoveActualEnemies.hasOwnProperty("urukHai8")) {
             delayedDamage = 0;
