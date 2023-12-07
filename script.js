@@ -10918,7 +10918,7 @@ async function battleFunction(battle, battleEnemies) {
   attacksRemaining = 1;
   SMRemaining = 1;
   attackactive = 0;
-  delayedDamage = 0;
+  delayedDamage = null;
   SMoveActualHeroes = {};
   SMoveActualEnemies = {};
   let mapScenario = battle.slice(0, battle.length-1);
@@ -11220,7 +11220,8 @@ async function battleFunction(battle, battleEnemies) {
       }
       enemiesAttaks = 1;
       if (continuar || enemyAttack.length == 0) {
-        if ((SMoveActualEnemies.hasOwnProperty("urukHai8")) || (SMoveActualEnemies.hasOwnProperty("Grima") || (SMoveActualEnemies.hasOwnProperty("Snaga"))) && delayedDamage != 0) {
+        console.log(delayedDamage);
+        if ((SMoveActualEnemies.hasOwnProperty("urukHai8") || SMoveActualEnemies.hasOwnProperty("Grima") || SMoveActualEnemies.hasOwnProperty("Snaga")) && delayedDamage != null) {
           let delayedDamageCopy = delayedDamage;
           document.getElementById(`specialEfectsHero${delayedDamage[0]+1}`).innerHTML = `<p class="damageTaken">-${delayedDamage[1]}pH</p>`;
           heroesGlobal[delayedDamage[0]].actualHealth -= delayedDamage[1];
@@ -11233,11 +11234,11 @@ async function battleFunction(battle, battleEnemies) {
             document.getElementById(`specialEfectsHero${delayedDamageCopy[0]+1}`).innerHTML = "";
           }, 1000);
           if (SMoveActualEnemies.hasOwnProperty("urukHai8")) {
-            delayedDamage = 0;
+            delayedDamage = null;
           } else if (SMoveActualEnemies.hasOwnProperty("Grima") && SMoveActualEnemies.Grima == 1) {
-            delayedDamage = 0;
+            delayedDamage = null;
           } else if (SMoveActualEnemies.hasOwnProperty("Snaga") && SMoveActualEnemies.Snaga == 1) {
-            delayedDamage = 0;
+            delayedDamage = null;
           }
         }
         if (!comprobarDerrota()) {
@@ -15689,7 +15690,7 @@ let Gwaihir = 0;
 let esquivaGwaihir = false;
 let armoredTroll = 0;
 let Guritz = 0;
-let delayedDamage = 0;
+let delayedDamage = null;
 let DamrodAttack = 3;
 let enemiesAttaks = 1;
 let bronzeAmonHen = ["Mendener", "Undome"];
