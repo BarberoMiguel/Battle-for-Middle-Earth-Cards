@@ -718,51 +718,51 @@ function attackbufs(attackactive) {
       }}};
 }
 
-function attackbufsenemies(attackactive) {
+function attackbufsenemies(ataqueCargado) {
   if (SMoveActualEnemies.hasOwnProperty("Goblin3")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "Goblin3") {
-        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("urukHai1")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "urukHai1") {
-        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("WargRider2")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "WargRider2") {
-        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("urukHai5")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "urukHai5") {
-        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("Captain")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "Captain") {
-        attackactive[0] *= (enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("orcMordor4")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "orcMordor4") {
-        attackactive[0] *= (enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("orcMordor6")) {
     for (let i = 0; i < enemiesGlobal.length; i++) {
       if (heroesGlobal[i].name == "orcMordor6") {
-        attackactive[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
+        ataqueCargado[0] *= (1 + enemiesGlobal[i].specialMoveActualAmount);
         break;
       }}};
   if (SMoveActualEnemies.hasOwnProperty("Murgash")) {
-    attackactive[0] *= 3;
+    ataqueCargado[0] *= 3;
   }
 }
 
