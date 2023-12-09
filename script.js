@@ -812,7 +812,7 @@ async function attackHeroes(i, attackactive) {
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
       if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
         Damrod = 0;
-        DamrodAttack = i;
+        DamrodAttack = i-1;
       }
       setTimeout(() => {
         document.getElementById(`specialEfectsEnemy${i}`).innerHTML = "";
@@ -827,7 +827,7 @@ async function attackHeroes(i, attackactive) {
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
       if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
         Damrod = 0;
-        DamrodAttack = i;
+        DamrodAttack = i-1;
       }
       ataqueActual[0] = ataqueActual[0]*0.6;
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
@@ -850,7 +850,7 @@ async function attackHeroes(i, attackactive) {
     } else if ((SMoveActualEnemies.hasOwnProperty("Haradrim2"))) {
       if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
         Damrod = 0;
-        DamrodAttack = i;
+        DamrodAttack = i-1;
       }
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
       attackactive[0] = attackactive[0]*0.3;
@@ -887,6 +887,10 @@ async function attackHeroes(i, attackactive) {
           eventosBatalla(battle);
         }, 1000);} 
     } else if (SMoveActualEnemies.hasOwnProperty("urukHai9") ) {
+      if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
+        Damrod = 0;
+        DamrodAttack = i-1;
+      }
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/shield.png" alt="upgrade" class="effects">`;
       ataqueActual[0] = ataqueActual[0]*0.5;
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
@@ -909,7 +913,7 @@ async function attackHeroes(i, attackactive) {
     } else if (SMoveActualEnemies.hasOwnProperty("Warg2")) {
       if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
         Damrod = 0;
-        DamrodAttack = i;
+        DamrodAttack = i-1;
       }
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<img src="./assets/effects/reflect.png" alt="upgrade" class="effects">`;
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML += `<p class="damageTaken">-${ataqueActual[0]}pH</p>`;
@@ -980,7 +984,7 @@ async function attackHeroes(i, attackactive) {
     } else {
       if (SMoveActualHeroes.hasOwnProperty("Damrod") && Damrod == 1) {
         Damrod = 0;
-        DamrodAttack = i;
+        DamrodAttack = i-1;
       }
       document.getElementById(`specialEfectsEnemy${i}`).innerHTML = `<p class="damageTaken">-${await ataqueActual[0]}pH</p>`;
       enemiesGlobal[i-1].actualHealth -= await ataqueActual[0];
@@ -1918,13 +1922,13 @@ async function sMoveDamrod() {
       SMRemaining -= 1;
       document.getElementById(`specialEfectsHero${i+1}`).innerHTML = `<img src="./assets/effects/level_Up.gif" alt="upgrade" class="effects">`;
       document.getElementById(`SMContainer${battle}`).classList.add("hide");
+      document.getElementById(`selection${battle}`).classList.remove("hide");
+      setTimeout(() => {
+        document.getElementById(`specialEfectsHero${i+1}`).innerHTML = "";
+      }, 750)
       break;
     }
   }
-  setTimeout(() => {
-    document.getElementById(`specialEfectsHero${i+1}`).innerHTML = "";
-    document.getElementById(`selection${battle}`).classList.remove("hide");
-  }, 750)
   attackbufs(attackactive);
   attackactive = [Math.round(await attackactive[0]), attackactive[1]];
 }
@@ -10453,7 +10457,7 @@ function eventosBatalla(battle) {
           }, 1000);
         }
       } else {
-        attackHeroes(i+1);
+        attackHeroes(i+1, attackactive);
       }
     }});
   }
@@ -11095,7 +11099,7 @@ async function battleFunction(battle, battleEnemies) {
     if (SMoveActualHeroes.hasOwnProperty("Damrod") && DamrodAttack < 3) {
       for (let j = 0; j < heroesGlobal.length; j++) {
         if (heroesGlobal[j].name = "Damrod") {
-          ataqueactivo = [heroesGlobal[j].attack*heroesGlobal[j].specialMoveActualAmount, i];
+          ataqueactivo = [heroesGlobal[j].attack*heroesGlobal[j].specialMoveActualAmount, j];
           if (enemiesGlobal[DamrodAttack].name == "Sauron") {
             ataqueactivo[0] = ataqueactivo[0]*0.75;
           }
