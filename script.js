@@ -15860,6 +15860,13 @@ document.getElementById("battle").addEventListener("click", function() {
     battleContent.classList.remove("hide");
     shopContent.classList.add("hide");
     myCardsContent.classList.add("hide");
+    document.getElementById("moria").classList.add("hide");
+    document.getElementById("amonHen").classList.add("hide");
+    document.getElementById("wargs").classList.add("hide");
+    document.getElementById("helmsDeep").classList.add("hide");
+    document.getElementById("osgiliath").classList.add("hide");
+    document.getElementById("minasTirith").classList.add("hide");
+    document.getElementById("blackGate").classList.add("hide");
     document.getElementById("home").classList.remove("outlined");
     document.getElementById("battle").classList.add("outlined");
     document.getElementById("shop").classList.remove("outlined");
