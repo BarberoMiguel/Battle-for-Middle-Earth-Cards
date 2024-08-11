@@ -12914,12 +12914,18 @@ async function actualizarCartas(carta, xp) {
 //función manejo de inicio cerrado de sesión
 async function loginLogout(user) {
   if (user) {
-    setTimeout(async function() {
       let emailUser = user.email;
       let querySnapshot = await db.collection('users').get()
         querySnapshot.forEach(doc => {
           if (doc.data().email == emailUser) {
             datosUsuarioActual = doc.data();
+            if (datosUsuarioActual.id == "" ) {
+              datosUsuarioActual.id = doc.id;
+              const documentRef = db.collection("users").doc(datosUsuarioActual.id);
+              documentRef.update({
+                id: datosUsuarioActual.id
+              });
+            }
             datosUsuarioActual.charactersOwned.forEach(element => {
               for (let i = 0; i < personajesNoObtenidos.length; i++) {
                 if (personajesNoObtenidos[i].name == element.name) {
@@ -12949,7 +12955,6 @@ async function loginLogout(user) {
           music = true;
           audio.play();
         }});
-    }, 1000)
   } else {
     login.classList.remove("hide");
     menu.classList.add("hide");
