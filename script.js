@@ -12688,7 +12688,7 @@ async function actualizarEnemigo(carta, level, rank) {
       case "Gorbag":
         cartaActual.attackDescription = "He jumps, attacks you and retreats";
         cartaActual.specialMoveDescription = `He prevents all enemies from being stunned and adds an extra attack`;
-        cartaActual.image += `<p class="${rank} nameDisplay">Radbug</p>
+        cartaActual.image += `<p class="${rank} nameDisplay">Gorbag</p>
                                 </figure>`;
         break;
       case "OlogHai":
